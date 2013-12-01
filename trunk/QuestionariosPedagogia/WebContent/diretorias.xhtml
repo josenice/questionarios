@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+      
+
+	<h:head>
+		<title>ETEP - Diretorias Acadêmicas</title>
+	</h:head>
+	<h:body>
+	<!-- TODO: elaborar e montar template -->
+	<h3><h:graphicImage library="imagens" name="ifrn.jpg" /></h3>
+	 
+     <p:panel header="Diretorias" >  
+     </p:panel>
+  
+		<p:growl autoUpdate="true"/>
+		<h:form id="formulario">
+			<p:dataTable id="table" var="diretoria" value="#{diretoriasMB.diretorias}">
+				<p:column headerText="Diretoria" width="70%">
+					<h:outputText value="#{diretoria.nome}" />
+				</p:column>
+				<p:column headerText="Operações">
+					<p:commandButton value="Editar" update=":formulario:nomeDiretoria :formulario:btnCancelar :formulario:fieldset">
+						<f:setPropertyActionListener value="#{diretoria}" target="#{diretoriasMB.diretoriaEmEdicao}" />
+					</p:commandButton>
+																														
+					<!-- TODO: exibir janela de confirmação antes de excluir -->
+					<p:commandButton value="Excluir" action="#{diretoriasMB.excluir}" update="table">
+						<f:setPropertyActionListener target="#{diretoriasMB.diretoriaEmEdicao.id}"  value="#{diretoria.id}" />
+					</p:commandButton>	
+				</p:column>
+				
+										
+			</p:dataTable>
+			
+			<br/>
+			<p:fieldset legend="#{(diretoriasMB.diretoriaEmEdicao.id == null?'Cadastro de nova':'Edição de ')} diretoria" 
+				id="fieldset">
+				<h:outputText value="Diretoria" />
+				<p:inputText value="#{diretoriasMB.diretoriaEmEdicao.nome}" id="nomeDiretoria"  /><br/>
+				<p:commandButton value="Salvar" update="table nomeDiretoria btnCancelar fieldset"
+					actionListener="#{diretoriasMB.salvarDiretoria()}" />
+				<p:commandButton value="Cancelar" id="btnCancelar" update="nomeDiretoria btnCancelar fieldset"
+					actionListener="#{diretoriasMB.cancelar()}" disabled="#{diretoriasMB.diretoriaEmEdicao.id == null}"	/>
+			</p:fieldset>
+		</h:form>
+		
+	</h:body>
+	
+</html>
