@@ -73,7 +73,7 @@ public class DiretoriasMB implements Serializable{
 		}
 		
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		ctx.addMessage(null, new FacesMessage(msg));
+		ctx.addMessage(null, new FacesMessage(msg, ""));
 		
 		/*return "diretorias.jsf?faces-redirect=true";*/
 	}
@@ -94,7 +94,7 @@ public class DiretoriasMB implements Serializable{
 		}
 		
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		ctx.addMessage(null, new FacesMessage(msg));
+		ctx.addMessage(null, new FacesMessage(msg, ""));
 	}
 	
 	
