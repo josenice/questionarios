@@ -8,13 +8,16 @@
      
       
 
-	<h:head>
-		<title>ETEP - Diretorias Acadêmicas</title>
-	</h:head>
-	<h:body>
+	
+	
+	<ui:composition template="/templates/layout.xhtml">
+	
+		<ui:define name="title"> - Diretorias</ui:define>
+		
+		<ui:define name="conteudo">
 	
 	<!-- TODO: elaborar e montar template -->
-	<h3><h:graphicImage library="imagens" name="ifrn.jpg" /></h3>
+	
 	 
      <p:panel header="Diretorias" >  
      </p:panel>
@@ -54,7 +57,8 @@
 					actionListener="#{diretoriasMB.cancelar()}" disabled="#{diretoriasMB.diretoriaEmEdicao.id == null}"	/>
 			</p:fieldset>
 		</h:form>
+		</ui:define>
 		
-	</h:body>
+		</ui:composition>
 	
 </html>
