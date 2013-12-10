@@ -1,64 +1,71 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
-     
-     
-      
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	
-	
-	<ui:composition template="/templates/layout.xhtml">
-	
-		<ui:define name="title"> - Diretorias</ui:define>
-		
-		<ui:define name="conteudo">
-	
-	<!-- TODO: elaborar e montar template -->
-	
-	 
-     <p:panel header="Diretorias" >  
-     </p:panel>
-  
-		<p:growl autoUpdate="true"/>
-		<h:form id="formulario">
-			<p:dataTable id="table" var="diretoria" value="#{diretoriasMB.diretorias}">
-				<p:column headerText="Diretoria" width="70%">
-					<h:outputText value="#{diretoria.nome}" />
-				</p:column>
-				<p:column headerText="Operações">
-					<p:commandButton value="Editar" update=":formulario:nomeDiretoria :formulario:btnCancelar :formulario:fieldset">
-						<f:setPropertyActionListener value="#{diretoria}" target="#{diretoriasMB.diretoriaEmEdicao}" />
-					</p:commandButton>
-					 <p:growl id="messages" showDetail="true" /> 																																	
-					<!-- TODO: exibir janela de confirmação antes de excluir -->
-					<p:commandButton value="Excluir" action="#{diretoriasMB.excluir}" update="table">
-					<p:confirm header="Confirmação" message="Deseja mesmo excluir?" icon="ui-icon-alert" />  
-					<f:setPropertyActionListener target="#{diretoriasMB.diretoriaEmEdicao.id}"  value="#{diretoria.id}" />
-					</p:commandButton>	
-				    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">   
-       				 <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>  
-       				 <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>       
-    			    </p:confirmDialog> 
-				</p:column>
-														
-			</p:dataTable>
-			
-			<br/>
-			<p:fieldset legend="#{(diretoriasMB.diretoriaEmEdicao.id == null?'Cadastro de nova':'Edição de ')} diretoria" 
-				id="fieldset">
-				<h:outputText value="Diretoria" />
-				<p:inputText value="#{diretoriasMB.diretoriaEmEdicao.nome}" id="nomeDiretoria"  /><br/>
-				<p:commandButton value="Salvar" update="table nomeDiretoria btnCancelar fieldset"
-					actionListener="#{diretoriasMB.salvarDiretoria()}" />
-				<p:commandButton value="Cancelar" id="btnCancelar" update="nomeDiretoria btnCancelar fieldset"
-					actionListener="#{diretoriasMB.cancelar()}" disabled="#{diretoriasMB.diretoriaEmEdicao.id == null}"	/>
-			</p:fieldset>
-		</h:form>
-		</ui:define>
-		
-		</ui:composition>
-	
+<ui:composition template="/templates/layout.xhtml">
+
+	<ui:define name="conteudo">
+
+		<p:growl autoUpdate="true" />
+		<p:panel header="Diretorias">
+			<h:form id="formulario">
+				<p:dataTable id="table" var="diretoria"
+					value="#{diretoriasMB.diretorias}">
+					<p:column headerText="Diretoria" width="70%">
+						<h:outputText value="#{diretoria.nome}" />
+					</p:column>
+					
+					<p:column headerText="Operações" style="">
+						<p:commandButton value="Editar"
+							update=":formulario:nomeDiretoria :formulario:btnCancelar :formulario:fieldset">
+							<f:setPropertyActionListener value="#{diretoria}"
+								target="#{diretoriasMB.diretoriaEmEdicao}" />
+						</p:commandButton>
+						<p:growl id="messages" showDetail="true" />
+						<!-- TODO: exibir janela de confirmação antes de excluir -->
+						<p:commandButton value="Excluir" action="#{diretoriasMB.excluir}"
+							update="table">
+							<p:confirm header="Confirmação"
+								message="Deseja relamente excluir este item?"
+								icon="ui-icon-alert" />
+							<f:setPropertyActionListener
+								target="#{diretoriasMB.diretoriaEmEdicao.id}"
+								value="#{diretoria.id}" />
+						</p:commandButton>
+						<p:confirmDialog global="true" showEffect="fade"
+							hideEffect="explode">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</p:column>
+
+				</p:dataTable>
+
+				<br />
+				<p:fieldset
+					legend="#{(diretoriasMB.diretoriaEmEdicao.id == null?'Cadastro de nova':'Edição de ')} diretoria"
+					id="fieldset">
+					<h:outputText value="Diretoria" />
+					<p:inputText value="#{diretoriasMB.diretoriaEmEdicao.nome}"
+						id="nomeDiretoria" />
+					<br />
+					<p:commandButton value="Salvar"
+						update="table nomeDiretoria btnCancelar fieldset"
+						actionListener="#{diretoriasMB.salvarDiretoria()}" />
+					<p:commandButton value="Cancelar" id="btnCancelar"
+						update="nomeDiretoria btnCancelar fieldset"
+						actionListener="#{diretoriasMB.cancelar()}"
+						disabled="#{diretoriasMB.diretoriaEmEdicao.id == null}" />
+				</p:fieldset>
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
 </html>
