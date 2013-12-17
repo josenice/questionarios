@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="MODELODEAVALIACAODETURMA")
-public class ModeloAvaliacaoDeTurma implements Serializable{
+public class QuestionarioAvaliacaoDeTurma implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -67,7 +67,7 @@ public class ModeloAvaliacaoDeTurma implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ModeloAvaliacaoDeTurma other = (ModeloAvaliacaoDeTurma) obj;
+		QuestionarioAvaliacaoDeTurma other = (QuestionarioAvaliacaoDeTurma) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
