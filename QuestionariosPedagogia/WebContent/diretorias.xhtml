@@ -13,12 +13,12 @@
 		<p:panel header="Diretorias">
 			<h:form id="formulario">
 				<p:dataTable id="table" var="diretoria"
-					value="#{diretoriasMB.diretorias}">
-					<p:column headerText="Diretoria" width="70%">
+					value="#{diretoriasMB.diretorias}" >
+					<p:column headerText="Diretoria" >
 						<h:outputText value="#{diretoria.nome}" />
 					</p:column>
 					
-					<p:column headerText="Operações" style="">
+					<p:column headerText="Operações" style="" width="200">
 						<p:commandButton value="Editar"
 							update=":formulario:nomeDiretoria :formulario:btnCancelar :formulario:fieldset">
 							<f:setPropertyActionListener value="#{diretoria}"

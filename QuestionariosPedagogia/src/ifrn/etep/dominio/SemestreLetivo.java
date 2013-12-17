@@ -26,7 +26,7 @@ public class SemestreLetivo implements Serializable{
 	private Integer semestre;
 	
 	@ManyToOne
-	private ModeloAvaliacaoDeTurma modeloAvaliacaoDeTurma; //unidirecional
+	private QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma; //unidirecional
 	
 	public Integer getId() {
 		return id;
@@ -34,11 +34,11 @@ public class SemestreLetivo implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public ModeloAvaliacaoDeTurma getModeloAvaliacaoDeTurma() {
+	public QuestionarioAvaliacaoDeTurma getModeloAvaliacaoDeTurma() {
 		return modeloAvaliacaoDeTurma;
 	}
 	public void setModeloAvaliacaoDeTurma(
-			ModeloAvaliacaoDeTurma modeloAvaliacaoDeTurma) {
+			QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma) {
 		this.modeloAvaliacaoDeTurma = modeloAvaliacaoDeTurma;
 	}
 	public Integer getAno() {

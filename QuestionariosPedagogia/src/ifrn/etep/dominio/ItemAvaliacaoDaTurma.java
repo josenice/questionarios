@@ -22,7 +22,7 @@ public class ItemAvaliacaoDaTurma implements Serializable {
 	private String texto;
 	
 	@ManyToOne(optional=false)
-	private ModeloAvaliacaoDeTurma modeloAvaliacao;// bidirecional
+	private QuestionarioAvaliacaoDeTurma modeloAvaliacao;// bidirecional
 
 	public Integer getId() {
 		return id;
@@ -32,11 +32,11 @@ public class ItemAvaliacaoDaTurma implements Serializable {
 		this.id = id;
 	}
 
-	public ModeloAvaliacaoDeTurma getModeloAvaliacao() {
+	public QuestionarioAvaliacaoDeTurma getModeloAvaliacao() {
 		return modeloAvaliacao;
 	}
 
-	public void setModeloAvaliacao(ModeloAvaliacaoDeTurma modeloAvaliacao) {
+	public void setModeloAvaliacao(QuestionarioAvaliacaoDeTurma modeloAvaliacao) {
 		this.modeloAvaliacao = modeloAvaliacao;
 	}
 
