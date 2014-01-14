@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ServiceDiretoriaAcademica implements Serializable{
 	
 	/**
-	 * 
+	 * Josenice
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired

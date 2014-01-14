@@ -7,13 +7,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table(name="MODELODEAVALIACAODETURMA")
+@Table(name="QUESTIONARIOAVALIACAODETURMA")
 public class QuestionarioAvaliacaoDeTurma implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -22,9 +23,10 @@ public class QuestionarioAvaliacaoDeTurma implements Serializable{
 	private Integer id;
 	
 	@Column(nullable=false, length=40)
-	private String questionario;
+	private String descricao;
 	
-	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL)
+	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL, mappedBy="modeloAvaliacao", 
+			fetch=FetchType.EAGER)
 	private List<ItemAvaliacaoDaTurma> itens = new ArrayList<>();//bidirecional
 	
 	public List<ItemAvaliacaoDaTurma> getItens() {
@@ -43,12 +45,24 @@ public class QuestionarioAvaliacaoDeTurma implements Serializable{
 		this.id = id;
 	}
 
-	public String getQuestionario() {
-		return questionario;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setQuestionario(String questionario) {
-		this.questionario = questionario;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	public List<RespostaUsuarioDaTurma> gerarItensResposta(TurmaSeriada turmaEmAvaliacao){
+		ArrayList<RespostaUsuarioDaTurma> respostas = new ArrayList<>();
+		for(ItemAvaliacaoDaTurma item : getItens()){
+			RespostaUsuarioDaTurma r = new RespostaUsuarioDaTurma();
+			r.setItemAvaliacao(item);
+			r.setTurmaAvalida(turmaEmAvaliacao);
+			respostas.add(r);
+		}
+		
+		return respostas;
 	}
 
 	@Override
