@@ -21,7 +21,7 @@ public class RespostaUsuarioDaTurma implements Serializable {
 	private Integer id;
 	
 	@Column(nullable=false)
-	private Integer frequenca;
+	private Integer frequencia;
 	
 	@ManyToOne(optional=false)
 	private ItemAvaliacaoDaTurma itemAvaliacao; //unidirecional
@@ -64,12 +64,12 @@ public class RespostaUsuarioDaTurma implements Serializable {
 		this.turmaAvalida = turmaAvalida;
 	}
 
-	public Integer getFrequenca() {
-		return frequenca;
+	public Integer getFrequencia() {
+		return frequencia;
 	}
 
-	public void setFrequenca(Integer frequenca) {
-		this.frequenca = frequenca;
+	public void setFrequencia(Integer frequenca) {
+		this.frequencia = frequenca;
 	}	
 	
 	@Override
