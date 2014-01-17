@@ -1,6 +1,10 @@
 package ifrn.etep.dao;
 
-import java.io.Serializable;
+import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
+import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoDeTurma;
+import ifrn.etep.dominio.RespostaUsuarioDaTurma;
+import ifrn.etep.dominio.SemestreLetivo;
+
 import java.util.List;
 
 import org.hibernate.Query;
@@ -8,10 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
-import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoDeTurma;
-import ifrn.etep.dominio.RespostaUsuarioDaTurma;
 
 @Repository
 public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioAvaliacaoDeTurma{
@@ -21,6 +21,9 @@ public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioA
 	public void setSessionFactory(SessionFactory sessionFectory){
 		this.sessionFactory = sessionFectory;
 	}
+	
+	@Autowired
+	private DAOSemesteLetivo daoSemestreLetivo;
 
 	@Override
 	public void insert(QuestionarioAvaliacaoDeTurma questionario) {
@@ -62,5 +65,12 @@ public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioA
 		for(RespostaUsuarioDaTurma r : respostas){
 			session.save(r);
 		}
+	}
+
+	@Override
+	public QuestionarioAvaliacaoDeTurma getDoSemestreCorente() {
+		SemestreLetivo semestreCorrente = daoSemestreLetivo.getSemestreCorente();
+		
+		return semestreCorrente.getModeloAvaliacaoDeTurma();
 	}
 }

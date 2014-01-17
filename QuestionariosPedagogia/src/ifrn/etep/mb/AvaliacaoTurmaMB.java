@@ -2,7 +2,7 @@ package ifrn.etep.mb;
 
 import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
 import ifrn.etep.dominio.RespostaUsuarioDaTurma;
-import ifrn.etep.dominio.ServiceQuestionario;
+import ifrn.etep.dominio.ServiceQuestionarioAvalicaoDeTurma;
 import ifrn.etep.dominio.ServiceTurma;
 import ifrn.etep.dominio.TurmaSeriada;
 import ifrn.etep.dominio.Usuario;
@@ -29,20 +29,23 @@ public class AvaliacaoTurmaMB implements Serializable{
 	private QuestionarioAvaliacaoDeTurma questionario;
 	private TurmaSeriada turmaEmAvalicao;
 	private List<RespostaUsuarioDaTurma> respostas = new ArrayList<>();
-	@ManagedProperty("#{serviceQuestionario}")
-	private ServiceQuestionario serviceQuestionario;
+	@ManagedProperty("#{serviceQuestionarioAvalicaoDeTurma}")
+	private ServiceQuestionarioAvalicaoDeTurma serviceQuestionario;
 	@ManagedProperty("#{serviceTurma}")
 	private ServiceTurma serviceTurma;
 
 	@PostConstruct
 	public void init(){
-		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		Integer idQuestionario = new Integer(request.getParameter("idquestionario"));
-		Integer idTurma = new Integer(request.getParameter("idturma"));
-		//questionario = serviceQuestionario.getPorId(idQuestionario);
-		questionario = serviceQuestionario.getPorId(1); //TODO
-		turmaEmAvalicao = serviceTurma.getPorId(idTurma);
-		respostas = questionario.gerarItensResposta(turmaEmAvalicao);
+		try{
+			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+			Integer idTurma = new Integer(request.getParameter("idturma"));
+			questionario = serviceQuestionario.getDoSemestreCorrente();
+			turmaEmAvalicao = serviceTurma.getPorId(idTurma);
+			respostas = questionario.gerarItensResposta(turmaEmAvalicao);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			throw ex;
+		}
 	}
 	
 	public String salvarRespostas(){
@@ -74,7 +77,7 @@ public class AvaliacaoTurmaMB implements Serializable{
 		return turmaEmAvalicao;
 	}
 
-	public void setServiceQuestionario(ServiceQuestionario serviceQuestionario) {
+	public void setServiceQuestionario(ServiceQuestionarioAvalicaoDeTurma serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
 	}
 
