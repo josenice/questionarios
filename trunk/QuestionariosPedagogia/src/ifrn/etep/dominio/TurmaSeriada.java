@@ -23,7 +23,7 @@ public class TurmaSeriada implements Serializable {
 	
 	@OneToMany(mappedBy="turma")
 	private List<Diario> diarios;
-		
+	
 	public List<Diario> getDiarios() {
 		return diarios;
 	}

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation = Propagation.REQUIRED)
-public class ServiceQuestionario implements Serializable {
+public class ServiceQuestionarioAvalicaoDeTurma implements Serializable {
 
 	/**
 	 * Maria Josenice Severino de Pinho
@@ -25,6 +25,10 @@ public class ServiceQuestionario implements Serializable {
 	public void setRepositorio(
 			RepositorioQuestionarioAvaliacaoDeTurma repositorio) {
 		this.repositorio = repositorio;
+	}
+	
+	public QuestionarioAvaliacaoDeTurma getDoSemestreCorrente(){
+		return repositorio.getDoSemestreCorente();
 	}
 
 	public QuestionarioAvaliacaoDeTurma getPorId(Integer idQuestionario) {

@@ -6,9 +6,18 @@
       xmlns:p="http://primefaces.org/ui">
 
 	<ui:composition template="/templates/layout.xhtml">
+
 	<ui:define name="conteudo">
 	<p:growl autoUpdate="true" />
-	
+	<p:panel header="Turmas a serem avaliadas">
+		<h:form id="formulario">
+			<p:dataList value="#{professorMB.turmasParaAvaliar}" var="turma">
+				<h:link value="#{turma.id}" outcome="AvaliacaoTurma">
+					<f:param name="idturma" value="#{turma.id}"/>
+				</h:link>
+			</p:dataList>
+		</h:form>
+	</p:panel>
 	</ui:define>
 	</ui:composition>
 </html>
