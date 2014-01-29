@@ -58,7 +58,7 @@ public class QuestionarioAvaliacaoDeTurma implements Serializable{
 		for(ItemAvaliacaoDaTurma item : getItens()){
 			RespostaUsuarioDaTurma r = new RespostaUsuarioDaTurma();
 			r.setItemAvaliacao(item);
-			r.setTurmaAvalida(turmaEmAvaliacao);
+			r.setTurmaAvaliada(turmaEmAvaliacao);
 			respostas.add(r);
 		}
 		

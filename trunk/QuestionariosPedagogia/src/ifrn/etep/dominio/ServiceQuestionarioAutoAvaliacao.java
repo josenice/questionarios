@@ -9,50 +9,49 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation = Propagation.REQUIRED)
-public class ServiceQuestionarioAvalicaoDeTurma implements Serializable {
+public class ServiceQuestionarioAutoAvaliacao implements Serializable{
 
 	/**
-	 * Maria Josenice Severino de Pinho
+	 * Josenice
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
-	private RepositorioQuestionarioAvaliacaoDeTurma repositorio;
+	private RepositorioQuestionarioAutoAvaliacao repositorio;
 
-	public void setRepositorio(															
-			RepositorioQuestionarioAvaliacaoDeTurma repositorio) {
+	public RepositorioQuestionarioAutoAvaliacao getRepositorio() {
+		return repositorio;
+	}
+
+	public void setRepositorio(RepositorioQuestionarioAutoAvaliacao repositorio) {
 		this.repositorio = repositorio;
 	}
-	
-	public QuestionarioAvaliacaoDeTurma getDoSemestreCorrente(){
-		return repositorio.getDoSemestreCorente();
+	public QuestionarioDeAutoAvaliacao getDoSemestreCorrente() {
+		return repositorio.getDoSemestreCorrente();
 	}
-
-	public QuestionarioAvaliacaoDeTurma getPorId(Integer idQuestionario) {
+	public QuestionarioDeAutoAvaliacao getPorId(Integer idQuestionario){
 		return repositorio.getPorId(idQuestionario);
+		
 	}
-
-	public void cadastrarQuestionario(QuestionarioAvaliacaoDeTurma questionario) {
+	public void cadastrarQuestionario(QuestionarioDeAutoAvaliacao questionario){
 		this.repositorio.insert(questionario);
+		
 	}
-
-	public void atualizarQuestionario(QuestionarioAvaliacaoDeTurma questionario) {
+	public void atualizarQuestionario(QuestionarioDeAutoAvaliacao questionario){
 		this.repositorio.update(questionario);
 	}
-
-	public void excluirQuestionario(Integer questionario) {
+	public void excluirQuestionario(Integer questionario){
 		this.repositorio.delete(questionario);
 	}
-
-	public void salvarRespostas(List<RespostaUsuarioDaTurma> respostas, Usuario interrogado) {
-		//TODO usar Professor ao invés de usuário
-		for(RespostaUsuarioDaTurma r : respostas){
-			r.setInterrogado(interrogado);
+	
+	public void salvarRespostas(List<RespostaUsuarioAutoAvaliacao> respostas, Usuario interrogado){
+		for(RespostaUsuarioAutoAvaliacao r : respostas){
+			r.setInterrogador(interrogado);
 		}
 		repositorio.salvarRespostas(respostas);
 	}
 	
+
 }

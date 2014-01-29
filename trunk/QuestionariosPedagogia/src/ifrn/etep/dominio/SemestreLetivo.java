@@ -28,6 +28,16 @@ public class SemestreLetivo implements Serializable{
 	@ManyToOne
 	private QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma; //unidirecional
 	
+	@ManyToOne
+	private QuestionarioDeAutoAvaliacao modeloAutoAvaliacao;
+	
+	public QuestionarioDeAutoAvaliacao getModeloAutoAvaliacao() {
+		return modeloAutoAvaliacao;
+	}
+	public void setModeloAutoAvaliacao(
+			QuestionarioDeAutoAvaliacao modeloAutoAvaliacao) {
+		this.modeloAutoAvaliacao = modeloAutoAvaliacao;
+	}
 	public Integer getId() {
 		return id;
 	} 
@@ -76,6 +86,7 @@ public class SemestreLetivo implements Serializable{
 			return false;
 		return true;
 	}
+	
 	
 	
 

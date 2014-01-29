@@ -1,5 +1,6 @@
 package ifrn.etep.dominio;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode=ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation=Propagation.REQUIRED)
-public class ServiceTurma {
+public class ServiceTurma implements Serializable{
 	
+	/**
+	 * Josenice
+	 */
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private RepositorioTurma repositorio;
 	
 	public TurmaSeriada getPorId(Integer idTurma) {
-		// TODO
-		TurmaSeriada t = new TurmaSeriada();
-		t.setId(1);
-		t.setCodigoSistemaAcademico("20132.4404");
-		return t;
+		return repositorio.getPorId(idTurma);
 	}
 	
 	/**

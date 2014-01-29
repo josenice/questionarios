@@ -28,11 +28,15 @@ public class ProfessorMB implements Serializable{
 	public void setServiceTurma(ServiceTurma serviceTurma) {
 		this.serviceTurma = serviceTurma;
 	}
+	
+	public boolean responderAutoAvaliacao(){
+		return false;
+	}
 
 	@PostConstruct
 	public void init(){
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		Integer idProfessor = Integer.getInteger(request.getParameter("idProfessor"));
+		Integer idProfessor = Integer.valueOf(request.getParameter("idProfessor"));
 		turmasParaAvaliar = serviceTurma.getTurmasNaoAvaliadasPorProfessor(idProfessor);
 	}
 	
