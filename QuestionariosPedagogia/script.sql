@@ -6,7 +6,9 @@ insert into itemavaliacaodaturma (modeloavaliacao_id, texto) values (1, 'A Turma
 insert into itemavaliacaodaturma (modeloavaliacao_id, texto) values (1, 'A Turma comporta-se adequadamente em sala de aula?');
 insert into itemavaliacaodaturma (modeloavaliacao_id, texto) values (1, 'A Turma realiza as atividades propostas no prazo estabelecido?');
 insert into usuarios (id, matricula, nome) values (1, '345', 'maria');
+insert into usuarios (id, matricula, nome) values (2, '777', 'Pedro');
 insert into professor (id) values (1);
+insert into professor (id) values (2);
 insert into semestreLetivo (id, ano, semestre, modeloavaliacaodeturma_id) values (1, 2013, 2, 1);
 insert into turmaSeriada (id, codigoSistemaAcademico) values (1, '23');
 insert into diario (id, codigoSistemaAcademico, semestre_id, turma_id) values (1, '32', 1, 1);
@@ -14,3 +16,5 @@ insert into diario_professor (diario_id,professor_id) values (1, 1);
 insert into turmaSeriada (id, codigoSistemaAcademico) values (2, '8877');
 insert into diario (id, codigoSistemaAcademico, semestre_id, turma_id) values (2, '09090', 1, 2);
 insert into diario_professor (diario_id,professor_id) values (2, 1);
+insert into diario (id, codigoSistemaAcademico, semestre_id, turma_id) values (3, '08080', 1, 2);
+insert into diario_professor (diario_id,professor_id) values (3, 2);

@@ -9,12 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
 @Entity
-@Table(name="RESPOSTAUSUARIODATURMA")
-public class RespostaUsuarioDaTurma implements Serializable {
+@Table
+public class RespostaUsuarioAutoAvaliacao implements Serializable{
 
+	/**
+	 * Josenice
+	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,13 +25,10 @@ public class RespostaUsuarioDaTurma implements Serializable {
 	private Integer frequencia;
 	
 	@ManyToOne(optional=false)
-	private ItemAvaliacaoDaTurma itemAvaliacao; //unidirecional
+	private ItemDeAutoAvaliacao itemAvaliacao;
 	
 	@ManyToOne(optional=false)
-	private Usuario interrogado; //unidirecional
-	
-	@ManyToOne(optional=false)
-	private TurmaSeriada turmaAvaliada; //unidirecional
+	private Usuario interrogador;
 
 	public Integer getId() {
 		return id;
@@ -40,38 +38,30 @@ public class RespostaUsuarioDaTurma implements Serializable {
 		this.id = id;
 	}
 
-	public ItemAvaliacaoDaTurma getItemAvaliacao() {
-		return itemAvaliacao;
-	}
-
-	public void setItemAvaliacao(ItemAvaliacaoDaTurma itemAvaliacao) {
-		this.itemAvaliacao = itemAvaliacao;
-	}
-
-	public Usuario getInterrogado() {
-		return interrogado;
-	}
-
-	public void setInterrogado(Usuario interrogado) {
-		this.interrogado = interrogado;
-	}
-
-	public TurmaSeriada getTurmaAvaliada() {
-		return turmaAvaliada;
-	}
-
-	public void setTurmaAvaliada(TurmaSeriada turmaAvaliada) {
-		this.turmaAvaliada = turmaAvaliada;
-	}
-
 	public Integer getFrequencia() {
 		return frequencia;
 	}
 
-	public void setFrequencia(Integer frequenca) {
-		this.frequencia = frequenca;
-	}	
-	
+	public void setFrequencia(Integer frequencia) {
+		this.frequencia = frequencia;
+	}
+
+	public ItemDeAutoAvaliacao getItemAvaliacao() {
+		return itemAvaliacao;
+	}
+
+	public void setItemAvaliacao(ItemDeAutoAvaliacao itemAvaliacao) {
+		this.itemAvaliacao = itemAvaliacao;
+	}
+
+	public Usuario getInterrogador() {
+		return interrogador;
+	}
+
+	public void setInterrogador(Usuario interrogador) {
+		this.interrogador = interrogador;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -88,7 +78,7 @@ public class RespostaUsuarioDaTurma implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RespostaUsuarioDaTurma other = (RespostaUsuarioDaTurma) obj;
+		RespostaUsuarioAutoAvaliacao other = (RespostaUsuarioAutoAvaliacao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,4 +86,10 @@ public class RespostaUsuarioDaTurma implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
+	
+
+	
+
 }

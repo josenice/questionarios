@@ -16,6 +16,10 @@
 					<f:param name="idturma" value="#{turma.id}"/>
 				</h:link>
 			</p:dataList>
+			<h:link outcome="autoAvaliacao" disabled="#{!professorMB.responderAutoAvaliacao()}">
+				<f:param name="idusuario" value="#{usuario.id}"/>
+				Auto avaliação
+			</h:link>
 		</h:form>
 	</p:panel>
 	</ui:define>

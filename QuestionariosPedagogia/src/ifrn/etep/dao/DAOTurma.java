@@ -1,6 +1,5 @@
 package ifrn.etep.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
 import ifrn.etep.dominio.RepositorioTurma;
 import ifrn.etep.dominio.SemestreLetivo;
 import ifrn.etep.dominio.TurmaSeriada;
@@ -61,11 +61,21 @@ public class DAOTurma implements RepositorioTurma{
 		//TODO completar a consulta para filtrar por professor e turmas não avaliadas
 		SemestreLetivo semestreCorrente = daoSemestreLetivo.getSemestreCorente();
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select t from TurmaSeriada t join t.diarios d where d.semestre = :corrente ";
+		String hql = "select t from TurmaSeriada t join t.diarios d join d.professor p " +
+				"where d.semestre = :corrente and p.id = :idProfessor and " + 
+				" t not in (select r.turmaAvaliada from RespostaUsuarioDaTurma r)";
 		Query q = session.createQuery(hql);
 		q.setParameter("corrente", semestreCorrente);
+		q.setParameter("idProfessor", idProfessor);
+		
 		
 		return q.list();
+	}
+
+	@Override
+	public TurmaSeriada getPorId(Integer idTurma) {
+		Session session = sessionFactory.getCurrentSession();
+		return (TurmaSeriada) session.get(TurmaSeriada.class, idTurma);
 	}
 
 }

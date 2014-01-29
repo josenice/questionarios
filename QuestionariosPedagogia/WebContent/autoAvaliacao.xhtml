@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="conteudo">
+		<p:growl autoUpdate="true" />
+		<p:panel header="#{avaliacaoTurmaMB.questionario.descricao} #{avaliacaoTurmaMB.turmaEmAvalicao.codigoSistemaAcademico}">
+			<p>Caro(a) Professor(a)</p>
+		 
+			<p>Solicitamos sua opnião de forma coerente e justa, em relação ao trabalho desenvolvido nesta Instituição. Contamos com
+			a sua participação para que possamos cada vez mais desenvolver um tabalho de qualidade em consonância com a nossa proposta educacional.</p>
+			<p>Marque um X na coluna correspondente, conforme frequência atribuída a cada item.</p>
+			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes) (4-Nunca) </p>
+			
+			
+			<h:form id="formulario">
+				<p:dataTable id="table" var="resposta" value="#{avaliacaoTurmaMB.respostas}">
+				
+					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA">
+						<h:outputText value="#{resposta.itemAvaliacao.texto}" />
+					</p:column>
+					<p:column headerText=" Frequências " style="" width="200">
+						<p:selectOneRadio id="options" value="#{resposta.frequencia}" required="true"
+							requiredMessage="Campo obrigatório">
+							<!-- TODO tornar resposta obrigatória -->
+							<f:selectItem itemLabel="Sempre" itemValue="1" />
+							<f:selectItem itemLabel="Quase sempre" itemValue="2" />
+							<f:selectItem itemLabel="Às vezes" itemValue="3" />
+							<f:selectItem itemLabel="Nunca" itemValue="4" />
+							
+						</p:selectOneRadio>
+					</p:column>
+				</p:dataTable>
+				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoTurmaMB.salvarRespostas}" />
+			</h:form>
+
+		</p:panel>
+		
+		
+	</ui:define>
+</ui:composition>
+</html>
