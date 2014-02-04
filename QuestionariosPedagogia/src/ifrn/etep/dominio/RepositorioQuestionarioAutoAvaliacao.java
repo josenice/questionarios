@@ -11,6 +11,6 @@ public interface RepositorioQuestionarioAutoAvaliacao {
 	List<QuestionarioDeAutoAvaliacao> getAll();
 	void salvarRespostas(List<RespostaUsuarioAutoAvaliacao> respostas);
 	QuestionarioDeAutoAvaliacao getDoSemestreCorrente();
-	boolean semAutoAvaliacao(Integer idUsuario);
+	boolean isAutoAvaliacaoRespondida(Integer idUsuario);
 
 }

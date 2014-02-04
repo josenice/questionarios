@@ -21,9 +21,10 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
+	
 	@Autowired
 	private DAOSemesteLetivo daoSemestreLetivo;
-
+	
 	@Override
 	public void insert(QuestionarioDeAutoAvaliacao questionario) {
 		Session session =  sessionFactory.getCurrentSession();
@@ -73,9 +74,19 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 		}
 
 		@Override
-		public boolean semAutoAvaliacao(Integer idUsuario) {
+		public boolean isAutoAvaliacaoRespondida(Integer idUsuario) {
 			Session session = sessionFactory.getCurrentSession();
-			return semAutoAvaliacao(idUsuario);
+			Query query = session.createQuery("select r From RespostaUsuarioAutoAvaliacao r " +
+					"where r.semestre = :semestre and r.id = :idUsuario");
+			query.setParameter("semestre", daoSemestreLetivo.getSemestreCorente());
+			query.setParameter("idUsuario", idUsuario);
+			List l = query.list();
+			if(l == null || l.isEmpty()){
+				return false;
+			}
+			else{
+				return true;
+			}
 		}
 
 }

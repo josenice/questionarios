@@ -1,5 +1,6 @@
 package ifrn.etep.mb;
 
+import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacao;
 import ifrn.etep.dominio.ServiceTurma;
 import ifrn.etep.dominio.TurmaSeriada;
 
@@ -22,6 +23,7 @@ public class ProfessorMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private List<TurmaSeriada> turmasParaAvaliar;
+	private Integer idProfessor;
 	
 	@ManagedProperty("#{serviceTurma}")
 	private ServiceTurma serviceTurma;
@@ -29,14 +31,21 @@ public class ProfessorMB implements Serializable{
 		this.serviceTurma = serviceTurma;
 	}
 	
+	@ManagedProperty("#{serviceQuestionarioAutoAvaliacao}")
+	private ServiceQuestionarioAutoAvaliacao serviceAutoAvaliacao;
+	public void setServiceAutoAvaliacao(
+			ServiceQuestionarioAutoAvaliacao serviceAutoAvaliacao) {
+		this.serviceAutoAvaliacao = serviceAutoAvaliacao;
+	}
+
 	public boolean responderAutoAvaliacao(){
-		return false;
+		return !serviceAutoAvaliacao.isAutoAvaliacaoRespondida(idProfessor);
 	}
 
 	@PostConstruct
 	public void init(){
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		Integer idProfessor = Integer.valueOf(request.getParameter("idProfessor"));
+		idProfessor = Integer.valueOf(request.getParameter("idProfessor"));
 		turmasParaAvaliar = serviceTurma.getTurmasNaoAvaliadasPorProfessor(idProfessor);
 	}
 	
