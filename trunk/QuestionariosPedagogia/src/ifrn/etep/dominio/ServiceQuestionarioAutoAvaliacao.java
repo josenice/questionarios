@@ -21,10 +21,6 @@ public class ServiceQuestionarioAutoAvaliacao implements Serializable{
 	@Autowired
 	private RepositorioQuestionarioAutoAvaliacao repositorio;
 
-	public RepositorioQuestionarioAutoAvaliacao getRepositorio() {
-		return repositorio;
-	}
-
 	public void setRepositorio(RepositorioQuestionarioAutoAvaliacao repositorio) {
 		this.repositorio = repositorio;
 	}
@@ -53,5 +49,7 @@ public class ServiceQuestionarioAutoAvaliacao implements Serializable{
 		repositorio.salvarRespostas(respostas);
 	}
 	
-
+	public boolean isAutoAvaliacaoRespondida(Integer idUsuario){
+		return repositorio.isAutoAvaliacaoRespondida(idUsuario);
+	}
 }

@@ -29,6 +29,9 @@ public class RespostaUsuarioAutoAvaliacao implements Serializable{
 	
 	@ManyToOne(optional=false)
 	private Usuario interrogador;
+	
+	@ManyToOne
+	private SemestreLetivo semestre;
 
 	public Integer getId() {
 		return id;
@@ -60,6 +63,14 @@ public class RespostaUsuarioAutoAvaliacao implements Serializable{
 
 	public void setInterrogador(Usuario interrogador) {
 		this.interrogador = interrogador;
+	}
+
+	public SemestreLetivo getSemestre() {
+		return semestre;
+	}
+
+	public void setSemestre(SemestreLetivo semestre) {
+		this.semestre = semestre;
 	}
 
 	@Override
