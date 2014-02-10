@@ -1,5 +1,6 @@
 package ifrn.etep.mb;
 
+import ifrn.etep.dominio.BimestreLetivo;
 import ifrn.etep.dominio.QuestionarioDeAutoAvaliacao;
 import ifrn.etep.dominio.RespostaUsuarioAutoAvaliacao;
 import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacao;
@@ -21,6 +22,8 @@ public class AutoAvaliacaoMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private QuestionarioDeAutoAvaliacao questionario;
+	
+	private BimestreLetivo bimestre;
 	
 	private List<RespostaUsuarioAutoAvaliacao> respostas = new ArrayList<>();
 	
@@ -49,6 +52,14 @@ public class AutoAvaliacaoMB implements Serializable{
 	public void setServiceQuestionario(
 			ServiceQuestionarioAutoAvaliacao serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
+	}
+
+	public BimestreLetivo getBimestre() {
+		return bimestre;
+	}
+
+	public void setBimestre(BimestreLetivo bimestre) {
+		this.bimestre = bimestre;
 	}
 	
 	

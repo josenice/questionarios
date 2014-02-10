@@ -23,6 +23,18 @@ public class ItemAvaliacaoDaTurma implements Serializable {
 	
 	@ManyToOne(optional=false)
 	private QuestionarioAvaliacaoDeTurma modeloAvaliacao;// bidirecional
+	
+	@ManyToOne(optional=false)
+	private GrupoItemAvaliacao grupo;
+	
+
+	public GrupoItemAvaliacao getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(GrupoItemAvaliacao grupo) {
+		this.grupo = grupo;
+	}
 
 	public Integer getId() {
 		return id;

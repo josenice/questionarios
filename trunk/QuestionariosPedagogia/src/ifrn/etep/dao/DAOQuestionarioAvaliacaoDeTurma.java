@@ -1,10 +1,9 @@
 package ifrn.etep.dao;
 
+import ifrn.etep.dominio.BimestreLetivo;
 import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
 import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoDeTurma;
 import ifrn.etep.dominio.RespostaUsuarioDaTurma;
-import ifrn.etep.dominio.SemestreLetivo;
-
 import java.util.List;
 
 import org.hibernate.Query;
@@ -23,7 +22,7 @@ public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioA
 	}
 	
 	@Autowired
-	private DAOSemesteLetivo daoSemestreLetivo;
+	private DAOBimesteLetivo daoBimestreLetivo;
 
 	@Override
 	public void insert(QuestionarioAvaliacaoDeTurma questionario) {
@@ -68,9 +67,9 @@ public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioA
 	}
 
 	@Override
-	public QuestionarioAvaliacaoDeTurma getDoSemestreCorente() {
-		SemestreLetivo semestreCorrente = daoSemestreLetivo.getSemestreCorente();
+	public QuestionarioAvaliacaoDeTurma getDoBimestreCorente() {
+		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
 		
-		return semestreCorrente.getModeloAvaliacaoDeTurma();
+		return bimestreCorrente.getModeloAvaliacaoDeTurma();
 	}
 }

@@ -10,7 +10,7 @@ public interface RepositorioQuestionarioAutoAvaliacao {
 	QuestionarioDeAutoAvaliacao getPorId(Integer idQuestionario);
 	List<QuestionarioDeAutoAvaliacao> getAll();
 	void salvarRespostas(List<RespostaUsuarioAutoAvaliacao> respostas);
-	QuestionarioDeAutoAvaliacao getDoSemestreCorrente();
+	QuestionarioDeAutoAvaliacao getDoBimestreCorrente();
 	boolean isAutoAvaliacaoRespondida(Integer idUsuario);
 
 }

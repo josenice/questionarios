@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,18 +28,26 @@ public class Diario implements Serializable{
 	@ManyToOne
 	private TurmaSeriada turma;
 	
+	@ManyToMany(fetch=FetchType.LAZY)
+	private List<Professor> professores;
+
 	@ManyToOne
 	private SemestreLetivo semestre;
-	
-	@ManyToMany
-	private List<Professor> professor;
 
-	public List<Professor> getProfessor() {
-		return professor;
+	public SemestreLetivo getSemestre() {
+		return semestre;
 	}
 
-	public void setProfessor(List<Professor> professor) {
-		this.professor = professor;
+	public void setSemestre(SemestreLetivo semestre) {
+		this.semestre = semestre;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
 	}
 
 	public Integer getId() {
@@ -63,14 +72,6 @@ public class Diario implements Serializable{
 
 	public void setTurma(TurmaSeriada turma) {
 		this.turma = turma;
-	}
-
-	public SemestreLetivo getSemestre() {
-		return semestre;
-	}
-
-	public void setSemestre(SemestreLetivo semestre) {
-		this.semestre = semestre;
 	}
 
 	@Override

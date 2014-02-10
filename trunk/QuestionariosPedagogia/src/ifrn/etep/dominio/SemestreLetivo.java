@@ -7,13 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 @Entity
 @Table(name="SEMESTRELETIVO")
 public class SemestreLetivo implements Serializable{
 
+	/**
+	 * Josenice
+	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -24,45 +25,31 @@ public class SemestreLetivo implements Serializable{
 	
 	@Column(nullable=false)
 	private Integer semestre;
-	
-	@ManyToOne
-	private QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma; //unidirecional
-	
-	@ManyToOne
-	private QuestionarioDeAutoAvaliacao modeloAutoAvaliacao;
-	
-	public QuestionarioDeAutoAvaliacao getModeloAutoAvaliacao() {
-		return modeloAutoAvaliacao;
-	}
-	public void setModeloAutoAvaliacao(
-			QuestionarioDeAutoAvaliacao modeloAutoAvaliacao) {
-		this.modeloAutoAvaliacao = modeloAutoAvaliacao;
-	}
+
 	public Integer getId() {
 		return id;
-	} 
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public QuestionarioAvaliacaoDeTurma getModeloAvaliacaoDeTurma() {
-		return modeloAvaliacaoDeTurma;
-	}
-	public void setModeloAvaliacaoDeTurma(
-			QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma) {
-		this.modeloAvaliacaoDeTurma = modeloAvaliacaoDeTurma;
-	}
+
 	public Integer getAno() {
 		return ano;
 	}
+
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
+
 	public Integer getSemestre() {
 		return semestre;
 	}
+
 	public void setSemestre(Integer semestre) {
 		this.semestre = semestre;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -70,6 +57,7 @@ public class SemestreLetivo implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,8 +74,6 @@ public class SemestreLetivo implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 	
 
 }

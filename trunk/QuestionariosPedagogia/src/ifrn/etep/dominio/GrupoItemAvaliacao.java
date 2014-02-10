@@ -1,20 +1,16 @@
 package ifrn.etep.dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table
-public class QuestionarioDeAutoAvaliacao implements Serializable {
+@Table(name="GRUPOITEMAVALIACAO")
+public class GrupoItemAvaliacao implements Serializable{
 
 	/**
 	 * Josenice
@@ -24,10 +20,8 @@ public class QuestionarioDeAutoAvaliacao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(nullable=false, length=40)
 	private String descricao;
-	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL, mappedBy="modeloQuestionario", 
-			fetch=FetchType.LAZY)
-	private List<ItemDeAutoAvaliacao> itens = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -61,7 +55,7 @@ public class QuestionarioDeAutoAvaliacao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		QuestionarioDeAutoAvaliacao other = (QuestionarioDeAutoAvaliacao) obj;
+		GrupoItemAvaliacao other = (GrupoItemAvaliacao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -69,5 +63,7 @@ public class QuestionarioDeAutoAvaliacao implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
 }

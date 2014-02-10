@@ -1,3 +1,9 @@
+insert into questionariodeautoavaliacao (id, descricao) values (1, 'Auto Avaliação');
+insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Pontualidade');
+insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Assiduidade');
+insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Demonstra postura profissional adequada');
+insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Apresenta algum problema de comunicação');
+
 insert into questionarioavaliacaodeturma (id, descricao) values (1, 'Avaliação de Turma - teste');
 insert into itemavaliacaodaturma (modeloavaliacao_id, texto) values (1, 'A Turma comparece às aulas no horário estabelecido?');
 insert into itemavaliacaodaturma (modeloavaliacao_id, texto) values (1, 'A Turma comparece às aulas diariamente?');
@@ -9,12 +15,13 @@ insert into usuarios (id, matricula, nome) values (1, '345', 'maria');
 insert into usuarios (id, matricula, nome) values (2, '777', 'Pedro');
 insert into professor (id) values (1);
 insert into professor (id) values (2);
-insert into semestreLetivo (id, ano, semestre, modeloavaliacaodeturma_id) values (1, 2013, 2, 1);
+insert into semestreLetivo (id, ano, semestre) values (1, 2013, 2);
+insert into bimestreletivo (id, bimestre, modeloautoavaliacao_id, modeloavaliacaodeturma_id, semestre_id) values (1, 1, 1, 1, 1);
 insert into turmaSeriada (id, codigoSistemaAcademico) values (1, '23');
 insert into diario (id, codigoSistemaAcademico, semestre_id, turma_id) values (1, '32', 1, 1);
-insert into diario_professor (diario_id,professor_id) values (1, 1);
+insert into diario_professor (diario_id, professores_id) values (1, 1);
 insert into turmaSeriada (id, codigoSistemaAcademico) values (2, '8877');
 insert into diario (id, codigoSistemaAcademico, semestre_id, turma_id) values (2, '09090', 1, 2);
-insert into diario_professor (diario_id,professor_id) values (2, 1);
+insert into diario_professor (diario_id, professores_id) values (2, 1);
 insert into diario (id, codigoSistemaAcademico, semestre_id, turma_id) values (3, '08080', 1, 2);
-insert into diario_professor (diario_id,professor_id) values (3, 2);
+insert into diario_professor (diario_id, professores_id) values (3, 2);

@@ -8,19 +8,19 @@
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
-		<p:panel header="#{avaliacaoTurmaMB.questionario.descricao} #{avaliacaoTurmaMB.turmaEmAvalicao.codigoSistemaAcademico}">
+		<p:panel header="#{autoAvaliacaoMB.questionario.descricao} #{autoAvaliacaoMB.questionario.id}">
 			<p>Caro(a) Professor(a)</p>
 		 
-			<p>Solicitamos sua opnião de forma coerente e justa, em relação ao trabalho desenvolvido nesta Instituição. Contamos com
-			a sua participação para que possamos cada vez mais desenvolver um tabalho de qualidade em consonância com a nossa proposta educacional.</p>
-			<p>Marque um X na coluna correspondente, conforme frequência atribuída a cada item.</p>
+			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com a sua participação 
+			para que possamos cada vez mais desenvolver um trabalho de qualidade em consonância com a nossa proposta educacional.</p>
+			
 			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes) (4-Nunca) </p>
 			
 			
 			<h:form id="formulario">
-				<p:dataTable id="table" var="resposta" value="#{avaliacaoTurmaMB.respostas}">
+				<p:dataTable id="table" var="resposta" value="#{autoAvaliacaoMB.respostas}">
 				
-					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA">
+					<p:column headerText="ITENS DE AUTO AVALIAÇÃO">
 						<h:outputText value="#{resposta.itemAvaliacao.texto}" />
 					</p:column>
 					<p:column headerText=" Frequências " style="" width="200">
@@ -35,7 +35,7 @@
 						</p:selectOneRadio>
 					</p:column>
 				</p:dataTable>
-				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoTurmaMB.salvarRespostas}" />
+				
 			</h:form>
 
 		</p:panel>
