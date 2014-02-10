@@ -39,7 +39,7 @@ public class AvaliacaoTurmaMB implements Serializable{
 		try{
 			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			Integer idTurma = new Integer(request.getParameter("idturma"));
-			questionario = serviceQuestionario.getDoSemestreCorrente();
+			questionario = serviceQuestionario.getDoBimestreCorrente();
 			turmaEmAvalicao = serviceTurma.getPorId(idTurma);
 			respostas = questionario.gerarItensResposta(turmaEmAvalicao);
 		}catch(Exception ex){

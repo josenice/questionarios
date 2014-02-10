@@ -27,8 +27,8 @@ public class ServiceQuestionarioAvalicaoDeTurma implements Serializable {
 		this.repositorio = repositorio;
 	}
 	
-	public QuestionarioAvaliacaoDeTurma getDoSemestreCorrente(){
-		return repositorio.getDoSemestreCorente();
+	public QuestionarioAvaliacaoDeTurma getDoBimestreCorrente(){
+		return repositorio.getDoBimestreCorente();
 	}
 
 	public QuestionarioAvaliacaoDeTurma getPorId(Integer idQuestionario) {

@@ -24,8 +24,8 @@ public class ServiceQuestionarioAutoAvaliacao implements Serializable{
 	public void setRepositorio(RepositorioQuestionarioAutoAvaliacao repositorio) {
 		this.repositorio = repositorio;
 	}
-	public QuestionarioDeAutoAvaliacao getDoSemestreCorrente() {
-		return repositorio.getDoSemestreCorrente();
+	public QuestionarioDeAutoAvaliacao getDoBimestreCorrente() {
+		return repositorio.getDoBimestreCorrente();
 	}
 	public QuestionarioDeAutoAvaliacao getPorId(Integer idQuestionario){
 		return repositorio.getPorId(idQuestionario);

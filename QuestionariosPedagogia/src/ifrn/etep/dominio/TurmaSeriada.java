@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class TurmaSeriada implements Serializable {
 	private Integer id;
 	private String codigoSistemaAcademico;
 	
-	@OneToMany(mappedBy="turma")
+	@OneToMany(mappedBy="turma", fetch=FetchType.LAZY)
 	private List<Diario> diarios;
 	
 	public List<Diario> getDiarios() {

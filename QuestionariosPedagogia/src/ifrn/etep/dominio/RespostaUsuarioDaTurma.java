@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -31,6 +32,18 @@ public class RespostaUsuarioDaTurma implements Serializable {
 	
 	@ManyToOne(optional=false)
 	private TurmaSeriada turmaAvaliada; //unidirecional
+	
+	@ManyToOne(optional=false)
+	public BimestreLetivo bimestreAvaliado;
+	
+	
+	public BimestreLetivo getBimestreAvaliado() {
+		return bimestreAvaliado;
+	}
+
+	public void setBimestreAvaliado(BimestreLetivo bimestreAvaliado) {
+		this.bimestreAvaliado = bimestreAvaliado;
+	}
 
 	public Integer getId() {
 		return id;

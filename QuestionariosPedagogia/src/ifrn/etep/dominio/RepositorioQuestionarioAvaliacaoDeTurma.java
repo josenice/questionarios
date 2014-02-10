@@ -10,6 +10,6 @@ public interface RepositorioQuestionarioAvaliacaoDeTurma {
 	List<QuestionarioAvaliacaoDeTurma> getAll();
 	QuestionarioAvaliacaoDeTurma getPorId(Integer idQuestionario);
 	void salvarRespostas(List<RespostaUsuarioDaTurma> respostas);
-	QuestionarioAvaliacaoDeTurma getDoSemestreCorente();
+	QuestionarioAvaliacaoDeTurma getDoBimestreCorente();
 
 }

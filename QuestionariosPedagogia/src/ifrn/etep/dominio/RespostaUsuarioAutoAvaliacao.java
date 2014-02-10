@@ -31,7 +31,16 @@ public class RespostaUsuarioAutoAvaliacao implements Serializable{
 	private Usuario interrogador;
 	
 	@ManyToOne
-	private SemestreLetivo semestre;
+	private BimestreLetivo bimestreAvaliado;
+	
+	
+	public BimestreLetivo getBimestreAvaliado() {
+		return bimestreAvaliado;
+	}
+
+	public void setBimestreAvaliado(BimestreLetivo bimestreAvaliado) {
+		this.bimestreAvaliado = bimestreAvaliado;
+	}
 
 	public Integer getId() {
 		return id;
@@ -65,14 +74,7 @@ public class RespostaUsuarioAutoAvaliacao implements Serializable{
 		this.interrogador = interrogador;
 	}
 
-	public SemestreLetivo getSemestre() {
-		return semestre;
-	}
-
-	public void setSemestre(SemestreLetivo semestre) {
-		this.semestre = semestre;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,10 +1,9 @@
 package ifrn.etep.dao;
 
+import ifrn.etep.dominio.BimestreLetivo;
 import ifrn.etep.dominio.QuestionarioDeAutoAvaliacao;
 import ifrn.etep.dominio.RepositorioQuestionarioAutoAvaliacao;
 import ifrn.etep.dominio.RespostaUsuarioAutoAvaliacao;
-import ifrn.etep.dominio.SemestreLetivo;
-
 import java.util.List;
 
 import org.hibernate.Query;
@@ -23,7 +22,7 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 	}
 	
 	@Autowired
-	private DAOSemesteLetivo daoSemestreLetivo;
+	private DAOBimesteLetivo daoBimestreLetivo;
 	
 	@Override
 	public void insert(QuestionarioDeAutoAvaliacao questionario) {
@@ -67,18 +66,18 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 	}
 		
 		@Override
-		public QuestionarioDeAutoAvaliacao getDoSemestreCorrente() {
-			SemestreLetivo semestreCorrente = daoSemestreLetivo.getSemestreCorente();
+		public QuestionarioDeAutoAvaliacao getDoBimestreCorrente() {
+			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
 			
-			return semestreCorrente.getModeloAutoAvaliacao();
+			return bimestreCorrente.getModeloAutoAvaliacao();
 		}
 
 		@Override
 		public boolean isAutoAvaliacaoRespondida(Integer idUsuario) {
 			Session session = sessionFactory.getCurrentSession();
 			Query query = session.createQuery("select r From RespostaUsuarioAutoAvaliacao r " +
-					"where r.semestre = :semestre and r.id = :idUsuario");
-			query.setParameter("semestre", daoSemestreLetivo.getSemestreCorente());
+					"where r.bimestreAvaliado = :bimestre and r.id = :idUsuario");
+			query.setParameter("bimestre", daoBimestreLetivo.getBimestreCorente());
 			query.setParameter("idUsuario", idUsuario);
 			List l = query.list();
 			if(l == null || l.isEmpty()){

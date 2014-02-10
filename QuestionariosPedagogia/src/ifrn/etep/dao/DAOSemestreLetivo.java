@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DAOSemesteLetivo{
+public class DAOSemestreLetivo{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	public SemestreLetivo getSemestreCorente() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("select s from SemestreLetivo s " +

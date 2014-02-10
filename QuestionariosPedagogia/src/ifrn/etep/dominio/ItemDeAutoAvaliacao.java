@@ -28,7 +28,15 @@ public class ItemDeAutoAvaliacao implements Serializable{
 	@ManyToOne(optional=false)
 	private QuestionarioDeAutoAvaliacao modeloQuestionario; // bidirecional
 	
+	@ManyToOne(optional=false)
+	private GrupoItemAvaliacao grupo;
 	
+	public GrupoItemAvaliacao getGrupo() {
+		return grupo;
+	}
+	public void setGrupo(GrupoItemAvaliacao grupo) {
+		this.grupo = grupo;
+	}
 	public QuestionarioDeAutoAvaliacao getModeloQuestionario() {
 		return modeloQuestionario;
 	}
