@@ -24,7 +24,7 @@ public class ItemAvaliacaoDaTurma implements Serializable {
 	@ManyToOne(optional=false)
 	private QuestionarioAvaliacaoDeTurma modeloAvaliacao;// bidirecional
 	
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=true)
 	private GrupoItemAvaliacao grupo;
 	
 
