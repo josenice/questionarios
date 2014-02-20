@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -36,7 +35,7 @@ public class RespostaUsuarioDaTurma implements Serializable {
 	@ManyToOne(optional=false)
 	public BimestreLetivo bimestreAvaliado;
 	
-	
+		
 	public BimestreLetivo getBimestreAvaliado() {
 		return bimestreAvaliado;
 	}
@@ -109,4 +108,6 @@ public class RespostaUsuarioDaTurma implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 }

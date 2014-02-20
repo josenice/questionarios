@@ -11,23 +11,23 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class DAOBimesteLetivo{
-	
-	@Autowired
-	private SessionFactory sessionFactory;
-	public void setSessionFactory(SessionFactory sessionFactory){
-		this.sessionFactory = sessionFactory;
-	}
-	
-	@Autowired
-	private DAOSemestreLetivo daoSemestre;
+        
+        @Autowired
+        private SessionFactory sessionFactory;
+        public void setSessionFactory(SessionFactory sessionFactory){
+                this.sessionFactory = sessionFactory;
+        }
+        
+        @Autowired
+        private DAOSemestreLetivo daoSemestre;
 
-	public BimestreLetivo getBimestreCorente() {
-		SemestreLetivo semestreCorrente = daoSemestre.getSemestreCorente();
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select b from BimestreLetivo b " +
-				"where b.semestre = :s " +
-				"and b.bimestre =(select max(b2.bimestre) from BimestreLetivo b2)");
-		query.setParameter("s", semestreCorrente);
-		return (BimestreLetivo)query.uniqueResult();
-	}
+        public BimestreLetivo getBimestreCorente() {
+                SemestreLetivo semestreCorrente = daoSemestre.getSemestreCorente();
+                Session session = sessionFactory.getCurrentSession();
+                Query query = session.createQuery("select b from BimestreLetivo b " +
+                                "where b.semestre = :s " +
+                                "and b.bimestre =(select max(b2.bimestre) from BimestreLetivo b2)");
+                query.setParameter("s", semestreCorrente);
+                return (BimestreLetivo)query.uniqueResult();
+        }
 }

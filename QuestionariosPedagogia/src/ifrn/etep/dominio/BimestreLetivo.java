@@ -37,15 +37,7 @@ public class BimestreLetivo implements Serializable{
 	@ManyToOne
 	private QuestionarioDeAutoAvaliacao modeloAutoAvaliacao;
 	
-	@ManyToOne
-	private RespostaUsuarioAutoAvaliacao bimestreAvaliado;
-	
-	public RespostaUsuarioAutoAvaliacao getBimestreAvaliado() {
-		return bimestreAvaliado;
-	}
-	public void setBimestreAvaliado(RespostaUsuarioAutoAvaliacao bimestreAvaliado) {
-		this.bimestreAvaliado = bimestreAvaliado;
-	}
+		
 	public QuestionarioDeAutoAvaliacao getModeloAutoAvaliacao() {
 		return modeloAutoAvaliacao;
 	}
