@@ -1,8 +1,12 @@
 insert into questionariodeautoavaliacao (id, descricao) values (1, 'Auto Avaliação');
-insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Pontualidade');
-insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Assiduidade');
-insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Demonstra postura profissional adequada');
-insert into itemdeautoavaliacao (modeloquestionario_id, texto) values (1, 'Apresenta algum problema de comunicação');
+insert into grupoitemavaliacao  (id, descricao) values (1, 'Postura Profissional');
+insert into grupoitemavaliacao  (id, descricao) values (2, 'Conteúdo');
+insert into grupoitemavaliacao  (id, descricao) values (3, 'Metodologia / Recursos Didáticos');
+insert into grupoitemavaliacao  (id, descricao) values (4, 'Avaliação');
+insert into itemdeautoavaliacao (modeloquestionario_id, texto, grupo_id) values (1, '1.Pontualidade  (comparece às aulas no horário estabelecido)', 1);
+insert into itemdeautoavaliacao (modeloquestionario_id, texto, grupo_id) values (1, '2.Assiduidade  (comparece às aulas regularmente)', 1);
+insert into itemdeautoavaliacao (modeloquestionario_id, texto, grupo_id) values (1, '3.Demonstra postura profissional adequada  (apresentação pessoal, posicionamento em sala, linguagem, etc.)', 1);
+insert into itemdeautoavaliacao (modeloquestionario_id, texto, grupo_id) values (1, '4.Apresenta algum problema de comunicação  (vícios de linguagem, dicção, etc.)', 1);
 
 insert into questionarioavaliacaodeturma (id, descricao) values (1, 'Avaliação de Turma - teste');
 insert into itemavaliacaodaturma (modeloavaliacao_id, texto) values (1, 'A Turma comparece às aulas no horário estabelecido?');

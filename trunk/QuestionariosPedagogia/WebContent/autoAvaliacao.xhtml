@@ -8,39 +8,53 @@
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
-		<p:panel header="#{autoAvaliacaoMB.questionario.descricao} #{autoAvaliacaoMB.questionario.id}">
+		<p:panel header="#{autoAvaliacaoMB.questionario.descricao} MATRICULA">
 			<p>Caro(a) Professor(a)</p>
-		 
-			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com a sua participação 
-			para que possamos cada vez mais desenvolver um trabalho de qualidade em consonância com a nossa proposta educacional.</p>
-			
-			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes) (4-Nunca) </p>
-			
-			
-			<h:form id="formulario">
-				<p:dataTable id="table" var="resposta" value="#{autoAvaliacaoMB.respostas}">
-				
-					<p:column headerText="ITENS DE AUTO AVALIAÇÃO">
-						<h:outputText value="#{resposta.itemAvaliacao.texto}" />
-					</p:column>
-					<p:column headerText=" Frequências " style="" width="200">
-						<p:selectOneRadio id="options" value="#{resposta.frequencia}" required="true"
-							requiredMessage="Campo obrigatório">
-							<!-- TODO tornar resposta obrigatória -->
-							<f:selectItem itemLabel="Sempre" itemValue="1" />
-							<f:selectItem itemLabel="Quase sempre" itemValue="2" />
-							<f:selectItem itemLabel="Às vezes" itemValue="3" />
-							<f:selectItem itemLabel="Nunca" itemValue="4" />
-							
-						</p:selectOneRadio>
-					</p:column>
-				</p:dataTable>
-				
-			</h:form>
 
+			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com
+				a sua participação para que possamos cada vez mais desenvolver um
+				trabalho de qualidade em consonância com a nossa proposta
+				educacional.</p>
+
+			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes)
+				(4-Nunca)</p>
+
+
+			<h:form id="formulario">
+				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoMB.grupos}">
+					
+					<p:column headerText="Item"/>
+					<p:column headerText="Frequência"/>
+					
+					<p:subTable var="resposta" value="#{grupo.respostas}">
+						<f:facet name="header">
+							#{grupo.grupoItemAvaliacao.descricao}
+						</f:facet>
+						
+						<p:column>
+							<h:outputText value="#{resposta.itemAvaliacao.texto}" />
+						</p:column>
+						
+						<p:column headerText=" Frequências " style="" width="200">
+							<p:selectOneRadio id="options" value="#{resposta.frequencia}"
+								required="true" requiredMessage="Campo obrigatório">
+	
+								<!-- TODO tornar resposta obrigatória -->
+	
+								<f:selectItem itemLabel="Sempre" itemValue="1" />
+								<f:selectItem itemLabel="Quase sempre" itemValue="2" />
+								<f:selectItem itemLabel="Às vezes" itemValue="3" />
+								<f:selectItem itemLabel="Nunca" itemValue="4" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:subTable>
+					
+				</p:dataTable>
+				<br />
+				<p:commandButton process="@form" value="Submeter Respostas"
+					action="#{autoAvaliacaoMB.salvarRespostas()}" />
+			</h:form>
 		</p:panel>
-		
-		
 	</ui:define>
 </ui:composition>
 </html>

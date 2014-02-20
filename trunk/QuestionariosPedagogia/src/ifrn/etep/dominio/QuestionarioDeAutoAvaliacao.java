@@ -25,6 +25,7 @@ public class QuestionarioDeAutoAvaliacao implements Serializable {
 	private Integer id;
 	
 	private String descricao;
+	
 	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL, mappedBy="modeloQuestionario", 
 			fetch=FetchType.LAZY)
 	private List<ItemDeAutoAvaliacao> itens = new ArrayList<>();
@@ -43,6 +44,26 @@ public class QuestionarioDeAutoAvaliacao implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public List<ItemDeAutoAvaliacao> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemDeAutoAvaliacao> itens) {
+		this.itens = itens;
+	}
+
+	public List<RespostaUsuarioAutoAvaliacao> gerarItensResposta(Usuario interrogado){
+		ArrayList<RespostaUsuarioAutoAvaliacao> respostas = new ArrayList<>();
+		for(ItemDeAutoAvaliacao item : itens){
+			RespostaUsuarioAutoAvaliacao r = new RespostaUsuarioAutoAvaliacao();
+			r.setItemAvaliacao(item);
+			r.setInterrogador(interrogado);
+			respostas.add(r);
+		}
+		
+		return respostas;
 	}
 
 	@Override

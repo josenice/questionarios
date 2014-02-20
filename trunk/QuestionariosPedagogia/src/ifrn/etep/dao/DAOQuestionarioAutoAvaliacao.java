@@ -6,6 +6,7 @@ import ifrn.etep.dominio.RepositorioQuestionarioAutoAvaliacao;
 import ifrn.etep.dominio.RespostaUsuarioAutoAvaliacao;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -68,8 +69,10 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 		@Override
 		public QuestionarioDeAutoAvaliacao getDoBimestreCorrente() {
 			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
+			QuestionarioDeAutoAvaliacao questionario = bimestreCorrente.getModeloAutoAvaliacao();
+			Hibernate.initialize(questionario.getItens());
 			
-			return bimestreCorrente.getModeloAutoAvaliacao();
+			return questionario;
 		}
 
 		@Override

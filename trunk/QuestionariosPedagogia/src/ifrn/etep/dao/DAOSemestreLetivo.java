@@ -1,5 +1,6 @@
 package ifrn.etep.dao;
 
+import ifrn.etep.dominio.BimestreLetivo;
 import ifrn.etep.dominio.SemestreLetivo;
 
 import org.hibernate.Query;
@@ -24,4 +25,6 @@ public class DAOSemestreLetivo{
 				"and s.semestre =(select max(s2.semestre) from SemestreLetivo s2)");
 		return (SemestreLetivo)query.uniqueResult();
 	}
+	
+	
 }
