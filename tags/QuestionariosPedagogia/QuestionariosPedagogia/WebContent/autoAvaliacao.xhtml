@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/layout.xhtml">
+	<ui:define name="conteudo">
+		<p:growl autoUpdate="true" />
+		<p:panel header="#{autoAvaliacaoMB.questionario.descricao} MATRICULA">
+			<p>Caro(a) Professor(a)</p>
+
+			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com
+				a sua participação para que possamos cada vez mais desenvolver um
+				trabalho de qualidade em consonância com a nossa proposta
+				educacional.</p>
+
+			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes)
+				(4-Nunca)</p>
+
+
+
+			<h:form id="formulario">
+				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoMB.grupos}">
+					
+					<p:column headerText="Itens de Auto Avaliação"/>
+					<p:column headerText="Frequência"/>
+					
+					<p:subTable var="resposta" value="#{grupo.respostas}">
+						<f:facet name="header">
+							#{grupo.grupoItemAvaliacao.descricao}
+						</f:facet>
+						
+						<p:column>
+							<h:outputText value="#{resposta.itemAvaliacao.texto}" />
+						</p:column>
+						
+						<p:column headerText=" Frequências " style="" width="200">
+							<p:selectOneRadio id="options" value="#{resposta.frequencia}"
+								required="true" requiredMessage="Campo obrigatório">
+	
+								<!-- TODO tornar resposta obrigatória -->
+	
+								<f:selectItem itemLabel="Sempre" itemValue="1" />
+								<f:selectItem itemLabel="Quase sempre" itemValue="2" />
+								<f:selectItem itemLabel="Às vezes" itemValue="3" />
+								<f:selectItem itemLabel="Nunca" itemValue="4" />
+							</p:selectOneRadio>
+						</p:column>
+					</p:subTable>
+					
+				</p:dataTable>
+				<br />
+				<p>Outros aspectos que você deseja enfatizar</p>
+				<br />
+				<p:editor id="editor" value="#{editor}" width="600"/>  
+  
+  	   				 <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true">  
+       				 <h:outputText id="display" value="#{editor}" escape="false" />  
+   			 </p:dialog>  
+				<br />
+				<p:commandButton process="@form" value="Submeter Respostas"
+					action="#{autoAvaliacaoMB.salvarRespostas()}" />
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+</html>
