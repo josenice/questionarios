@@ -22,7 +22,21 @@
 				
 					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA">
 						<h:outputText value="#{resposta.itemAvaliacao.texto}" />
+					
+						<p>Alunos com destaque possitivo para o item</p>  
+						<p:inputTextarea rows="10" cols="50" completeMethod="#{avaliacaoTurmaMB.questionario}" 
+						queryDelay="750" minQueryLength="4" />  
+						<p>Alunos com problemas no item de avaliado</p>  
+						<p:inputTextarea rows="10" cols="50" completeMethod="#{avaliacaoTurmaMB.questionario}" 
+						queryDelay="750" minQueryLength="4" />  
+                            
+			                          
+						<h:outputText />
+			
+						
 					</p:column>
+					
+					  
 					<p:column headerText=" Frequências " style="" width="200">
 						<p:selectOneRadio id="options" value="#{resposta.frequencia}" required="true"
 							requiredMessage="Campo obrigatório">
@@ -33,6 +47,7 @@
 							<f:selectItem itemLabel="Nunca" itemValue="4" />
 							
 						</p:selectOneRadio>
+						
 					</p:column>
 				</p:dataTable>
 				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoTurmaMB.salvarRespostas}" />

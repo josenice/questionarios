@@ -20,10 +20,11 @@
 				(4-Nunca)</p>
 
 
+
 			<h:form id="formulario">
 				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoMB.grupos}">
 					
-					<p:column headerText="Item"/>
+					<p:column headerText="Itens de Auto Avaliação"/>
 					<p:column headerText="Frequência"/>
 					
 					<p:subTable var="resposta" value="#{grupo.respostas}">
@@ -50,6 +51,14 @@
 					</p:subTable>
 					
 				</p:dataTable>
+				<br />
+				<p>Outros aspectos que você deseja enfatizar</p>
+				<br />
+				<p:editor id="editor" value="#{editor}" width="600"/>  
+  
+  	   				 <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true">  
+       				 <h:outputText id="display" value="#{editor}" escape="false" />  
+   			 </p:dialog>  
 				<br />
 				<p:commandButton process="@form" value="Submeter Respostas"
 					action="#{autoAvaliacaoMB.salvarRespostas()}" />
