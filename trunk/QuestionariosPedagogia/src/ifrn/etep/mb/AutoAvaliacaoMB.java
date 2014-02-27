@@ -121,6 +121,8 @@ public class AutoAvaliacaoMB implements Serializable{
 	}
 	
 	public class GrupoResposta implements Serializable{
+	
+		private static final long serialVersionUID = 1L;
 		private List<RespostaUsuarioAutoAvaliacao> respostas = new ArrayList<>();
 		private GrupoItemAvaliacao grupo;
 		
@@ -135,5 +137,17 @@ public class AutoAvaliacaoMB implements Serializable{
 		public List<RespostaUsuarioAutoAvaliacao> getRespostas() {
 			return respostas;
 		}
+		/*public class Editor implements Serializable{
+			
+			private static final long serialVersionUID = 1L;
+			private String value;
+			public String getValue() {
+				return value;
+			}
+			public void setValue(String value) {
+				this.value = value;
+			}
+			
+		}*/
 	}
 }
