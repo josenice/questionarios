@@ -15,9 +15,7 @@ public class Aluno implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne
-	private Usuario usuario;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -26,14 +24,7 @@ public class Aluno implements Serializable{
 		this.id = id;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

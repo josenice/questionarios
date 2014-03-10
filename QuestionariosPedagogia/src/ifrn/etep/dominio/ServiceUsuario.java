@@ -22,7 +22,7 @@ public class ServiceUsuario implements Serializable{
 	@Autowired
 	private RepositorioUsuario repositorio;
 	
-	public Usuario getPorId(Integer idUsuario) {
+	public Professor getPorId(Integer idUsuario) {
 		return repositorio.getPorId(idUsuario);
 	}
 	

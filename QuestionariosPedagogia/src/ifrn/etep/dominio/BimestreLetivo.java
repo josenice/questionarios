@@ -23,26 +23,25 @@ public class BimestreLetivo implements Serializable{
 	private Integer bimestre;
 	
 	@ManyToOne
-	private SemestreLetivo semestre;
-	
-	public SemestreLetivo getSemestre() {
-		return semestre;
-	}
-	public void setSemestre(SemestreLetivo semestre) {
-		this.semestre = semestre;
-	}
-	@ManyToOne
-	private QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma; //unidirecional
+	private AnoLetivo ano;
 	
 	@ManyToOne
-	private QuestionarioDeAutoAvaliacao modeloAutoAvaliacao;
+	private QuestionarioAvaliacaoTurma modeloAvaliacaoDeTurma; //unidirecional
 	
-		
-	public QuestionarioDeAutoAvaliacao getModeloAutoAvaliacao() {
+	@ManyToOne
+	private QuestionarioAutoAvaliacaoDocente modeloAutoAvaliacao;
+	
+	public AnoLetivo getSemestre() {
+		return ano;
+	}
+	public void setAno(AnoLetivo ano) {
+		this.ano = ano;
+	}	
+	public QuestionarioAutoAvaliacaoDocente getModeloAutoAvaliacao() {
 		return modeloAutoAvaliacao;
 	}
 	public void setModeloAutoAvaliacao(
-			QuestionarioDeAutoAvaliacao modeloAutoAvaliacao) {
+			QuestionarioAutoAvaliacaoDocente modeloAutoAvaliacao) {
 		this.modeloAutoAvaliacao = modeloAutoAvaliacao;
 	}
 	public Integer getId() {
@@ -51,11 +50,11 @@ public class BimestreLetivo implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public QuestionarioAvaliacaoDeTurma getModeloAvaliacaoDeTurma() {
+	public QuestionarioAvaliacaoTurma getModeloAvaliacaoDeTurma() {
 		return modeloAvaliacaoDeTurma;
 	}
 	public void setModeloAvaliacaoDeTurma(
-			QuestionarioAvaliacaoDeTurma modeloAvaliacaoDeTurma) {
+			QuestionarioAvaliacaoTurma modeloAvaliacaoDeTurma) {
 		this.modeloAvaliacaoDeTurma = modeloAvaliacaoDeTurma;
 	}
 	public Integer getBimestre() {

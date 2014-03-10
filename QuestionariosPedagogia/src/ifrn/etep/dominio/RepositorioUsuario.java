@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface RepositorioUsuario {
 	
-	void insert (Usuario usuario);
-	void update (Usuario usuario);
+	void insert (Professor usuario);
+	void update (Professor usuario);
 	void delete(Integer idUsuario);
-	Usuario getPorId(Integer idUsuario);
-	List<Usuario>getAll();
+	Professor getPorId(Integer idUsuario);
+	List<Professor>getAll();
 	
 	
 

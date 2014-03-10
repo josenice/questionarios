@@ -6,36 +6,34 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 @Entity
-@Table(name="QUESTIONARIOAVALIACAODETURMA")
-public class QuestionarioAvaliacaoDeTurma implements Serializable{
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TIPOQUESTIONARIO", discriminatorType=DiscriminatorType.STRING)
+public abstract class Questionario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable=false, length=40)
+	@Column(length=255)
 	private String descricao;
 	
-	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL, mappedBy="modeloAvaliacao", 
-			fetch=FetchType.EAGER)
-	private List<ItemAvaliacaoDaTurma> itens = new ArrayList<>();//bidirecional
-	
-	public List<ItemAvaliacaoDaTurma> getItens() {
-		return itens;
-	}
-
-	public void setItens(List<ItemAvaliacaoDaTurma> itens) {
-		this.itens = itens;
-	}
+	@OneToMany(orphanRemoval=true, cascade=CascadeType.ALL, mappedBy="questionario", 
+			fetch=FetchType.LAZY)
+	private List<ItemAvaliacao> itens = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -52,17 +50,13 @@ public class QuestionarioAvaliacaoDeTurma implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	public List<RespostaUsuarioDaTurma> gerarItensResposta(TurmaSeriada turmaEmAvaliacao){
-		ArrayList<RespostaUsuarioDaTurma> respostas = new ArrayList<>();
-		for(ItemAvaliacaoDaTurma item : getItens()){
-			RespostaUsuarioDaTurma r = new RespostaUsuarioDaTurma();
-			r.setItemAvaliacao(item);
-			r.setTurmaAvaliada(turmaEmAvaliacao);
-			respostas.add(r);
-		}
-		
-		return respostas;
+
+	public List<ItemAvaliacao> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemAvaliacao> itens) {
+		this.itens = itens;
 	}
 
 	@Override
@@ -81,7 +75,7 @@ public class QuestionarioAvaliacaoDeTurma implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		QuestionarioAvaliacaoDeTurma other = (QuestionarioAvaliacaoDeTurma) obj;
+		Questionario other = (Questionario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -89,5 +83,7 @@ public class QuestionarioAvaliacaoDeTurma implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 
 }

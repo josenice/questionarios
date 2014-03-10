@@ -1,9 +1,9 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
-import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoDeTurma;
-import ifrn.etep.dominio.RespostaUsuarioDaTurma;
+import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
+import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoTurma;
+import ifrn.etep.dominio.RespostaAvaliacaoTurma;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioAvaliacaoDeTurma{
+public class DAOQuestionarioAvaliacaoTurma implements RepositorioQuestionarioAvaliacaoTurma{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -25,7 +25,7 @@ public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioA
 	private DAOBimesteLetivo daoBimestreLetivo;
 
 	@Override
-	public void insert(QuestionarioAvaliacaoDeTurma questionario) {
+	public void insert(QuestionarioAvaliacaoTurma questionario) {
 		Session session =  sessionFactory.getCurrentSession();
 		session.save(questionario);
 		
@@ -34,40 +34,40 @@ public class DAOQuestionarioAvaliacaoDeTurma implements RepositorioQuestionarioA
 	@Override
 	public void delete(Integer idQuestionario) {
 		Session session = sessionFactory.getCurrentSession();
-		QuestionarioAvaliacaoDeTurma q = (QuestionarioAvaliacaoDeTurma) session.get(QuestionarioAvaliacaoDeTurma.class, idQuestionario);
+		QuestionarioAvaliacaoTurma q = (QuestionarioAvaliacaoTurma) session.get(QuestionarioAvaliacaoTurma.class, idQuestionario);
 		session.delete(q);
 	}
 
 	@Override
-	public void update(QuestionarioAvaliacaoDeTurma questionario) {
+	public void update(QuestionarioAvaliacaoTurma questionario) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(questionario);
 		
 	}
 
 	@Override
-	public List<QuestionarioAvaliacaoDeTurma> getAll() {
+	public List<QuestionarioAvaliacaoTurma> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("select q from QuestionarioAvaliacaoDeTurma q");
 		return query.list();
 	}
 	
 	@Override
-	public QuestionarioAvaliacaoDeTurma getPorId(Integer idQuestionario) {
+	public QuestionarioAvaliacaoTurma getPorId(Integer idQuestionario) {
 		Session session = sessionFactory.getCurrentSession();
-		return (QuestionarioAvaliacaoDeTurma) session.get(QuestionarioAvaliacaoDeTurma.class, idQuestionario);
+		return (QuestionarioAvaliacaoTurma) session.get(QuestionarioAvaliacaoTurma.class, idQuestionario);
 	}
 	
 	@Override
-	public void salvarRespostas(List<RespostaUsuarioDaTurma> respostas){
+	public void salvarRespostas(List<RespostaAvaliacaoTurma> respostas){
 		Session session = sessionFactory.getCurrentSession();
-		for(RespostaUsuarioDaTurma r : respostas){
+		for(RespostaAvaliacaoTurma r : respostas){
 			session.save(r);
 		}
 	}
 
 	@Override
-	public QuestionarioAvaliacaoDeTurma getDoBimestreCorente() {
+	public QuestionarioAvaliacaoTurma getDoBimestreCorente() {
 		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
 		
 		return bimestreCorrente.getModeloAvaliacaoDeTurma();

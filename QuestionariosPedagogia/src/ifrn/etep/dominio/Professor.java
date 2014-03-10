@@ -21,7 +21,7 @@ public class Professor implements Serializable {
 	private Integer id;
 	
 	@OneToOne
-	private Usuario usuario;
+	private Professor usuario;
 	
 		
 	public Integer getId() {
@@ -30,10 +30,10 @@ public class Professor implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Usuario getUsuario() {
+	public Professor getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Professor usuario) {
 		this.usuario = usuario;
 	}
 	

@@ -12,11 +12,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class ItemDeAutoAvaliacao implements Serializable{
+public class ItemAvaliacao implements Serializable{
 
-	/**
-	 * Josenice
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,24 +22,52 @@ public class ItemDeAutoAvaliacao implements Serializable{
 	@Column(nullable=false, length=150)
 	private String texto;
 	
+	@Column(nullable=false)
+	private boolean usarFrequencia;
+	
 	@ManyToOne(optional=false)
-	private QuestionarioDeAutoAvaliacao modeloQuestionario; // bidirecional
+	private Questionario questionario; // bidirecional
 	
 	@ManyToOne(optional=true)
 	private GrupoItemAvaliacao grupo;
 	
+	@ManyToOne
+	private RespostaItemAvaliacao respostas;
+	
+	@ManyToOne
+	private CampoTextual campo;
+		
+	public CampoTextual getCampo() {
+		return campo;
+	}
+	public void setCampo(CampoTextual campo) {
+		this.campo = campo;
+	}
+	public Questionario getQuestionario() {
+		return questionario;
+	}
+	public void setQuestionarios(Questionario questionario) {
+		this.questionario = questionario;
+	}
+	public boolean isUsarFrequencia() {
+		return usarFrequencia;
+	}
+	public void setUsarFrequencia(boolean usarFrequencia) {
+		this.usarFrequencia = usarFrequencia;
+	}
+	public RespostaItemAvaliacao getRespostas() {
+		return respostas;
+	}
+	public void setRespostas(RespostaItemAvaliacao respostas) {
+		this.respostas = respostas;
+	}
 	public GrupoItemAvaliacao getGrupo() {
 		return grupo;
 	}
 	public void setGrupo(GrupoItemAvaliacao grupo) {
 		this.grupo = grupo;
 	}
-	public QuestionarioDeAutoAvaliacao getModeloQuestionario() {
-		return modeloQuestionario;
-	}
-	public void setModeloQuestionario(QuestionarioDeAutoAvaliacao modeloQuestionario) {
-		this.modeloQuestionario = modeloQuestionario;
-	}
+	
 	public Integer getId() {
 		return id;
 	}

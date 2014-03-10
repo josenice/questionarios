@@ -9,4 +9,5 @@ public interface RepositorioTurma {
 	TurmaSeriada getPorId(Integer idTurma);
 	List<TurmaSeriada> getAll();
 	List<TurmaSeriada> getTurmasNaoAvaliadasPorProfessor(Integer idProfessor);
+	
 }

@@ -32,14 +32,14 @@ public class Diario implements Serializable{
 	private List<Professor> professores;
 
 	@ManyToOne
-	private SemestreLetivo semestre;
-
-	public SemestreLetivo getSemestre() {
-		return semestre;
+	private AnoLetivo anoLetivo;
+	
+	public AnoLetivo getAnoLetivo() {
+		return anoLetivo;
 	}
 
-	public void setSemestre(SemestreLetivo semestre) {
-		this.semestre = semestre;
+	public void setAnoLetivo(AnoLetivo anoLetivo) {
+		this.anoLetivo = anoLetivo;
 	}
 
 	public List<Professor> getProfessores() {

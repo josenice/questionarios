@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 @ContextConfiguration("classpath:applicationContext.xml")
 public class DAOQuestionarioAutoAvaliacaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 	@Autowired
-	protected DAOQuestionarioAutoAvaliacao daoQuestionarioAutoAvaliacao;
+	protected DAOQuestionarioAutoAvaliacaoDocente daoQuestionarioAutoAvaliacao;
 	
 	@Test
 	public void testIsAutoAvaliacaoRespondida(){

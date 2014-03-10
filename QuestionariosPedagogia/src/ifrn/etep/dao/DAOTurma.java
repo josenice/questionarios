@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
+import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.RepositorioTurma;
-import ifrn.etep.dominio.SemestreLetivo;
+import ifrn.etep.dominio.AnoLetivo;
 
 import ifrn.etep.dominio.TurmaSeriada;
 

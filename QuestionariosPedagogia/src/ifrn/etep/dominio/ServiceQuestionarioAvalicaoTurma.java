@@ -15,36 +15,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation = Propagation.REQUIRED)
-public class ServiceQuestionarioAvalicaoDeTurma implements Serializable {
+public class ServiceQuestionarioAvalicaoTurma implements Serializable {
 
 	/**
 	 * Maria Josenice Severino de Pinho
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
-	private RepositorioQuestionarioAvaliacaoDeTurma repositorio;
+	private RepositorioQuestionarioAvaliacaoTurma repositorio;
 	
 	@Autowired
 	private DAOBimesteLetivo daoBimestre;
 
 	public void setRepositorio(															
-			RepositorioQuestionarioAvaliacaoDeTurma repositorio) {
+			RepositorioQuestionarioAvaliacaoTurma repositorio) {
 		this.repositorio = repositorio;
 	}
 	
-	public QuestionarioAvaliacaoDeTurma getDoBimestreCorrente(){
+	public QuestionarioAvaliacaoTurma getDoBimestreCorrente(){
 		return repositorio.getDoBimestreCorente();
 	}
 
-	public QuestionarioAvaliacaoDeTurma getPorId(Integer idQuestionario) {
+	public QuestionarioAvaliacaoTurma getPorId(Integer idQuestionario) {
 		return repositorio.getPorId(idQuestionario);
 	}
 
-	public void cadastrarQuestionario(QuestionarioAvaliacaoDeTurma questionario) {
+	public void cadastrarQuestionario(QuestionarioAvaliacaoTurma questionario) {
 		this.repositorio.insert(questionario);
 	}
 
-	public void atualizarQuestionario(QuestionarioAvaliacaoDeTurma questionario) {
+	public void atualizarQuestionario(QuestionarioAvaliacaoTurma questionario) {
 		this.repositorio.update(questionario);
 	}
 
@@ -53,10 +53,10 @@ public class ServiceQuestionarioAvalicaoDeTurma implements Serializable {
 	}
 
 
-	public void salvarRespostas(List<RespostaUsuarioDaTurma> respostas, Usuario interrogado) {
+	public void salvarRespostas(List<RespostaAvaliacaoTurma> respostas, Professor interrogado) {
 		//TODO usar Professor ao invés de usuário
 		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorente();
-		for(RespostaUsuarioDaTurma r : respostas){
+		for(RespostaAvaliacaoTurma r : respostas){
 			r.setInterrogado(interrogado);
 			r.setBimestreAvaliado(bimestreCorrente);
 		}
