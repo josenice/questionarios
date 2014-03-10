@@ -1,6 +1,6 @@
 package ifrn.etep.dao;
 
-import ifrn.etep.dominio.SemestreLetivo;
+import ifrn.etep.dominio.AnoLetivo;
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class DAOSemestreLetivoTest extends AbstractTransactionalJUnit4SpringCont
 	
 	@Test
 	public void testGetSemestreCorrente(){
-		SemestreLetivo semestre = daoSemestre.getSemestreCorente();
+		AnoLetivo semestre = daoSemestre.getSemestreCorente();
 		Assert.assertEquals(1, semestre.getId().intValue());
 	}
 }

@@ -1,18 +1,16 @@
 package ifrn.etep.mb;
 
 import ifrn.etep.dominio.GrupoItemAvaliacao;
-import ifrn.etep.dominio.QuestionarioDeAutoAvaliacao;
-import ifrn.etep.dominio.RespostaUsuarioAutoAvaliacao;
-import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacao;
+import ifrn.etep.dominio.Professor;
+import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDocente;
+import ifrn.etep.dominio.RespostaAutoAvaliacaoDocente;
+import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacaoDocente;
 import ifrn.etep.dominio.ServiceUsuario;
-import ifrn.etep.dominio.Usuario;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -23,20 +21,20 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 @ManagedBean
 @ViewScoped
-public class AutoAvaliacaoMB implements Serializable{
+public class AutoAvaliacaoDocenteMB implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private QuestionarioDeAutoAvaliacao questionario;
+	private QuestionarioAutoAvaliacaoDocente questionario;
 	
 	//private Usuario usuarioInterrogado;
 	
-	private List<RespostaUsuarioAutoAvaliacao> respostas = new ArrayList<>();
+	private List<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
 	
 	private List<GrupoResposta> gruposRespostas = new ArrayList<>();
 	
 	@ManagedProperty("#{serviceQuestionarioAutoAvaliacao}")
-	private ServiceQuestionarioAutoAvaliacao serviceQuestionario;
+	private ServiceQuestionarioAutoAvaliacaoDocente serviceQuestionario;
 	
 	@ManagedProperty("#{serviceUsuario}")
 	private ServiceUsuario serviceUsuario;
@@ -48,18 +46,18 @@ public class AutoAvaliacaoMB implements Serializable{
 		this.serviceUsuario = serviceUsuario;
 	}
 	@PostConstruct
-		public void init(){
+		/*public void init(){
 		try{
 			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			Integer idUsuario = new Integer(request.getParameter("idUsuario"));
 			questionario = serviceQuestionario.getDoBimestreCorrente();
 			//TODOobter o usuário logado
-			Usuario usuario = new Usuario();
+			Professor usuario = new Professor();
 			usuario.setId(idUsuario);
 			respostas = questionario.gerarItensResposta(usuario);
 			
 			HashMap<GrupoItemAvaliacao, GrupoResposta> mapaGrupos = new HashMap<>();
-			for(RespostaUsuarioAutoAvaliacao resposta : respostas){
+			for(RespostaAutoAvaliacaoDocente resposta : respostas){
 				GrupoItemAvaliacao grupoItem = resposta.getItemAvaliacao().getGrupo();
 				GrupoResposta grupoResposta = mapaGrupos.get(grupoItem);
 				if(grupoResposta == null){
@@ -73,12 +71,12 @@ public class AutoAvaliacaoMB implements Serializable{
 			ex.printStackTrace();
 			throw ex;
 		}
-	}
+	}*/
 	public String salvarRespostas(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		try{
 			//TODO obter usuário logado
-			Usuario usuario = new Usuario();
+			Professor usuario = new Professor();
 			usuario.setId(1);
 			serviceQuestionario.salvarRespostas(respostas, usuario);
 			ctx.addMessage(null, new FacesMessage("Respostas salvas com sucesso", ""));
@@ -91,28 +89,28 @@ public class AutoAvaliacaoMB implements Serializable{
 		}
 	}
 
-	public QuestionarioDeAutoAvaliacao getQuestionario() {
+	public QuestionarioAutoAvaliacaoDocente getQuestionario() {
 		return questionario;
 	}
 
-	public void setQuestionario(QuestionarioDeAutoAvaliacao questionario) {
+	public void setQuestionario(QuestionarioAutoAvaliacaoDocente questionario) {
 		this.questionario = questionario;
 	}
 
-	public List<RespostaUsuarioAutoAvaliacao> getRespostas() {
+	public List<RespostaAutoAvaliacaoDocente> getRespostas() {
 		return respostas;
 	}
 
-	public void setRespostas(List<RespostaUsuarioAutoAvaliacao> respostas) {
+	public void setRespostas(List<RespostaAutoAvaliacaoDocente> respostas) {
 		this.respostas = respostas;
 	}
 
-	public ServiceQuestionarioAutoAvaliacao getServiceQuestionario() {
+	public ServiceQuestionarioAutoAvaliacaoDocente getServiceQuestionario() {
 		return serviceQuestionario;
 	}
 
 	public void setServiceQuestionario(
-			ServiceQuestionarioAutoAvaliacao serviceQuestionario) {
+			ServiceQuestionarioAutoAvaliacaoDocente serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
 	}
 	
@@ -123,7 +121,7 @@ public class AutoAvaliacaoMB implements Serializable{
 	public class GrupoResposta implements Serializable{
 	
 		private static final long serialVersionUID = 1L;
-		private List<RespostaUsuarioAutoAvaliacao> respostas = new ArrayList<>();
+		private List<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
 		private GrupoItemAvaliacao grupo;
 		
 		public GrupoResposta(GrupoItemAvaliacao grupo) {
@@ -134,7 +132,7 @@ public class AutoAvaliacaoMB implements Serializable{
 			return grupo;
 		}
 
-		public List<RespostaUsuarioAutoAvaliacao> getRespostas() {
+		public List<RespostaAutoAvaliacaoDocente> getRespostas() {
 			return respostas;
 		}
 		/*public class Editor implements Serializable{

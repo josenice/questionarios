@@ -1,9 +1,10 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.QuestionarioDeAutoAvaliacao;
-import ifrn.etep.dominio.RepositorioQuestionarioAutoAvaliacao;
-import ifrn.etep.dominio.RespostaUsuarioAutoAvaliacao;
+import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDocente;
+import ifrn.etep.dominio.RepositorioQuestionarioAutoAvaliacaoDocente;
+import ifrn.etep.dominio.RespostaAutoAvaliacaoDocente;
+
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAutoAvaliacao{
+public class DAOQuestionarioAutoAvaliacaoDocente implements RepositorioQuestionarioAutoAvaliacaoDocente{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -26,7 +27,7 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 	private DAOBimesteLetivo daoBimestreLetivo;
 	
 	@Override
-	public void insert(QuestionarioDeAutoAvaliacao questionario) {
+	public void insert(QuestionarioAutoAvaliacaoDocente questionario) {
 		Session session =  sessionFactory.getCurrentSession();
 		session.save(questionario);
 		
@@ -35,41 +36,41 @@ public class DAOQuestionarioAutoAvaliacao implements RepositorioQuestionarioAuto
 	@Override
 	public void delete(Integer idQuestionario) {
 		Session session = sessionFactory.getCurrentSession();
-		QuestionarioDeAutoAvaliacao q = (QuestionarioDeAutoAvaliacao) session.get(QuestionarioDeAutoAvaliacao.class, idQuestionario);
+		QuestionarioAutoAvaliacaoDocente q = (QuestionarioAutoAvaliacaoDocente) session.get(QuestionarioAutoAvaliacaoDocente.class, idQuestionario);
 		session.delete(q);
 		
 	}
 
 	@Override
-	public void update(QuestionarioDeAutoAvaliacao questionario) {
+	public void update(QuestionarioAutoAvaliacaoDocente questionario) {
 		Session session = sessionFactory.getCurrentSession();
 		session.update(questionario);
 		
 	}
 	@Override
-	public List<QuestionarioDeAutoAvaliacao> getAll() {
+	public List<QuestionarioAutoAvaliacaoDocente> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("select q from QuestionarioDeAutoAvaliacao q");
 		return query.list();
 	}
 	@Override
-	public QuestionarioDeAutoAvaliacao getPorId(Integer idQuestionario) {
+	public QuestionarioAutoAvaliacaoDocente getPorId(Integer idQuestionario) {
 		Session session = sessionFactory.getCurrentSession();
-		return (QuestionarioDeAutoAvaliacao) session.get(QuestionarioDeAutoAvaliacao.class, idQuestionario);
+		return (QuestionarioAutoAvaliacaoDocente) session.get(QuestionarioAutoAvaliacaoDocente.class, idQuestionario);
 	}
 	
 	@Override
-	public void salvarRespostas(List<RespostaUsuarioAutoAvaliacao> respostas){
+	public void salvarRespostas(List<RespostaAutoAvaliacaoDocente> respostas){
 		Session session = sessionFactory.getCurrentSession();
-		for(RespostaUsuarioAutoAvaliacao r : respostas){
+		for(RespostaAutoAvaliacaoDocente r : respostas){
 			session.save(r);
 		}
 	}
 		
 		@Override
-		public QuestionarioDeAutoAvaliacao getDoBimestreCorrente() {
+		public QuestionarioAutoAvaliacaoDocente getDoBimestreCorrente() {
 			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
-			QuestionarioDeAutoAvaliacao questionario = bimestreCorrente.getModeloAutoAvaliacao();
+			QuestionarioAutoAvaliacaoDocente questionario = bimestreCorrente.getModeloAutoAvaliacao();
 			Hibernate.initialize(questionario.getItens());
 			
 			return questionario;

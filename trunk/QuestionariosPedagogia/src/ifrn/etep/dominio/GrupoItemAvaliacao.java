@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="GRUPOITEMAVALIACAO")
@@ -22,6 +24,17 @@ public class GrupoItemAvaliacao implements Serializable{
 	
 	@Column(nullable=false, length=40)
 	private String descricao;
+	
+	@OneToOne
+	private ItemAvaliacao itens;
+
+	public ItemAvaliacao getItens() {
+		return itens;
+	}
+
+	public void setItens(ItemAvaliacao itens) {
+		this.itens = itens;
+	}
 
 	public Integer getId() {
 		return id;

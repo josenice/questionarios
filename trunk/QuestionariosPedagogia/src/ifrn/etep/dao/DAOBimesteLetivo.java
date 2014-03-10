@@ -1,7 +1,7 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.SemestreLetivo;
+import ifrn.etep.dominio.AnoLetivo;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,7 +22,7 @@ public class DAOBimesteLetivo{
         private DAOSemestreLetivo daoSemestre;
 
         public BimestreLetivo getBimestreCorente() {
-                SemestreLetivo semestreCorrente = daoSemestre.getSemestreCorente();
+                AnoLetivo semestreCorrente = daoSemestre.getSemestreCorente();
                 Session session = sessionFactory.getCurrentSession();
                 Query query = session.createQuery("select b from BimestreLetivo b " +
                                 "where b.semestre = :s " +

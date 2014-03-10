@@ -12,39 +12,39 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation = Propagation.REQUIRED)
-public class ServiceQuestionarioAutoAvaliacao implements Serializable{
+public class ServiceQuestionarioAutoAvaliacaoDocente implements Serializable{
 
 	/**
 	 * Josenice
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
-	private RepositorioQuestionarioAutoAvaliacao repositorio;
+	private RepositorioQuestionarioAutoAvaliacaoDocente repositorio;
 
-	public void setRepositorio(RepositorioQuestionarioAutoAvaliacao repositorio) {
+	public void setRepositorio(RepositorioQuestionarioAutoAvaliacaoDocente repositorio) {
 		this.repositorio = repositorio;
 	}
-	public QuestionarioDeAutoAvaliacao getDoBimestreCorrente() {
+	public QuestionarioAutoAvaliacaoDocente getDoBimestreCorrente() {
 		return repositorio.getDoBimestreCorrente();
 	}
-	public QuestionarioDeAutoAvaliacao getPorId(Integer idQuestionario){
+	public QuestionarioAutoAvaliacaoDocente getPorId(Integer idQuestionario){
 		return repositorio.getPorId(idQuestionario);
 		
 	}
-	public void cadastrarQuestionario(QuestionarioDeAutoAvaliacao questionario){
+	public void cadastrarQuestionario(QuestionarioAutoAvaliacaoDocente questionario){
 		this.repositorio.insert(questionario);
 		
 	}
-	public void atualizarQuestionario(QuestionarioDeAutoAvaliacao questionario){
+	public void atualizarQuestionario(QuestionarioAutoAvaliacaoDocente questionario){
 		this.repositorio.update(questionario);
 	}
 	public void excluirQuestionario(Integer questionario){
 		this.repositorio.delete(questionario);
 	}
 	
-	public void salvarRespostas(List<RespostaUsuarioAutoAvaliacao> respostas, Usuario interrogado){
-		for(RespostaUsuarioAutoAvaliacao r : respostas){
-			r.setInterrogador(interrogado);
+	public void salvarRespostas(List<RespostaAutoAvaliacaoDocente> respostas, Professor interrogado){
+		for(RespostaAutoAvaliacaoDocente r : respostas){
+			r.setInterrogado(interrogado);
 		}
 		repositorio.salvarRespostas(respostas);
 	}

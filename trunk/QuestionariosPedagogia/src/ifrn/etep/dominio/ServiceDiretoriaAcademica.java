@@ -11,15 +11,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
-@Scope(proxyMode=ScopedProxyMode.TARGET_CLASS)
-@Transactional(propagation=Propagation.REQUIRED)
-public class ServiceDiretoriaAcademica implements Serializable{
+
+//public class ServiceDiretoriaAcademica implements Serializable{
 	
 	/**
 	 * Josenice
 	 */
-	private static final long serialVersionUID = 1L;
+	/*private static final long serialVersionUID = 1L;
 	@Autowired
 	private RepositorioDiretoriaAcademica repositorio;
 	public void setRepositorio(RepositorioDiretoriaAcademica repositorio) {
@@ -41,4 +39,5 @@ public class ServiceDiretoriaAcademica implements Serializable{
 	public void excluirDiretoria(Integer diretoria){
 		this.repositorio.delete(diretoria);
 	}
-}
+}*/
+

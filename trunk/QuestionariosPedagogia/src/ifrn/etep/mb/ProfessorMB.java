@@ -1,6 +1,6 @@
 package ifrn.etep.mb;
 
-import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacao;
+import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacaoDocente;
 import ifrn.etep.dominio.ServiceTurma;
 import ifrn.etep.dominio.TurmaSeriada;
 
@@ -32,9 +32,9 @@ public class ProfessorMB implements Serializable{
 	}
 	
 	@ManagedProperty("#{serviceQuestionarioAutoAvaliacao}")
-	private ServiceQuestionarioAutoAvaliacao serviceAutoAvaliacao;
+	private ServiceQuestionarioAutoAvaliacaoDocente serviceAutoAvaliacao;
 	public void setServiceAutoAvaliacao(
-			ServiceQuestionarioAutoAvaliacao serviceAutoAvaliacao) {
+			ServiceQuestionarioAutoAvaliacaoDocente serviceAutoAvaliacao) {
 		this.serviceAutoAvaliacao = serviceAutoAvaliacao;
 	}
 

@@ -8,7 +8,7 @@
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
-		<p:panel header="#{autoAvaliacaoMB.questionario.descricao} MATRICULA">
+		<p:panel header="#{autoAvaliacaoDocenteMB.questionario.descricao} MATRICULA">
 			<p>Caro(a) Professor(a)</p>
 
 			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com
@@ -22,7 +22,7 @@
 
 
 			<h:form id="formulario">
-				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoMB.grupos}">
+				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoDocenteMB.grupos}">
 					
 					<p:column headerText="Itens de Auto Avaliação"/>
 					<p:column headerText="Frequência"/>
@@ -61,7 +61,7 @@
    			 </p:dialog>  
 				<br />
 				<p:commandButton process="@form" value="Submeter Respostas"
-					action="#{autoAvaliacaoMB.salvarRespostas()}" />
+					action="#{autoAvaliacaoDocenteMB.salvarRespostas()}" />
 			</h:form>
 		</p:panel>
 	</ui:define>

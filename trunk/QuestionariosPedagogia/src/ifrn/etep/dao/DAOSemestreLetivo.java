@@ -1,7 +1,7 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.SemestreLetivo;
+import ifrn.etep.dominio.AnoLetivo;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,12 +18,12 @@ public class DAOSemestreLetivo{
 		this.sessionFactory = sessionFactory;
 	}
 
-	public SemestreLetivo getSemestreCorente() {
+	public AnoLetivo getSemestreCorente() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("select s from SemestreLetivo s " +
 				"where s.ano = (select max(s1.ano) from SemestreLetivo s1) " +
 				"and s.semestre =(select max(s2.semestre) from SemestreLetivo s2)");
-		return (SemestreLetivo)query.uniqueResult();
+		return (AnoLetivo)query.uniqueResult();
 	}
 	
 	

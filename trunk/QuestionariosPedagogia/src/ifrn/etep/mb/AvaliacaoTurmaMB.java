@@ -1,11 +1,11 @@
 package ifrn.etep.mb;
 
-import ifrn.etep.dominio.QuestionarioAvaliacaoDeTurma;
-import ifrn.etep.dominio.RespostaUsuarioDaTurma;
-import ifrn.etep.dominio.ServiceQuestionarioAvalicaoDeTurma;
+import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
+import ifrn.etep.dominio.RespostaAvaliacaoTurma;
+import ifrn.etep.dominio.ServiceQuestionarioAvalicaoTurma;
 import ifrn.etep.dominio.ServiceTurma;
 import ifrn.etep.dominio.TurmaSeriada;
-import ifrn.etep.dominio.Usuario;
+import ifrn.etep.dominio.Professor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -26,11 +26,11 @@ public class AvaliacaoTurmaMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private QuestionarioAvaliacaoDeTurma questionario;
+	private QuestionarioAvaliacaoTurma questionario;
 	private TurmaSeriada turmaEmAvalicao;
-	private List<RespostaUsuarioDaTurma> respostas = new ArrayList<>();
+	private List<RespostaAvaliacaoTurma> respostas = new ArrayList<>();
 	@ManagedProperty("#{serviceQuestionarioAvalicaoDeTurma}")
-	private ServiceQuestionarioAvalicaoDeTurma serviceQuestionario;
+	private ServiceQuestionarioAvalicaoTurma serviceQuestionario;
 	@ManagedProperty("#{serviceTurma}")
 	private ServiceTurma serviceTurma;
 
@@ -52,7 +52,7 @@ public class AvaliacaoTurmaMB implements Serializable{
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		try{
 			//TODO obter usuário logado
-			Usuario usuario = new Usuario();
+			Professor usuario = new Professor();
 			usuario.setId(1);
 			serviceQuestionario.salvarRespostas(respostas, usuario);
 			ctx.addMessage(null, new FacesMessage("Respostas salvas com sucesso", ""));
@@ -65,11 +65,11 @@ public class AvaliacaoTurmaMB implements Serializable{
 		}
 	}
 
-	public List<RespostaUsuarioDaTurma> getRespostas() {
+	public List<RespostaAvaliacaoTurma> getRespostas() {
 		return respostas;
 	}
 
-	public QuestionarioAvaliacaoDeTurma getQuestionario() {
+	public QuestionarioAvaliacaoTurma getQuestionario() {
 		return questionario;
 	}
 
@@ -77,7 +77,7 @@ public class AvaliacaoTurmaMB implements Serializable{
 		return turmaEmAvalicao;
 	}
 
-	public void setServiceQuestionario(ServiceQuestionarioAvalicaoDeTurma serviceQuestionario) {
+	public void setServiceQuestionario(ServiceQuestionarioAvalicaoTurma serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
 	}
 
