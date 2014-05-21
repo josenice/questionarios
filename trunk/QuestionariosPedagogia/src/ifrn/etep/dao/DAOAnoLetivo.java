@@ -1,6 +1,5 @@
 package ifrn.etep.dao;
 
-import ifrn.etep.dominio.BimestreLetivo;
 import ifrn.etep.dominio.AnoLetivo;
 
 import org.hibernate.Query;
@@ -10,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DAOSemestreLetivo{
+public class DAOAnoLetivo{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -18,11 +17,10 @@ public class DAOSemestreLetivo{
 		this.sessionFactory = sessionFactory;
 	}
 
-	public AnoLetivo getSemestreCorente() {
+	public AnoLetivo getAnoCorrente() {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select s from SemestreLetivo s " +
-				"where s.ano = (select max(s1.ano) from SemestreLetivo s1) " +
-				"and s.semestre =(select max(s2.semestre) from SemestreLetivo s2)");
+		Query query = session.createQuery("select s from AnoLetivo s " +
+				"where s.ano = (select max(s1.ano) from AnoLetivo s1) ");
 		return (AnoLetivo)query.uniqueResult();
 	}
 	

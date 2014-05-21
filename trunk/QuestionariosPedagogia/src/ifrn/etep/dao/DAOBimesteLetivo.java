@@ -19,15 +19,15 @@ public class DAOBimesteLetivo{
         }
         
         @Autowired
-        private DAOSemestreLetivo daoSemestre;
+        private DAOAnoLetivo daoSemestre;
 
-        public BimestreLetivo getBimestreCorente() {
-                AnoLetivo semestreCorrente = daoSemestre.getSemestreCorente();
+        public BimestreLetivo getBimestreCorrente() {
+                AnoLetivo anoCorrente = daoSemestre.getAnoCorrente();
                 Session session = sessionFactory.getCurrentSession();
                 Query query = session.createQuery("select b from BimestreLetivo b " +
-                                "where b.semestre = :s " +
-                                "and b.bimestre =(select max(b2.bimestre) from BimestreLetivo b2)");
-                query.setParameter("s", semestreCorrente);
+                                "where b.ano = :s " +
+                                "and b.ano =(select max(b2.bimestre) from BimestreLetivo b2)");
+                query.setParameter("s", anoCorrente);
                 return (BimestreLetivo)query.uniqueResult();
         }
 }

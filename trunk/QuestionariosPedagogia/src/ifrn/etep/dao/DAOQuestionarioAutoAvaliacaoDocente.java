@@ -69,7 +69,7 @@ public class DAOQuestionarioAutoAvaliacaoDocente implements RepositorioQuestiona
 		
 		@Override
 		public QuestionarioAutoAvaliacaoDocente getDoBimestreCorrente() {
-			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
+			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 			QuestionarioAutoAvaliacaoDocente questionario = bimestreCorrente.getModeloAutoAvaliacao();
 			Hibernate.initialize(questionario.getItens());
 			
@@ -81,7 +81,7 @@ public class DAOQuestionarioAutoAvaliacaoDocente implements RepositorioQuestiona
 			Session session = sessionFactory.getCurrentSession();
 			Query query = session.createQuery("select r From RespostaUsuarioAutoAvaliacao r " +
 					"where r.bimestreAvaliado = :bimestre and r.id = :idUsuario");
-			query.setParameter("bimestre", daoBimestreLetivo.getBimestreCorente());
+			query.setParameter("bimestre", daoBimestreLetivo.getBimestreCorrente());
 			query.setParameter("idUsuario", idUsuario);
 			List l = query.list();
 			if(l == null || l.isEmpty()){

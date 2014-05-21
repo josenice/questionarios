@@ -61,15 +61,15 @@ public class DAOTurma implements RepositorioTurma{
 	public List<TurmaSeriada> getTurmasNaoAvaliadasPorProfessor(
 			Integer idProfessor) {
 		//TODO completar a consulta para filtrar por professor e turmas não avaliadas
-		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
+		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "select t from TurmaSeriada t join t.diarios d join d.professores p " +
-				"where d.semestre = :semestreCorrente and p.id = :idProfessor and " + 
-				" t not in (select r.turmaAvaliada from RespostaUsuarioDaTurma r " +
-				"where r.bimestreAvaliado = :bimestreCorrente)";
+				"where d.anoLetivo = :anoCorrente and p.id = :idProfessor and " + 
+				" t not in (select r.turmaAvaliada from RespostaAvaliacaoTurma r " +
+				"where r.bimestre = :bimestreCorrente)";
 		Query q = session.createQuery(hql);
 		q.setParameter("bimestreCorrente", bimestreCorrente);
-		q.setParameter("semestreCorrente", bimestreCorrente.getSemestre());
+		q.setParameter("anoCorrente", bimestreCorrente.getAno());
 		q.setParameter("idProfessor", idProfessor);
 		
 		return q.list();

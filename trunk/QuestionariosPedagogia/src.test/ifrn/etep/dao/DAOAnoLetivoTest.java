@@ -1,22 +1,22 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.AnoLetivo;
-import junit.framework.Assert;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 @ContextConfiguration("classpath:applicationContext.xml")
-public class DAOSemestreLetivoTest extends AbstractTransactionalJUnit4SpringContextTests{
+public class DAOAnoLetivoTest extends AbstractTransactionalJUnit4SpringContextTests{
 	
 	@Autowired
-	protected DAOSemestreLetivo daoSemestre;
+	protected DAOAnoLetivo daoAnoLetivo;
 	
 	@Test
-	public void testGetSemestreCorrente(){
-		AnoLetivo semestre = daoSemestre.getSemestreCorente();
+	public void testGetAnoCorrente(){
+		AnoLetivo semestre = daoAnoLetivo.getAnoCorrente();
 		Assert.assertEquals(1, semestre.getId().intValue());
 	}
 }

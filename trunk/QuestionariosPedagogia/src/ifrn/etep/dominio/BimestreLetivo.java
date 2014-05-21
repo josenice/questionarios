@@ -31,7 +31,7 @@ public class BimestreLetivo implements Serializable{
 	@ManyToOne
 	private QuestionarioAutoAvaliacaoDocente modeloAutoAvaliacao;
 	
-	public AnoLetivo getSemestre() {
+	public AnoLetivo getAno() {
 		return ano;
 	}
 	public void setAno(AnoLetivo ano) {
