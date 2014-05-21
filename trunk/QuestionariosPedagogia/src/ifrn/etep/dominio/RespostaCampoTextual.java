@@ -20,25 +20,25 @@ public class RespostaCampoTextual implements Serializable{
 	private String respostas;
 	
 	@ManyToOne
-	private CampoTextual texto;
+	private CampoTextual campoTextual;
 	
 	@ManyToOne()
-	private RespostaItemAvaliacao respostasItens;
+	private RespostaItemAvaliacao respostaItemAvaliacao;
 
-	public RespostaItemAvaliacao getRespostasItens() {
-		return respostasItens;
+	public RespostaItemAvaliacao getRespostaItemAvaliacao() {
+		return respostaItemAvaliacao;
 	}
 
-	public void setRespostasItens(RespostaItemAvaliacao respostasItens) {
-		this.respostasItens = respostasItens;
+	public void setRespostaItemAvaliacao(RespostaItemAvaliacao resposta) {
+		this.respostaItemAvaliacao = resposta;
 	}
 
-	public CampoTextual getTexto() {
-		return texto;
+	public CampoTextual getCampoTextual() {
+		return campoTextual;
 	}
 
-	public void setTexto(CampoTextual texto) {
-		this.texto = texto;
+	public void setCampoTextual(CampoTextual texto) {
+		this.campoTextual = texto;
 	}
 
 	public int getId() {

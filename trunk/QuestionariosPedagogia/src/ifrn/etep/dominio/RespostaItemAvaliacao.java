@@ -1,8 +1,10 @@
 package ifrn.etep.dominio;	
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +29,8 @@ public abstract class RespostaItemAvaliacao implements Serializable {
 	@ManyToOne
 	private ItemAvaliacao item;
 	
-	@OneToMany(orphanRemoval=true, mappedBy="respostasItens")
-	private List<RespostaCampoTextual> repostasCampoTextual;
+	@OneToMany(orphanRemoval=true, mappedBy="respostaItemAvaliacao", cascade=CascadeType.ALL)
+	private List<RespostaCampoTextual> respostasCampoTextual = new ArrayList<RespostaCampoTextual>();
 	
 	@ManyToOne
 	private BimestreLetivo bimestre;
@@ -49,13 +51,13 @@ public abstract class RespostaItemAvaliacao implements Serializable {
 		this.item = iten;
 	}
 
-	public List<RespostaCampoTextual> getRepostasCampoTextual() {
-		return repostasCampoTextual;
+	public List<RespostaCampoTextual> getRespostasCampoTextual() {
+		return respostasCampoTextual;
 	}
 
-	public void setRepostasCampoTextual(
+	public void setRespostasCampoTextual(
 			List<RespostaCampoTextual> repostasCampoTextual) {
-		this.repostasCampoTextual = repostasCampoTextual;
+		this.respostasCampoTextual = repostasCampoTextual;
 	}
 
 	public Integer getId() {

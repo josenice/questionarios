@@ -4,8 +4,10 @@ import ifrn.etep.dominio.BimestreLetivo;
 import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.RespostaAvaliacaoTurma;
+
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -69,7 +71,9 @@ public class DAOQuestionarioAvaliacaoTurma implements RepositorioQuestionarioAva
 	@Override
 	public QuestionarioAvaliacaoTurma getDoBimestreCorente() {
 		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
+		QuestionarioAvaliacaoTurma questionario = bimestreCorrente.getModeloAvaliacaoDeTurma();
+		Hibernate.initialize(questionario.getItens());
 		
-		return bimestreCorrente.getModeloAvaliacaoDeTurma();
+		return questionario;
 	}
 }
