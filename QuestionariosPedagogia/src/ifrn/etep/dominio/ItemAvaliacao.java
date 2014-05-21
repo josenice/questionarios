@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,15 +35,15 @@ public class ItemAvaliacao implements Serializable{
 	@ManyToOne(optional=true)
 	private GrupoItemAvaliacao grupo;
 	
-	@ManyToMany
-	private List<CampoTextual> campo;
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="itemAvaliacao")
+	private List<CampoTextual> camposTextuais;
 		
 	
-	public List<CampoTextual> getCampo() {
-		return campo;
+	public List<CampoTextual> getCamposTextuais() {
+		return camposTextuais;
 	}
-	public void setCampo(List<CampoTextual> campo) {
-		this.campo = campo;
+	public void setCamposTextuais(List<CampoTextual> campo) {
+		this.camposTextuais = campo;
 	}
 	public void setQuestionario(Questionario questionario) {
 		this.questionario = questionario;

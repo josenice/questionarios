@@ -15,13 +15,19 @@ public class QuestionarioAvaliacaoTurma extends Questionario{
 
 	public List<RespostaAvaliacaoTurma> gerarItensResposta(TurmaSeriada turmaEmAvaliacao){
 		ArrayList<RespostaAvaliacaoTurma> respostas = new ArrayList<>();
-		/*for(ItemAvaliacaoDaTurma item : getItens()){
-			RespostaAvaliacaoTurma r = new RespostaAvaliacaoTurma();
-			r.setItemAvaliacao(item);
-			r.setTurmaAvaliada(turmaEmAvaliacao);
-			respostas.add(r);
-		}*/
-		//TODO
+		for(ItemAvaliacao item : getItens()){
+			RespostaAvaliacaoTurma respostaAvaliacaoTurma = new RespostaAvaliacaoTurma();
+			respostaAvaliacaoTurma.setItem(item);
+			respostaAvaliacaoTurma.setTurmaAvaliada(turmaEmAvaliacao);
+			respostas.add(respostaAvaliacaoTurma);
+			
+			for(CampoTextual campoTxt : item.getCamposTextuais()){
+				RespostaCampoTextual respostaCampoTxt = new RespostaCampoTextual();
+				respostaCampoTxt.setRespostaItemAvaliacao(respostaAvaliacaoTurma);
+				respostaCampoTxt.setCampoTextual(campoTxt);
+				respostaAvaliacaoTurma.getRespostasCampoTextual().add(respostaCampoTxt);
+			}
+		}
 		
 		return respostas;
 	}

@@ -29,7 +29,7 @@ public class AvaliacaoTurmaMB implements Serializable{
 	private QuestionarioAvaliacaoTurma questionario;
 	private TurmaSeriada turmaEmAvalicao;
 	private List<RespostaAvaliacaoTurma> respostas = new ArrayList<>();
-	@ManagedProperty("#{serviceQuestionarioAvalicaoDeTurma}")
+	@ManagedProperty("#{serviceQuestionarioAvalicaoTurma}")
 	private ServiceQuestionarioAvalicaoTurma serviceQuestionario;
 	@ManagedProperty("#{serviceTurma}")
 	private ServiceTurma serviceTurma;

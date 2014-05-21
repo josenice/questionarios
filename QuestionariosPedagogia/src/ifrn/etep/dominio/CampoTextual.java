@@ -20,14 +20,14 @@ public class CampoTextual implements Serializable {
 	private String descricao;
 	
 	@ManyToOne
-	private ItemAvaliacao avaliacao;
+	private ItemAvaliacao itemAvaliacao;
 
-	public ItemAvaliacao getAvaliacao() {
-		return avaliacao;
+	public ItemAvaliacao getItemAvaliacao() {
+		return itemAvaliacao;
 	}
 
-	public void setAvaliacao(ItemAvaliacao avaliacao) {
-		this.avaliacao = avaliacao;
+	public void setItemAvaliacao(ItemAvaliacao avaliacao) {
+		this.itemAvaliacao = avaliacao;
 	}
 
 	public int getId() {
