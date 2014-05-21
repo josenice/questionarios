@@ -55,10 +55,10 @@ public class ServiceQuestionarioAvalicaoTurma implements Serializable {
 
 	public void salvarRespostas(List<RespostaAvaliacaoTurma> respostas, Professor interrogado) {
 		//TODO usar Professor ao invés de usuário
-		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorente();
+		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorrente();
 		for(RespostaAvaliacaoTurma r : respostas){
 			r.setInterrogado(interrogado);
-			r.setBimestreAvaliado(bimestreCorrente);
+			r.setBimestre(bimestreCorrente);
 		}
 		repositorio.salvarRespostas(respostas);
 	}

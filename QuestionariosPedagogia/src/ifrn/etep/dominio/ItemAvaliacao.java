@@ -1,12 +1,14 @@
 package ifrn.etep.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,17 +33,18 @@ public class ItemAvaliacao implements Serializable{
 	@ManyToOne(optional=true)
 	private GrupoItemAvaliacao grupo;
 	
-	@ManyToOne
-	private RespostaItemAvaliacao respostas;
-	
-	@ManyToOne
-	private CampoTextual campo;
+	@ManyToMany
+	private List<CampoTextual> campo;
 		
-	public CampoTextual getCampo() {
+	
+	public List<CampoTextual> getCampo() {
 		return campo;
 	}
-	public void setCampo(CampoTextual campo) {
+	public void setCampo(List<CampoTextual> campo) {
 		this.campo = campo;
+	}
+	public void setQuestionario(Questionario questionario) {
+		this.questionario = questionario;
 	}
 	public Questionario getQuestionario() {
 		return questionario;
@@ -55,12 +58,7 @@ public class ItemAvaliacao implements Serializable{
 	public void setUsarFrequencia(boolean usarFrequencia) {
 		this.usarFrequencia = usarFrequencia;
 	}
-	public RespostaItemAvaliacao getRespostas() {
-		return respostas;
-	}
-	public void setRespostas(RespostaItemAvaliacao respostas) {
-		this.respostas = respostas;
-	}
+	
 	public GrupoItemAvaliacao getGrupo() {
 		return grupo;
 	}

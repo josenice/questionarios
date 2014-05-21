@@ -25,16 +25,6 @@ public class GrupoItemAvaliacao implements Serializable{
 	@Column(nullable=false, length=40)
 	private String descricao;
 	
-	@OneToOne
-	private ItemAvaliacao itens;
-
-	public ItemAvaliacao getItens() {
-		return itens;
-	}
-
-	public void setItens(ItemAvaliacao itens) {
-		this.itens = itens;
-	}
 
 	public Integer getId() {
 		return id;

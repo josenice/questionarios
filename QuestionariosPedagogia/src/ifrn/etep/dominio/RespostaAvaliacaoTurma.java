@@ -33,13 +33,6 @@ public class RespostaAvaliacaoTurma extends RespostaItemAvaliacao {
 
 	public void setTurmaAvaliada(TurmaSeriada turmaAvaliada) {
 		this.turmaAvaliada = turmaAvaliada;
-	}
-
-	public void setBimestreAvaliado(BimestreLetivo bimestreCorrente) {
-		// TODO Auto-generated method stub
-		
-	}
-
-		
+	}	
 
 }

@@ -1,8 +1,8 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import junit.framework.Assert;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -16,7 +16,7 @@ public class DAOBimestreLetivoTest extends AbstractTransactionalJUnit4SpringCont
 	
 	@Test
 	public void testGetBimestreCorrente(){
-		BimestreLetivo bimestre = daoBimestre.getBimestreCorente();
+		BimestreLetivo bimestre = daoBimestre.getBimestreCorrente();
 		Assert.assertEquals(1, bimestre.getId().intValue());
 	}
 }

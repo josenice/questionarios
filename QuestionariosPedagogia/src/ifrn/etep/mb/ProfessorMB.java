@@ -39,7 +39,8 @@ public class ProfessorMB implements Serializable{
 	}
 
 	public boolean responderAutoAvaliacao(){
-		return !serviceAutoAvaliacao.isAutoAvaliacaoRespondida(idProfessor);
+		//return !serviceAutoAvaliacao.isAutoAvaliacaoRespondida(idProfessor);
+		return false; //TODO
 	}
 
 	@PostConstruct
@@ -47,6 +48,7 @@ public class ProfessorMB implements Serializable{
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		idProfessor = Integer.valueOf(request.getParameter("idProfessor"));
 		turmasParaAvaliar = serviceTurma.getTurmasNaoAvaliadasPorProfessor(idProfessor);
+		System.out.println("----->"+turmasParaAvaliar);
 	}
 	
 	public List<TurmaSeriada> getTurmasParaAvaliar(){

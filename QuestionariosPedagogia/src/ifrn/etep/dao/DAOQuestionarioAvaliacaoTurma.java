@@ -68,7 +68,7 @@ public class DAOQuestionarioAvaliacaoTurma implements RepositorioQuestionarioAva
 
 	@Override
 	public QuestionarioAvaliacaoTurma getDoBimestreCorente() {
-		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorente();
+		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 		
 		return bimestreCorrente.getModeloAvaliacaoDeTurma();
 	}
