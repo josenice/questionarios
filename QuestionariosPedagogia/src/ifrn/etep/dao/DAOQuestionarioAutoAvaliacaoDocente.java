@@ -70,7 +70,7 @@ public class DAOQuestionarioAutoAvaliacaoDocente implements RepositorioQuestiona
 		@Override
 		public QuestionarioAutoAvaliacaoDocente getDoBimestreCorrente() {
 			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
-			QuestionarioAutoAvaliacaoDocente questionario = bimestreCorrente.getModeloAutoAvaliacao();
+			QuestionarioAutoAvaliacaoDocente questionario = bimestreCorrente.getModeloAutoAvaliacaoDocente();
 			Hibernate.initialize(questionario.getItens());
 			
 			return questionario;

@@ -26,7 +26,7 @@ public class DAOBimesteLetivo{
                 Session session = sessionFactory.getCurrentSession();
                 Query query = session.createQuery("select b from BimestreLetivo b " +
                                 "where b.ano = :s " +
-                                "and b.ano =(select max(b2.bimestre) from BimestreLetivo b2)");
+                                "and b.bimestre =(select max(b2.bimestre) from BimestreLetivo b2)");
                 query.setParameter("s", anoCorrente);
                 return (BimestreLetivo)query.uniqueResult();
         }

@@ -71,7 +71,7 @@ public class DAOQuestionarioAvaliacaoTurma implements RepositorioQuestionarioAva
 	@Override
 	public QuestionarioAvaliacaoTurma getDoBimestreCorente() {
 		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
-		QuestionarioAvaliacaoTurma questionario = bimestreCorrente.getModeloAvaliacaoDeTurma();
+		QuestionarioAvaliacaoTurma questionario = bimestreCorrente.getQuestionarioAvaliacaoDeTurma();
 		Hibernate.initialize(questionario.getItens());
 		
 		return questionario;
