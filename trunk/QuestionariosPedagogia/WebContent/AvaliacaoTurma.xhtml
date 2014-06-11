@@ -4,6 +4,9 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+	
+
+<p:layoutUnit position="center">
 
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
@@ -19,27 +22,22 @@
 			
 			<h:form id="formulario">
 				<p:dataTable id="table" var="resposta" value="#{avaliacaoTurmaMB.respostas}">
-				
-					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA">
-						<h:outputText value="#{resposta.item.texto}" style="font-style: bold;" /><br/>
-						<ui:repeat var="respostaCampoTextual" value="#{resposta.respostasCampoTextual}">
-							<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>  <br/>
-							<p:inputTextarea rows="10" cols="50" value="#{respostaCampoTextual.respostas}" /><br/>
-						</ui:repeat>  
-					</p:column>
-					
-					  
-					<p:column headerText=" Frequências " style="" width="200">
+			
+					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA" style="text-align: left">
+						<h:outputText value="#{resposta.item.texto}" /><br/>
 						<p:selectOneRadio id="options" value="#{resposta.frequencia}" required="true"
-							requiredMessage="Campo obrigatório">
+							requiredMessage="Campo obrigatório" layout="pageDirection" border="1">
 							<!-- TODO tornar resposta obrigatória -->
 							<f:selectItem itemLabel="Sempre" itemValue="1" />
 							<f:selectItem itemLabel="Quase sempre" itemValue="2" />
 							<f:selectItem itemLabel="Às vezes" itemValue="3" />
-							<f:selectItem itemLabel="Nunca" itemValue="4" />
-							
+							<f:selectItem itemLabel="Não se Aplica" itemValue="4" />
 						</p:selectOneRadio>
-						
+						<p/>
+						<ui:repeat var="respostaCampoTextual" value="#{resposta.respostasCampoTextual}">
+							<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>  <br/>
+							<p:inputTextarea rows="10" cols="50" style="width: 100%" value="#{respostaCampoTextual.respostas}" /><br/>
+						</ui:repeat>
 					</p:column>
 				</p:dataTable>
 				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoTurmaMB.salvarRespostas}" />
@@ -50,4 +48,5 @@
 		
 	</ui:define>
 </ui:composition>
+</p:layoutUnit>
 </html>
