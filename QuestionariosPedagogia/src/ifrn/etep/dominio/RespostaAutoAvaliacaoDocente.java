@@ -26,11 +26,4 @@ public class RespostaAutoAvaliacaoDocente extends RespostaItemAvaliacao{
 		this.interrogado = interrogado;
 	}
 
-	public Object getItemAvaliacao() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
 }

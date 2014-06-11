@@ -15,13 +15,12 @@ public class QuestionarioAutoAvaliacaoDocente extends Questionario {
 
 	public List<RespostaAutoAvaliacaoDocente> gerarItensResposta(Professor interrogado){
 		ArrayList<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
-		/*for(ItemAvaliacao item : getItens()){
+		for(ItemAvaliacao item : getItens()){
 			RespostaAutoAvaliacaoDocente r = new RespostaAutoAvaliacaoDocente();
-			r.setItemAvaliacao((RespostaAutoAvaliacaoDocente)item);
-			r.setInterrogador(interrogado);
+			r.setItem(item);
+			r.setInterrogado(interrogado);
 			respostas.add(r);
-		}*/
-		//TODO 
+		}
 		
 		return respostas;
 	}
