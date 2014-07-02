@@ -8,22 +8,22 @@
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
-		<p:panel header="#{autoAvaliacaoDocenteMB.questionario.descricao}">
+		<p:panel header="#{autoAvaliacaoDiscenteMB.questionario.descricao}">
 		<!-- inserir depois de descrição professor -->
-			<p>Caro(a) Professor(a)</p>
+			<p>Caro(a) Aluno(a)</p>
 
 			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com
 				a sua participação para que possamos cada vez mais desenvolver um
 				trabalho de qualidade em consonância com a nossa proposta
 				educacional.</p>
 			
-				<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes)
+			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes)
 				(4-Nunca)</p>
 
 
 
 			<h:form id="formulario">
-				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoDocenteMB.gruposRespostas}">
+				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoDiscenteMB.gruposRespostas}">
 					<p:subTable var="resposta" value="#{grupo.respostas}">
 							<f:facet name="header">
 								#{grupo.grupoItemAvaliacao.descricao}
@@ -52,7 +52,7 @@
    			  
 				<br />
 				
-				<p:commandButton process="@form" value="Submeter Respostas" action="#{autoAvaliacaoDocenteMB.salvarRespostas}" />
+				<p:commandButton process="@form" value="Submeter Respostas" action="#{autoAvaliacaoDiscenteMB.salvarRespostas}" />
 			
 		</h:form>
 		</p:panel>
