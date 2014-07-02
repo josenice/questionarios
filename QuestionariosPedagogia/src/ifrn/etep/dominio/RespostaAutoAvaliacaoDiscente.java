@@ -8,18 +8,18 @@ import javax.persistence.Table;
 @Entity
 @Table
 @PrimaryKeyJoinColumn(name="ID_RESPOSTA_ITEM_AVALIACAO")
-public class RespostaAutoAvaliacaoAluno extends RespostaItemAvaliacao {
+public class RespostaAutoAvaliacaoDiscente extends RespostaItemAvaliacao {
 
 	private static final long serialVersionUID = 1L;
-	@ManyToOne
-	private Aluno usuario;
+	@ManyToOne(optional=false)
+	private Aluno interrogado;
 
-	public Aluno getUsuario() {
-		return usuario;
+	
+	public Aluno setInterrogado() {
+		return interrogado;
 	}
-
-	public void setUsuario(Aluno usuario) {
-		this.usuario = usuario;
+	public void setInterrogado(Aluno interrogado) {
+		this.interrogado = interrogado;
 	}
 
 }
