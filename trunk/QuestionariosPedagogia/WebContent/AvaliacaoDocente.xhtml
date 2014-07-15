@@ -11,7 +11,7 @@
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
-		<p:panel header="#{avaliacaoTurmaMB.questionario.descricao} #{avaliacaoTurmaMB.turmaEmAvalicao.codigoSistemaAcademico}">
+		<p:panel header="#{avaliacaoDocenteMB.questionario.descricao} #{avaliacaoDocenteMB.professorEmAvalicao}">
 			<p>Caro(a) Professor(a)</p>
 		 
 			<p>Solicitamos sua opnião de forma coerente e justa, em relação ao trabalho desenvolvido nesta Instituição. Contamos com
@@ -21,9 +21,9 @@
 			
 			
 			<h:form id="formulario">
-				<p:dataTable id="table" var="resposta" value="#{avaliacaoTurmaMB.respostas}">
+				<p:dataTable id="table" var="resposta" value="#{avaliacaoDocenteMB.respostas}">
 			
-					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA" style="text-align: left">
+					<p:column headerText="ITENS DE AVALIAÇÃO DOCENTE" style="text-align: left">
 						<h:outputText value="#{resposta.item.texto}" /><br/>
 						<p:selectOneRadio id="options" value="#{resposta.frequencia}" required="true"
 							requiredMessage="Campo obrigatório" layout="pageDirection" border="1">
@@ -36,11 +36,11 @@
 						<p/>
 						<ui:repeat var="respostaCampoTextual" value="#{resposta.respostasCampoTextual}">
 							<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>  <br/>
-							<p:inputTextarea rows="10" cols="20" style="width: 100%" value="#{respostaCampoTextual.respostas}" /><br/>
+							<p:inputTextarea rows="10" cols="50" style="width: 100%" value="#{respostaCampoTextual.respostas}" /><br/>
 						</ui:repeat>
 					</p:column>
 				</p:dataTable>
-				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoTurmaMB.salvarRespostas}" />
+				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoDocenteMB.salvarRespostas}" />
 			</h:form>
 
 		</p:panel>

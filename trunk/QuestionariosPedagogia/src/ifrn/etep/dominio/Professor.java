@@ -1,11 +1,16 @@
 package ifrn.etep.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -20,10 +25,18 @@ public class Professor implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	private String codigoSistemaAcademico;
+	
 	@OneToOne
 	private Professor usuario;
 	
 		
+	public String getCodigoSistemaAcademico() {
+		return codigoSistemaAcademico;
+	}
+	public void setCodigoSistemaAcademico(String codigoSistemaAcademico) {
+		this.codigoSistemaAcademico = codigoSistemaAcademico;
+	}
 	public Integer getId() {
 		return id;
 	}

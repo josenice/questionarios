@@ -2,13 +2,9 @@ package ifrn.etep.mb;
 
 import ifrn.etep.dominio.Aluno;
 import ifrn.etep.dominio.GrupoItemAvaliacao;
-import ifrn.etep.dominio.Professor;
 import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDiscente;
-import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDocente;
 import ifrn.etep.dominio.RespostaAutoAvaliacaoDiscente;
-import ifrn.etep.dominio.RespostaAutoAvaliacaoDocente;
 import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacaoDiscente;
-import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacaoDocente;
 import ifrn.etep.dominio.ServiceUsuario;
 
 import java.io.Serializable;

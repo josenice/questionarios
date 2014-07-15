@@ -1,6 +1,7 @@
 package ifrn.etep.dominio;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -10,10 +11,19 @@ import javax.persistence.Table;
 public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 
 	private static final long serialVersionUID = 1L;
+	@ManyToOne(optional=false)
+	private Aluno interrogado; //unidirecional
 	
-	private Aluno interrogado;
+	@ManyToOne(optional=false)
+	private Professor docenteAvaliado; //unidirecional
 	
-	private Professor avaliado;
+	public Professor getDocenteAvaliado() {
+		return docenteAvaliado;
+	}
+
+	public void setDocenteAvaliado(Professor docenteAvaliado) {
+		this.docenteAvaliado = docenteAvaliado;
+	}
 
 	public Aluno getInterrogado() {
 		return interrogado;
@@ -23,14 +33,6 @@ public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 		this.interrogado = interrogado;
 	}
 
-	public Professor getAvaliado() {
-		return avaliado;
-	}
-
-	public void setAvaliado(Professor avaliado) {
-		this.avaliado = avaliado;
-	}
-	
 	
 
 }
