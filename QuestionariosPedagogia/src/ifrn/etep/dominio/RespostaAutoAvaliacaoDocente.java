@@ -16,8 +16,7 @@ public class RespostaAutoAvaliacaoDocente extends RespostaItemAvaliacao{
 		
 	@ManyToOne(optional=false)
 	private Professor interrogado;
-	
-	
+			
 	public Professor getInterrogado() {
 		return interrogado;
 	}
@@ -26,4 +25,4 @@ public class RespostaAutoAvaliacaoDocente extends RespostaItemAvaliacao{
 		this.interrogado = interrogado;
 	}
 
-}
+	}

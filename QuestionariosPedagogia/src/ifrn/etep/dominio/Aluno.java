@@ -16,6 +16,17 @@ public class Aluno implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@OneToOne
+	private Aluno usuario;
+	
+	public Aluno getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Aluno usuario) {
+		this.usuario = usuario;
+	}
+
 	public Integer getId() {
 		return id;
 	}

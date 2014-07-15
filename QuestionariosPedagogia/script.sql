@@ -124,4 +124,4 @@ insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id)
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (65, 'Utiliza pelo menos 1 instrumento avaliativo individual por bimestre', true, 4, 8);
 insert into campotextual (id, descricao, itemavaliacao_id) values (64, 'Outros aspectos que você deseja enfatizar:', 4);
 
-insert into bimestreletivo (id, bimestre, ano_id, questionarioautoavaliacaodocente_id, questionarioavaliacaodeturma_id, questionarioautoavaliacaodiscente_id) values (1, 1, 1, 2, 1, 3);
+insert into bimestreletivo (id, bimestre, ano_id, questionarioautoavaliacaodocente_id, questionarioavaliacaodeturma_id, questionarioautoavaliacaodiscente_id, questionarioavaliacaodocente_id) values (1, 1, 1, 2, 1, 3, 4);

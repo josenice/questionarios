@@ -34,6 +34,9 @@ public class BimestreLetivo implements Serializable{
 	@ManyToOne
 	private QuestionarioAutoAvaliacaoDiscente questionarioAutoAvaliacaoDiscente;
 	
+	@ManyToOne
+	private QuestionarioAvaliacaoDocente questionarioAvaliacaoDocente;
+	
 	public AnoLetivo getAno() {
 		return ano;
 	}
@@ -66,6 +69,13 @@ public class BimestreLetivo implements Serializable{
 	public void setQuestionarioAvaliacaoDeTurma(
 			QuestionarioAvaliacaoTurma modeloAvaliacaoDeTurma) {
 		this.questionarioAvaliacaoDeTurma = modeloAvaliacaoDeTurma;
+	}
+	public QuestionarioAvaliacaoDocente getQuestionarioAvaliacaoDocente() {
+		return questionarioAvaliacaoDocente;
+	}
+	public void setQuestionarioAvaliacaoDocente(
+			QuestionarioAvaliacaoDocente questionarioAvaliacaoDocente) {
+		this.questionarioAvaliacaoDocente = questionarioAvaliacaoDocente;
 	}
 	public Integer getBimestre() {
 		return bimestre;

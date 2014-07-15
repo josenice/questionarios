@@ -1,5 +1,9 @@
 package ifrn.etep.dao;
 
+import ifrn.etep.dominio.BimestreLetivo;
+import ifrn.etep.dominio.RepositorioTurma;
+import ifrn.etep.dominio.TurmaSeriada;
+
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,13 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
-import ifrn.etep.dominio.RepositorioTurma;
-import ifrn.etep.dominio.AnoLetivo;
-
-import ifrn.etep.dominio.TurmaSeriada;
 
 @Repository
 public class DAOTurma implements RepositorioTurma{
