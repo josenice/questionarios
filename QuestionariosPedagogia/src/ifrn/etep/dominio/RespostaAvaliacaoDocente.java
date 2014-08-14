@@ -16,14 +16,6 @@ public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 	
 	@ManyToOne(optional=false)
 	private Professor docenteAvaliado; //unidirecional
-	
-	public Professor getDocenteAvaliado() {
-		return docenteAvaliado;
-	}
-
-	public void setDocenteAvaliado(Professor docenteAvaliado) {
-		this.docenteAvaliado = docenteAvaliado;
-	}
 
 	public Aluno getInterrogado() {
 		return interrogado;
@@ -32,6 +24,16 @@ public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 	public void setInterrogado(Aluno interrogado) {
 		this.interrogado = interrogado;
 	}
+
+	public Professor getDocenteAvaliado() {
+		return docenteAvaliado;
+	}
+
+	public void setDocenteAvaliado(Professor docenteAvaliado) {
+		this.docenteAvaliado = docenteAvaliado;
+	}
+	
+	
 
 	
 

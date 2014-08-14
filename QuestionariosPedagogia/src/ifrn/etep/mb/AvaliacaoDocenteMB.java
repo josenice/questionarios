@@ -1,14 +1,16 @@
 package ifrn.etep.mb;
 
 import ifrn.etep.dominio.Aluno;
+import ifrn.etep.dominio.GrupoItemAvaliacao;
 import ifrn.etep.dominio.Professor;
 import ifrn.etep.dominio.QuestionarioAvaliacaoDocente;
 import ifrn.etep.dominio.RespostaAvaliacaoDocente;
 import ifrn.etep.dominio.ServiceProfessor;
-import ifrn.etep.dominio.ServiceQuestionarioAvalicaoDocente;
+import ifrn.etep.dominio.ServiceQuestionarioAvaliacaoDocente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,12 +29,18 @@ public class AvaliacaoDocenteMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private QuestionarioAvaliacaoDocente questionario;
-	private Professor professorEmAvalicao;
+	private Professor professorEmAvaliacao;
 	private List<RespostaAvaliacaoDocente> respostas = new ArrayList<>();
-	@ManagedProperty("#{serviceQuestionarioAvalicaoDocente}")
-	private ServiceQuestionarioAvalicaoDocente serviceQuestionario;
+	@ManagedProperty("#{serviceQuestionarioAvaliacaoDocente}")
+	private ServiceQuestionarioAvaliacaoDocente serviceQuestionario;
 	@ManagedProperty("#{serviceProfessor}")
 	private ServiceProfessor serviceProfessor;
+	//Retornar uma lista do grupo de respostas
+	private List<GrupoResposta> gruposRespostas = new ArrayList<>();
+
+	public List<GrupoResposta> getGruposRespostas() {
+		return gruposRespostas;
+	}
 
 	@PostConstruct
 	public void init(){
@@ -40,8 +48,11 @@ public class AvaliacaoDocenteMB implements Serializable{
 			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			Integer idProfessor = new Integer(request.getParameter("idprofessor"));
 			questionario = serviceQuestionario.getDoBimestreCorrente();
-			professorEmAvalicao = serviceProfessor.getPorId(idProfessor);
-			respostas = questionario.gerarItensResposta(professorEmAvalicao);
+			professorEmAvaliacao = serviceProfessor.getPorId(idProfessor);
+			respostas = questionario.gerarItensResposta(professorEmAvaliacao);
+			
+			gruposRespostas = GrupoResposta.gerarGruposResposta(respostas);
+			
 		}catch(Exception ex){
 			ex.printStackTrace();
 			throw ex;
@@ -52,8 +63,8 @@ public class AvaliacaoDocenteMB implements Serializable{
 		this.questionario = questionario;
 	}
 
-	public Professor getProfessorEmAvalicao() {
-		return professorEmAvalicao;
+	public Professor getprofessorEmAvaliacao() {
+		return professorEmAvaliacao;
 	}
 
 
@@ -62,7 +73,7 @@ public class AvaliacaoDocenteMB implements Serializable{
 		try{
 			//TODO obter usuário logado
 			Aluno usuario = new Aluno();
-			usuario.setId(1);
+			usuario.setId(2);
 			serviceQuestionario.salvarRespostas(respostas, usuario);
 			ctx.addMessage(null, new FacesMessage("Respostas salvas com sucesso", ""));
 			return "diretorias";
@@ -82,11 +93,16 @@ public class AvaliacaoDocenteMB implements Serializable{
 		return questionario;
 	}
 
-	public Professor getprofessorEmAvalicao() {
-		return professorEmAvalicao;
+	
+	public Professor getProfessorEmAvaliacao() {
+		return professorEmAvaliacao;
 	}
 
-	public void setServiceQuestionario(ServiceQuestionarioAvalicaoDocente serviceQuestionario) {
+	public void setProfessorEmAvaliacao(Professor professorEmAvaliacao) {
+		this.professorEmAvaliacao = professorEmAvaliacao;
+	}
+
+	public void setServiceQuestionario(ServiceQuestionarioAvaliacaoDocente serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
 	}
 

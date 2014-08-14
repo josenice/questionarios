@@ -129,35 +129,4 @@ public class AutoAvaliacaoDocenteMB implements Serializable{
 			ServiceQuestionarioAutoAvaliacaoDocente serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
 	}
-	
-	public class GrupoResposta implements Serializable{
-	
-		private static final long serialVersionUID = 1L;
-		private List<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
-		private GrupoItemAvaliacao grupo;
-		
-		public GrupoResposta(GrupoItemAvaliacao grupo) {
-			this.grupo = grupo;
-		}
-
-		public GrupoItemAvaliacao getGrupoItemAvaliacao() {
-			return grupo;  
-		}
-
-		public List<RespostaAutoAvaliacaoDocente> getRespostas() {
-			return respostas;
-		}
-		/*public class Editor implements Serializable{
-			
-			private static final long serialVersionUID = 1L;
-			private String value;
-			public String getValue() {
-				return value;
-			}
-			public void setValue(String value) {
-				this.value = value;
-			}
-			
-		}*/
-	}
 }

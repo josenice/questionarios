@@ -1,11 +1,11 @@
 package ifrn.etep.mb;
 
+import ifrn.etep.dominio.Professor;
 import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.RespostaAvaliacaoTurma;
-import ifrn.etep.dominio.ServiceQuestionarioAvalicaoTurma;
+import ifrn.etep.dominio.ServiceQuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.ServiceTurma;
 import ifrn.etep.dominio.TurmaSeriada;
-import ifrn.etep.dominio.Professor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,12 +27,13 @@ public class AvaliacaoTurmaMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private QuestionarioAvaliacaoTurma questionario;
-	private TurmaSeriada turmaEmAvalicao;
+	private TurmaSeriada turmaEmAvaliacao;
 	private List<RespostaAvaliacaoTurma> respostas = new ArrayList<>();
-	@ManagedProperty("#{serviceQuestionarioAvalicaoTurma}")
-	private ServiceQuestionarioAvalicaoTurma serviceQuestionario;
+	@ManagedProperty("#{serviceQuestionarioAvaliacaoTurma}")
+	private ServiceQuestionarioAvaliacaoTurma serviceQuestionario;
 	@ManagedProperty("#{serviceTurma}")
 	private ServiceTurma serviceTurma;
+	private List<GrupoResposta> gruposRespostas;
 
 	@PostConstruct
 	public void init(){
@@ -40,12 +41,18 @@ public class AvaliacaoTurmaMB implements Serializable{
 			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			Integer idTurma = new Integer(request.getParameter("idturma"));
 			questionario = serviceQuestionario.getDoBimestreCorrente();
-			turmaEmAvalicao = serviceTurma.getPorId(idTurma);
-			respostas = questionario.gerarItensResposta(turmaEmAvalicao);
+			turmaEmAvaliacao = serviceTurma.getPorId(idTurma);
+			respostas = questionario.gerarItensResposta(turmaEmAvaliacao);
+			
+			gruposRespostas = GrupoResposta.gerarGruposResposta(respostas);
 		}catch(Exception ex){
 			ex.printStackTrace();
 			throw ex;
 		}
+	}
+	
+	public List<GrupoResposta> getGruposRespostas() {
+		return gruposRespostas;
 	}
 	
 	public String salvarRespostas(){
@@ -73,11 +80,11 @@ public class AvaliacaoTurmaMB implements Serializable{
 		return questionario;
 	}
 
-	public TurmaSeriada getTurmaEmAvalicao() {
-		return turmaEmAvalicao;
+	public TurmaSeriada getTurmaEmAvaliacao() {
+		return turmaEmAvaliacao;
 	}
 
-	public void setServiceQuestionario(ServiceQuestionarioAvalicaoTurma serviceQuestionario) {
+	public void setServiceQuestionario(ServiceQuestionarioAvaliacaoTurma serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
 	}
 

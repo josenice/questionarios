@@ -20,6 +20,13 @@ public class QuestionarioAutoAvaliacaoDocente extends Questionario {
 			r.setItem(item);
 			r.setInterrogado(interrogado);
 			respostas.add(r);
+			
+			for(CampoTextual campoTxt : item.getCamposTextuais()){
+				RespostaCampoTextual respostaCampoTxt = new RespostaCampoTextual();
+				respostaCampoTxt.setRespostaItemAvaliacao(r);
+				respostaCampoTxt.setCampoTextual(campoTxt);
+				r.getRespostasCampoTextual().add(respostaCampoTxt);
+			}
 		}
 		
 		return respostas;

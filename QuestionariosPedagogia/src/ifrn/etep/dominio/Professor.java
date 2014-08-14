@@ -1,16 +1,11 @@
 package ifrn.etep.dominio;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
@@ -49,7 +44,6 @@ public class Professor implements Serializable {
 	public void setUsuario(Professor usuario) {
 		this.usuario = usuario;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,6 +75,4 @@ public class Professor implements Serializable {
 	}
 	
 	
-	
-
 }

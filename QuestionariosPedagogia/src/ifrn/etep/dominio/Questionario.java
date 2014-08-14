@@ -2,7 +2,9 @@ package ifrn.etep.dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -57,6 +59,17 @@ public abstract class Questionario implements Serializable{
 
 	public void setItens(List<ItemAvaliacao> itens) {
 		this.itens = itens;
+	}
+	
+	public Set<GrupoItemAvaliacao> getGruposDosItensDeAvaliacao(){
+		Set<GrupoItemAvaliacao> gruposEncontrados = new LinkedHashSet<GrupoItemAvaliacao>();
+		for(ItemAvaliacao itemAvaliacao : itens){
+			GrupoItemAvaliacao grupoItem = itemAvaliacao.getGrupo();
+			if(grupoItem != null){
+				gruposEncontrados.add(grupoItem);
+			}
+		}
+		return gruposEncontrados;
 	}
 
 	@Override

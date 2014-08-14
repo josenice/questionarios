@@ -19,7 +19,7 @@ public class RespostaCampoTextual implements Serializable{
 	
 	private String respostas;
 	
-	@ManyToOne
+	@ManyToOne//mapeamento
 	private CampoTextual campoTextual;
 	
 	@ManyToOne()

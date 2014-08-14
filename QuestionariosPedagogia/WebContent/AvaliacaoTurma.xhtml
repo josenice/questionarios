@@ -11,7 +11,7 @@
 <ui:composition template="/templates/layout.xhtml">
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
-		<p:panel header="#{avaliacaoTurmaMB.questionario.descricao} #{avaliacaoTurmaMB.turmaEmAvalicao.codigoSistemaAcademico}">
+		<p:panel header="#{avaliacaoTurmaMB.questionario.descricao} #{avaliacaoTurmaMB.turmaEmAvaliacao.codigoSistemaAcademico}">
 			<p>Caro(a) Professor(a)</p>
 		 
 			<p>Solicitamos sua opnião de forma coerente e justa, em relação ao trabalho desenvolvido nesta Instituição. Contamos com
@@ -21,25 +21,38 @@
 			
 			
 			<h:form id="formulario">
-				<p:dataTable id="table" var="resposta" value="#{avaliacaoTurmaMB.respostas}">
-			
-					<p:column headerText="ITENS DE AVALIAÇÃO DA TURMA" style="text-align: left">
-						<h:outputText value="#{resposta.item.texto}" /><br/>
-						<p:selectOneRadio id="options" value="#{resposta.frequencia}" required="true"
-							requiredMessage="Campo obrigatório" layout="pageDirection" border="1">
-							<!-- TODO tornar resposta obrigatória -->
-							<f:selectItem itemLabel="Sempre" itemValue="1" />
-							<f:selectItem itemLabel="Quase sempre" itemValue="2" />
-							<f:selectItem itemLabel="Às vezes" itemValue="3" />
-							<f:selectItem itemLabel="Não se Aplica" itemValue="4" />
-						</p:selectOneRadio>
-						<p/>
-						<ui:repeat var="respostaCampoTextual" value="#{resposta.respostasCampoTextual}">
-							<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>  <br/>
-							<p:inputTextarea rows="10" cols="20" style="width: 100%" value="#{respostaCampoTextual.respostas}" /><br/>
-						</ui:repeat>
-					</p:column>
+				<p:dataTable id="table" var="grupo" value="#{avaliacaoTurmaMB.gruposRespostas}">
+					<p:subTable var="resposta" value="#{grupo.respostas}">
+						<f:facet name="header">
+							#{grupo.grupoItemAvaliacao.descricao}
+						</f:facet>
+						<p:column>
+
+							<h:outputText value="#{resposta.item.texto}" />
+
+							<p:selectOneRadio id="options" value="#{resposta.frequencia}"
+								required="true" requiredMessage="Campo obrigatório" 
+								rendered="#{resposta.item.usarFrequencia}">
+								
+								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}" />
+								<br />
+								<!-- TODO tornar resposta obrigatória -->
+								<f:selectItem itemLabel="Sempre" itemValue="1" />
+								<f:selectItem itemLabel="Quase sempre" itemValue="2" />
+								<f:selectItem itemLabel="Às vezes" itemValue="3" />
+								<f:selectItem itemLabel="Nunca" itemValue="4" />
+							</p:selectOneRadio>
+							<ui:repeat var="respostaCampoTextual"
+								value="#{resposta.respostasCampoTextual}">
+								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>
+								<p:inputTextarea rows="10" cols="20" style="width: 100%"
+									value="#{respostaCampoTextual.respostas}" />
+							</ui:repeat>
+						</p:column>
+							
+					</p:subTable>
 				</p:dataTable>
+			
 				<p:commandButton process="@form" value="Submeter Respostas" action="#{avaliacaoTurmaMB.salvarRespostas}" />
 			</h:form>
 
