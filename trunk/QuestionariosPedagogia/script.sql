@@ -44,7 +44,7 @@ insert into diario (id, codigosistemaAcademico, anoletivo_id, turma_id) values (
 insert into diario_professor (diario_id, professores_id) values (3, 1);
 
 
-insert into questionario (id, descricao, tipoquestionario) values (2, 'Auto Avaliacao Docente', 'AUTO_AVALIACAO_DOCENTE');
+insert into questionario (id, descricao, tipoquestionario) values (2, 'Auto Avaliação Docente', 'AUTO_AVALIACAO_DOCENTE');
 insert into grupoitemavaliacao (id, descricao) values (1, 'Postura Profissional');
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (8, 'Pontualidade (comparece às aulas no horário estabelecido)', true, 2, 1);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (9, 'Assiduidade (comparece às aulas regularmente)', true, 2, 1);
@@ -78,7 +78,8 @@ insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id)
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (30, 'Analisa e comenta com os alunos os resultados de atividades avaliativas, corrigindo erros e esclarecendo dúvidas', true, 2, 4);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (31, 'Utiliza, no mínimo, 2 instrumentos avaliativos por bimestre', true, 2, 4);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (32, 'Utiliza pelo menos 1 instrumento avaliativo individual por bimestre', true, 2, 4);
-insert into campotextual (id, descricao, itemavaliacao_id) values (33, 'Outros aspectos que você deseja enfatizar:', 2);
+insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (33, '', false, 2, 4);
+insert into campotextual (id, descricao, itemavaliacao_id) values (14, 'Outros aspectos que você deseja enfatizar:', 33);
 
 insert into questionario (id, descricao, tipoquestionario) values (3, 'Auto Avaliação Discente', 'AUTO_AVALIACAO_DISCENTE');
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (34, 'Você comparece às aulas no horário estabelecido?', true, 3);
@@ -87,9 +88,10 @@ insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (3
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (37, 'Você interessa-se e participa das aulas?', true, 3);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (38, 'Você comporta-se adequadamente em sala de aula?', true, 3);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (39, 'Você realiza as atividades no prazo estabelecido?', true, 3);
-insert into campotextual (id, descricao, itemavaliacao_id) values (40, 'Outros aspectos que você deseja enfatizar:', 3);
+insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (40, '', false, 3);
+insert into campotextual (id, descricao, itemavaliacao_id) values (15, 'Outros aspectos que você deseja enfatizar:', 40);
 
-insert into questionario (id, descricao, tipoquestionario) values (4, 'Avalição Docente', 'AVALIACAO_DOCENTE');
+insert into questionario (id, descricao, tipoquestionario) values (4, 'Avaliação Docente', 'AVALIACAO_DOCENTE');
 insert into grupoitemavaliacao (id, descricao) values (5, 'Postura Profissional');
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (41, 'Pontualidade (comparece às aulas no horário estabelecido)', true, 4, 5);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (42, 'Assiduidade (comparece às aulas regularmente)', true, 4, 5);
@@ -122,6 +124,7 @@ insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id)
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (63, 'Analisa e comenta com os alunos os resultados de atividades avaliativas, corrigindo erros e esclarecendo dúvidas', true, 4, 8);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (64, 'Utilia, no mínimo, 2 instrumentos avaliativos por bimestre', true, 4, 8);
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (65, 'Utiliza pelo menos 1 instrumento avaliativo individual por bimestre', true, 4, 8);
-insert into campotextual (id, descricao, itemavaliacao_id) values (64, 'Outros aspectos que você deseja enfatizar:', 4);
+insert into itemavaliacao (id, texto, usarfrequencia, questionario_id, grupo_id) values (66, '', false, 4, 8);
+insert into campotextual (id, descricao, itemavaliacao_id) values (16, 'Outros aspectos que você deseja enfatizar:', 66);
 
 insert into bimestreletivo (id, bimestre, ano_id, questionarioautoavaliacaodocente_id, questionarioavaliacaodeturma_id, questionarioautoavaliacaodiscente_id, questionarioavaliacaodocente_id) values (1, 1, 1, 2, 1, 3, 4);

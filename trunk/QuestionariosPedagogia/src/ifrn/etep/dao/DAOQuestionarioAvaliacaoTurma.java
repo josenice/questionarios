@@ -1,10 +1,12 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
+import ifrn.etep.dominio.ItemAvaliacao;
 import ifrn.etep.dominio.QuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoTurma;
 import ifrn.etep.dominio.RespostaAvaliacaoTurma;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -73,6 +75,12 @@ public class DAOQuestionarioAvaliacaoTurma implements RepositorioQuestionarioAva
 		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 		QuestionarioAvaliacaoTurma questionario = bimestreCorrente.getQuestionarioAvaliacaoDeTurma();
 		Hibernate.initialize(questionario.getItens());
+		questionario.getItens().sort(new Comparator<ItemAvaliacao>() {
+			@Override
+			public int compare(ItemAvaliacao item1, ItemAvaliacao item2) {
+				return item1.getId() - item2.getId();
+			}
+		});
 		
 		return questionario;
 	}

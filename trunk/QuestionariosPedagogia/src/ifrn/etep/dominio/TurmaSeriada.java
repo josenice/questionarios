@@ -22,7 +22,7 @@ public class TurmaSeriada implements Serializable {
 	private Integer id;
 	private String codigoSistemaAcademico;
 	
-	@OneToMany(mappedBy="turma", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="turma", fetch=FetchType.LAZY)//relacionamento q tiver um lado um e um lado muitos o lado muito receberar 
 	private List<Diario> diarios;
 	
 	public List<Diario> getDiarios() {

@@ -25,4 +25,4 @@ public class RespostaAutoAvaliacaoDocente extends RespostaItemAvaliacao{
 		this.interrogado = interrogado;
 	}
 
-	}
+}

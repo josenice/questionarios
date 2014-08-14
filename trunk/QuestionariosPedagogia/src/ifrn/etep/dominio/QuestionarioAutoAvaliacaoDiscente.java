@@ -20,6 +20,12 @@ public class QuestionarioAutoAvaliacaoDiscente extends Questionario {
 			RespostaAutoAvaliacaoDiscente r = new RespostaAutoAvaliacaoDiscente();
 			r.setItem(item);
 			r.setInterrogado(interrogado);
+			for(CampoTextual campo : item.getCamposTextuais()){
+				RespostaCampoTextual respostaTextual = new RespostaCampoTextual();
+				respostaTextual.setCampoTextual(campo);
+				respostaTextual.setRespostaItemAvaliacao(r);
+				r.getRespostasCampoTextual().add(respostaTextual);
+			}
 			respostas.add(r);
 		}
 		

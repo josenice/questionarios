@@ -26,7 +26,7 @@ public class AnoLetivo implements Serializable{
 	@Column(nullable=false)
 	private Integer ano;
 	
-	@OneToMany(mappedBy="ano")
+	@OneToMany(mappedBy="ano")//
 	private List<BimestreLetivo> bimestres;
 	
 	

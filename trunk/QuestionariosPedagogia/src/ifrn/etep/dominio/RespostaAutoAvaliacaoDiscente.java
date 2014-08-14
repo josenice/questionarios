@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class RespostaAutoAvaliacaoDiscente extends RespostaItemAvaliacao {
 
 	private static final long serialVersionUID = 1L;
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false)//serve para quando eu chamar um aluno, seja um aluno interrogado.
 	private Aluno interrogado;
 
 	

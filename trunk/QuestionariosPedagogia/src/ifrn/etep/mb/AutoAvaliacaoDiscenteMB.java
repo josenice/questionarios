@@ -1,7 +1,6 @@
 package ifrn.etep.mb;
 
 import ifrn.etep.dominio.Aluno;
-import ifrn.etep.dominio.GrupoItemAvaliacao;
 import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDiscente;
 import ifrn.etep.dominio.RespostaAutoAvaliacaoDiscente;
 import ifrn.etep.dominio.ServiceQuestionarioAutoAvaliacaoDiscente;
@@ -9,7 +8,6 @@ import ifrn.etep.dominio.ServiceUsuario;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -72,17 +70,7 @@ public class AutoAvaliacaoDiscenteMB implements Serializable{
 			usuario.setId(idUsuario);
 			respostas = questionario.gerarItensResposta(usuario);
 			
-			HashMap<GrupoItemAvaliacao, GrupoResposta> mapaGrupos = new HashMap<>();
-			for(RespostaAutoAvaliacaoDiscente resposta : respostas){
-				GrupoItemAvaliacao grupoItem = resposta.getItem().getGrupo();
-				GrupoResposta grupoResposta = mapaGrupos.get(grupoItem);
-				if(grupoResposta == null){
-					grupoResposta = new GrupoResposta(grupoItem);
-					mapaGrupos.put(grupoItem, grupoResposta);
-					gruposRespostas.add(grupoResposta);
-				}
-				grupoResposta.getRespostas().add(resposta);
-			}
+			gruposRespostas = GrupoResposta.gerarGruposResposta(respostas);
 		}catch(Exception ex){
 			ex.printStackTrace();
 			throw ex;
@@ -128,36 +116,5 @@ public class AutoAvaliacaoDiscenteMB implements Serializable{
 	public void setServiceQuestionario(
 			ServiceQuestionarioAutoAvaliacaoDiscente serviceQuestionario) {
 		this.serviceQuestionario = serviceQuestionario;
-	}
-	
-	public class GrupoResposta implements Serializable{
-	
-		private static final long serialVersionUID = 1L;
-		private List<RespostaAutoAvaliacaoDiscente> respostas = new ArrayList<>();
-		private GrupoItemAvaliacao grupo;
-		
-		public GrupoResposta(GrupoItemAvaliacao grupo) {
-			this.grupo = grupo;
-		}
-
-		public GrupoItemAvaliacao getGrupoItemAvaliacao() {
-			return grupo;  
-		}
-
-		public List<RespostaAutoAvaliacaoDiscente> getRespostas() {
-			return respostas;
-		}
-		/*public class Editor implements Serializable{
-			
-			private static final long serialVersionUID = 1L;
-			private String value;
-			public String getValue() {
-				return value;
-			}
-			public void setValue(String value) {
-				this.value = value;
-			}
-			
-		}*/
 	}
 }

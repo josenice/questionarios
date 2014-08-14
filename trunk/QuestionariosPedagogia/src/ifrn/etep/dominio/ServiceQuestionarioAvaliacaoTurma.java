@@ -15,36 +15,36 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation = Propagation.REQUIRED)
-public class ServiceQuestionarioAvalicaoDocente implements Serializable {
+public class ServiceQuestionarioAvaliacaoTurma implements Serializable {
 
 	/**
 	 * Maria Josenice Severino de Pinho
 	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
-	private RepositorioQuestionarioAvaliacaoDocente repositorio;
+	private RepositorioQuestionarioAvaliacaoTurma repositorio;
 	
 	@Autowired
 	private DAOBimesteLetivo daoBimestre;
 
 	public void setRepositorio(															
-			RepositorioQuestionarioAvaliacaoDocente repositorio) {
+			RepositorioQuestionarioAvaliacaoTurma repositorio) {
 		this.repositorio = repositorio;
 	}
 	
-	public QuestionarioAvaliacaoDocente getDoBimestreCorrente(){
+	public QuestionarioAvaliacaoTurma getDoBimestreCorrente(){
 		return repositorio.getDoBimestreCorente();
 	}
 
-	public QuestionarioAvaliacaoDocente getPorId(Integer idQuestionario) {
+	public QuestionarioAvaliacaoTurma getPorId(Integer idQuestionario) {
 		return repositorio.getPorId(idQuestionario);
 	}
 
-	public void cadastrarQuestionario(QuestionarioAvaliacaoDocente questionario) {
+	public void cadastrarQuestionario(QuestionarioAvaliacaoTurma questionario) {
 		this.repositorio.insert(questionario);
 	}
 
-	public void atualizarQuestionario(QuestionarioAvaliacaoDocente questionario) {
+	public void atualizarQuestionario(QuestionarioAvaliacaoTurma questionario) {
 		this.repositorio.update(questionario);
 	}
 
@@ -53,10 +53,10 @@ public class ServiceQuestionarioAvalicaoDocente implements Serializable {
 	}
 
 
-	public void salvarRespostas(List<RespostaAvaliacaoDocente> respostas, Aluno interrogado) {
-		//TODO usar Aluno ao invés de usuário
+	public void salvarRespostas(List<RespostaAvaliacaoTurma> respostas, Professor interrogado) {
+		//TODO usar Professor ao invés de usuário
 		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorrente();
-		for(RespostaAvaliacaoDocente r : respostas){
+		for(RespostaAvaliacaoTurma r : respostas){
 			r.setInterrogado(interrogado);
 			r.setBimestre(bimestreCorrente);
 		}

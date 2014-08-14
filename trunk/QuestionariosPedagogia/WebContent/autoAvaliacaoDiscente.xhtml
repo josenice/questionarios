@@ -9,52 +9,53 @@
 	<ui:define name="conteudo">
 		<p:growl autoUpdate="true" />
 		<p:panel header="#{autoAvaliacaoDiscenteMB.questionario.descricao}">
-		<!-- inserir depois de descrição professor -->
+			<!-- inserir depois de descrição professor -->
 			<p>Caro(a) Aluno(a)</p>
 
 			<p>Solicitamos sua opnião de forma coerente e justa, Contamos com
 				a sua participação para que possamos cada vez mais desenvolver um
 				trabalho de qualidade em consonância com a nossa proposta
 				educacional.</p>
-			
-			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes)
-				(4-Nunca)</p>
+
+			<p>FREQUÊNCIAS: (1-Sempre) (2-Quase sempre) (3-Às vezes)(4-Nunca)</p>
 
 
 
-			<h:form id="formulario">
+				<h:form id="formulario">
 				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoDiscenteMB.gruposRespostas}">
 					<p:subTable var="resposta" value="#{grupo.respostas}">
 							<f:facet name="header">
 								#{grupo.grupoItemAvaliacao.descricao}
 							</f:facet>
-							<p:column>
-								<h:outputText value="#{resposta.item.texto}" />										
-								<p:selectOneRadio id="options" value="#{resposta.frequencia}"
-									required="true" requiredMessage="Campo obrigatório">
-										<!-- TODO tornar resposta obrigatória -->
-									<f:selectItem itemLabel="Sempre" itemValue="1" />
-									<f:selectItem itemLabel="Quase sempre" itemValue="2" />
-									<f:selectItem itemLabel="Às vezes" itemValue="3" />
-									<f:selectItem itemLabel="Nunca" itemValue="4" />
-								</p:selectOneRadio>
-							</p:column>
+						<p:column>
+
+							<h:outputText value="#{resposta.item.texto}" />
+
+							<p:selectOneRadio id="options" value="#{resposta.frequencia}"
+								required="true" requiredMessage="Campo obrigatório">
+								
+								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}" />
+								<br />
+								<!-- TODO tornar resposta obrigatória -->
+								<f:selectItem itemLabel="Sempre" itemValue="1" />
+								<f:selectItem itemLabel="Quase sempre" itemValue="2" />
+								<f:selectItem itemLabel="Às vezes" itemValue="3" />
+								<f:selectItem itemLabel="Nunca" itemValue="4" />
+							</p:selectOneRadio>
+							<ui:repeat var="respostaCampoTextual"
+								value="#{resposta.respostasCampoTextual}">
+							<p:inputTextarea rows="10" cols="20" style="width: 100%"
+										value="#{respostaCampoTextual.respostas}" />
+							</ui:repeat>
+						</p:column>
+							
 						</p:subTable>
 				</p:dataTable>
 				<br />
-				<p>Outros aspectos que você deseja enfatizar</p>
-				<br />
-				<p:editor id="editor" value="#{editor}" style="width: 100%"/>  
- 				 <!-- responsive -->
-  	   				 <p:dialog header="Content" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true">  
-       				 <h:outputText id="display" value="#{editor}" escape="false" />  
-   			 </p:dialog> 
-   			  
-				<br />
-				
+
 				<p:commandButton process="@form" value="Submeter Respostas" action="#{autoAvaliacaoDiscenteMB.salvarRespostas}" />
-			
-		</h:form>
+
+			</h:form>
 		</p:panel>
 	</ui:define>
 </ui:composition>
