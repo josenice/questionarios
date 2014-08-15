@@ -24,15 +24,16 @@
 				<h:form id="formulario">
 				<p:dataTable id="table" var="grupo" value="#{autoAvaliacaoDiscenteMB.gruposRespostas}">
 					<p:subTable var="resposta" value="#{grupo.respostas}">
-							<f:facet name="header">
-								#{grupo.grupoItemAvaliacao.descricao}
-							</f:facet>
+						<f:facet name="header">
+							#{grupo.grupoItemAvaliacao.descricao}
+						</f:facet>
 						<p:column>
 
 							<h:outputText value="#{resposta.item.texto}" />
 
 							<p:selectOneRadio id="options" value="#{resposta.frequencia}"
-								required="true" requiredMessage="Campo obrigatório">
+								required="true" requiredMessage="Campo obrigatório" 
+								rendered="#{resposta.item.usarFrequencia}">
 								
 								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}" />
 								<br />
@@ -44,12 +45,13 @@
 							</p:selectOneRadio>
 							<ui:repeat var="respostaCampoTextual"
 								value="#{resposta.respostasCampoTextual}">
-							<p:inputTextarea rows="10" cols="20" style="width: 100%"
-										value="#{respostaCampoTextual.respostas}" />
+								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>
+								<p:inputTextarea rows="10" cols="20" style="width: 100%"
+									value="#{respostaCampoTextual.respostas}" />
 							</ui:repeat>
 						</p:column>
 							
-						</p:subTable>
+					</p:subTable>
 				</p:dataTable>
 				<br />
 
