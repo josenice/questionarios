@@ -23,27 +23,36 @@
 			
 			<h:form id="formulario">
 				<p:dataTable id="table" var="grupo" value="#{avaliacaoDocenteMB.gruposRespostas}">
-				<p:subTable var="resposta" value="#{grupo.respostas}">
-							<f:facet name="header">
-								#{grupo.grupoItemAvaliacao.descricao}
-							</f:facet>
+					<p:subTable var="resposta" value="#{grupo.respostas}">
+						<f:facet name="header">
+							#{grupo.grupoItemAvaliacao.descricao}
+						</f:facet>
 						<p:column>
-								<h:outputText value="#{resposta.item.texto}" />										
-								<p:selectOneRadio id="options" value="#{resposta.frequencia}"
-									required="true" requiredMessage="Campo obrigatório" >
-									<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>  <br/>	
-										<!-- TODO tornar resposta obrigatória -->
-									<f:selectItem itemLabel="Sempre" itemValue="1" />
-									<f:selectItem itemLabel="Quase sempre" itemValue="2" />
-									<f:selectItem itemLabel="Às vezes" itemValue="3" />
-									<f:selectItem itemLabel="Nunca" itemValue="4" />
-								</p:selectOneRadio>
+
+							<h:outputText value="#{resposta.item.texto}" />
+
+							<p:selectOneRadio id="options" value="#{resposta.frequencia}"
+								required="true" requiredMessage="Campo obrigatório" 
+								rendered="#{resposta.item.usarFrequencia}">
+								
+								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}" />
 								<br />
-								<ui:repeat var="respostaCampoTextual" value="#{resposta.respostasCampoTextual}">
-									<p:inputTextarea rows="10" cols="20" style="width: 100%" value="#{respostaCampoTextual.respostas}" /><br/>
-								</ui:repeat>
-							</p:column>
-						</p:subTable>
+								<!-- TODO tornar resposta obrigatória -->
+								<f:selectItem itemLabel="Sempre" itemValue="1" />
+								<f:selectItem itemLabel="Quase sempre" itemValue="2" />
+								<f:selectItem itemLabel="Às vezes" itemValue="3" />
+								<f:selectItem itemLabel="Nunca" itemValue="4" />
+							</p:selectOneRadio>
+							<ui:repeat var="respostaCampoTextual"
+								value="#{resposta.respostasCampoTextual}"
+								rendered="#{!resposta.item.usarFrequencia}">
+								<h:outputText value="#{respostaCampoTextual.campoTextual.descricao}"/>
+								<p:inputTextarea rows="10" cols="20" style="width: 100%"
+									value="#{respostaCampoTextual.respostas}" />
+							</ui:repeat>
+						</p:column>
+							
+					</p:subTable>
 				</p:dataTable>
 				<br />	
 				
