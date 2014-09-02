@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="avaliacao_docente" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8b1988e-108f-4693-853f-2a5a7164d3e2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="84"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="item" class="ifrn.etep.dominio.ItemAvaliacao">
+		<fieldDescription><![CDATA[item]]></fieldDescription>
+	</field>
+	<field name="bimestre" class="ifrn.etep.dominio.BimestreLetivo">
+		<fieldDescription><![CDATA[bimestre]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="frequencia" class="java.lang.String">
+		<fieldDescription><![CDATA[frequencia]]></fieldDescription>
+	</field>
+	<field name="docenteAvaliado" class="ifrn.etep.dominio.Professor">
+		<fieldDescription><![CDATA[docenteAvaliado]]></fieldDescription>
+	</field>
+	<field name="interrogado" class="ifrn.etep.dominio.Aluno">
+		<fieldDescription><![CDATA[interrogado]]></fieldDescription>
+	</field>
+	<field name="respostasCampoTextual" class="java.util.List">
+		<fieldDescription><![CDATA[respostasCampoTextual]]></fieldDescription>
+	</field>
+	<field name="diario" class="ifrn.etep.dominio.Diario">
+		<fieldDescription><![CDATA[diario]]></fieldDescription>
+	</field>
+	<variable name="SOMA_FREQUENCIA" class="java.math.BigDecimal" resetType="Group" resetGroup="ITEM_AVALIACAO" calculation="Sum">
+		<variableExpression><![CDATA[new BigDecimal("1.00")]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal("0.00")]]></initialValueExpression>
+	</variable>
+	<group name="PROFESSOR" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{docenteAvaliado}.getId()]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement uuid="b6c5a155-e98d-45f2-a669-32555ebe2407" x="0" y="0" width="488" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{docenteAvaliado}.getUsuario().getNome().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="ac3921b8-8e9c-4e44-acd2-9afb0bcb6809" x="0" y="20" width="488" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{docenteAvaliado}.getUsuario().getMatricula()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="29"/>
+		</groupFooter>
+	</group>
+	<group name="GRUPO_ITEM_AVALIACAO">
+		<groupExpression><![CDATA[$F{item}.getGrupo().getId()]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement uuid="b93d8418-805b-4598-aaf7-24517e485fcd" x="33" y="0" width="488" height="20"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{item}.getGrupo().getDescricao().toUpperCase()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="ITEM_AVALIACAO">
+		<groupExpression><![CDATA[$F{item}.getId()]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<textField>
+					<reportElement uuid="057d6a79-4a0b-4188-9306-9fb74c833b64" x="33" y="0" width="488" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{item}.getTexto()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="131">
+				<pieChart>
+					<chart>
+						<reportElement uuid="99da9013-acbb-4379-8f11-5340e4292caf" x="133" y="31" width="200" height="100"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<keyExpression><![CDATA[$F{frequencia}]]></keyExpression>
+						<valueExpression><![CDATA[$V{SOMA_FREQUENCIA}]]></valueExpression>
+					</pieDataset>
+					<piePlot>
+						<plot/>
+						<itemLabel/>
+					</piePlot>
+				</pieChart>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="49" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement uuid="022d203f-ca33-4efa-8219-c4497e0573df" x="33" y="11" width="488" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

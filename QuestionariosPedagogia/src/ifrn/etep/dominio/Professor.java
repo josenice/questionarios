@@ -23,7 +23,7 @@ public class Professor implements Serializable {
 	private String codigoSistemaAcademico;
 	
 	@OneToOne
-	private Professor usuario;
+	private Usuario usuario;
 	
 		
 	public String getCodigoSistemaAcademico() {
@@ -38,10 +38,10 @@ public class Professor implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Professor getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Professor usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	@Override
