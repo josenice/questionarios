@@ -16,6 +16,9 @@ public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 	
 	@ManyToOne(optional=false)
 	private Professor docenteAvaliado; //unidirecional
+	
+	@ManyToOne(optional=false)
+	private Diario diario;
 
 	public Aluno getInterrogado() {
 		return interrogado;
@@ -32,9 +35,13 @@ public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 	public void setDocenteAvaliado(Professor docenteAvaliado) {
 		this.docenteAvaliado = docenteAvaliado;
 	}
-	
-	
 
-	
+	public Diario getDiario() {
+		return diario;
+	}
+
+	public void setDiario(Diario diario) {
+		this.diario = diario;
+	}
 
 }

@@ -6,6 +6,7 @@ import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDocente;
 import ifrn.etep.dominio.RepositorioQuestionarioAutoAvaliacaoDocente;
 import ifrn.etep.dominio.RespostaAutoAvaliacaoDocente;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -70,11 +71,11 @@ public class DAOQuestionarioAutoAvaliacaoDocente implements RepositorioQuestiona
 	}
 		
 		@Override
-		public QuestionarioAutoAvaliacaoDocente getDoBimestreCorrente() {
+			public QuestionarioAutoAvaliacaoDocente getDoBimestreCorrente() {
 			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 			QuestionarioAutoAvaliacaoDocente questionario = bimestreCorrente.getModeloAutoAvaliacaoDocente();
 			Hibernate.initialize(questionario.getItens());
-			questionario.getItens().sort(new Comparator<ItemAvaliacao>() {
+			Collections.sort(questionario.getItens(), new Comparator<ItemAvaliacao>() {
 				@Override
 				public int compare(ItemAvaliacao item1, ItemAvaliacao item2) {
 					return item1.getId() - item2.getId();

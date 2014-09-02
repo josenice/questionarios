@@ -1,6 +1,7 @@
 package ifrn.etep.dominio;
 
 import ifrn.etep.dao.DAOBimesteLetivo;
+import ifrn.etep.dao.DAODiario;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +27,9 @@ public class ServiceQuestionarioAvaliacaoDocente implements Serializable {
 	
 	@Autowired
 	private DAOBimesteLetivo daoBimestre;
+	
+	@Autowired
+	private DAODiario daoDiario;
 
 	public void setRepositorio(															
 			RepositorioQuestionarioAvaliacaoDocente repositorio) {
@@ -51,7 +55,10 @@ public class ServiceQuestionarioAvaliacaoDocente implements Serializable {
 	public void excluirQuestionario(Integer questionario) {
 		this.repositorio.delete(questionario);
 	}
-
+	
+	public Diario getDiarioPorId(Integer idDiario){
+		return daoDiario.getPorId(idDiario);
+	}
 
 	public void salvarRespostas(List<RespostaAvaliacaoDocente> respostas, Aluno interrogado) {
 		//TODO usar Aluno ao invés de usuário

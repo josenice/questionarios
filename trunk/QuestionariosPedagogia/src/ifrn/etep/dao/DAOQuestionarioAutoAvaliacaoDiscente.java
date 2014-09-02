@@ -6,6 +6,7 @@ import ifrn.etep.dominio.QuestionarioAutoAvaliacaoDiscente;
 import ifrn.etep.dominio.RepositorioQuestionarioAutoAvaliacaoDiscente;
 import ifrn.etep.dominio.RespostaAutoAvaliacaoDiscente;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class DAOQuestionarioAutoAvaliacaoDiscente implements RepositorioQuestion
 			BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 			QuestionarioAutoAvaliacaoDiscente questionario = bimestreCorrente.getModeloAutoAvaliacaoDiscente();
 			Hibernate.initialize(questionario.getItens());
-			questionario.getItens().sort(new Comparator<ItemAvaliacao>() { //alteração aqui
+			Collections.sort(questionario.getItens(), new Comparator<ItemAvaliacao>(){ //alteração aqui
 				@Override
 				public int compare(ItemAvaliacao item1, ItemAvaliacao item2) {
 					return item1.getId() - item2.getId();

@@ -14,11 +14,13 @@ public class QuestionarioAvaliacaoDocente extends Questionario{
 
 	private static final long serialVersionUID = 1L;
 	
-	public List<RespostaAvaliacaoDocente> gerarItensResposta (Professor professorEmAvaliacao){
+	public List<RespostaAvaliacaoDocente> gerarItensResposta (
+			Professor professorEmAvaliacao, Diario diario){
 		ArrayList<RespostaAvaliacaoDocente> respostas = new ArrayList<>();
 		for (ItemAvaliacao item: getItens()){
 			RespostaAvaliacaoDocente respostaAvaliacaoDocente = new RespostaAvaliacaoDocente();
 			respostaAvaliacaoDocente.setItem(item);
+			respostaAvaliacaoDocente.setDiario(diario);
 			respostaAvaliacaoDocente.setDocenteAvaliado(professorEmAvaliacao);
 			respostas.add(respostaAvaliacaoDocente);
 			

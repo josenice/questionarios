@@ -1,7 +1,7 @@
 package ifrn.etep.mb;
 
 import ifrn.etep.dominio.Aluno;
-import ifrn.etep.dominio.GrupoItemAvaliacao;
+import ifrn.etep.dominio.Diario;
 import ifrn.etep.dominio.Professor;
 import ifrn.etep.dominio.QuestionarioAvaliacaoDocente;
 import ifrn.etep.dominio.RespostaAvaliacaoDocente;
@@ -10,7 +10,6 @@ import ifrn.etep.dominio.ServiceQuestionarioAvaliacaoDocente;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -47,9 +46,11 @@ public class AvaliacaoDocenteMB implements Serializable{
 		try{
 			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 			Integer idProfessor = new Integer(request.getParameter("idprofessor"));
+			Integer idDiario = new Integer(request.getParameter("idDiario"));
 			questionario = serviceQuestionario.getDoBimestreCorrente();
 			professorEmAvaliacao = serviceProfessor.getPorId(idProfessor);
-			respostas = questionario.gerarItensResposta(professorEmAvaliacao);
+			Diario diario = serviceQuestionario.getDiarioPorId(idDiario);
+			respostas = questionario.gerarItensResposta(professorEmAvaliacao, diario);
 			
 			gruposRespostas = GrupoResposta.gerarGruposResposta(respostas);
 			
@@ -109,6 +110,5 @@ public class AvaliacaoDocenteMB implements Serializable{
 	public void setServiceProfessor(ServiceProfessor serviceProfessor) {
 		this.serviceProfessor = serviceProfessor;
 	}
-	
 	
 }

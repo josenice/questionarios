@@ -6,6 +6,7 @@ import ifrn.etep.dominio.QuestionarioAvaliacaoDocente;
 import ifrn.etep.dominio.RepositorioQuestionarioAvaliacaoDocente;
 import ifrn.etep.dominio.RespostaAvaliacaoDocente;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class DAOQuestionarioAvaliacaoDocente implements RepositorioQuestionarioA
 		BimestreLetivo bimestreCorrente = daoBimestreLetivo.getBimestreCorrente();
 		QuestionarioAvaliacaoDocente questionario = bimestreCorrente.getQuestionarioAvaliacaoDocente();
 		Hibernate.initialize(questionario.getItens());
-		questionario.getItens().sort(new Comparator<ItemAvaliacao>() {
+		Collections.sort(questionario.getItens(), new Comparator<ItemAvaliacao>() {
 			@Override
 			public int compare(ItemAvaliacao item1, ItemAvaliacao item2) {
 				return item1.getId() - item2.getId();
