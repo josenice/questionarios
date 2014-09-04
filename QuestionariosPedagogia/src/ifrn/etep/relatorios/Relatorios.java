@@ -6,13 +6,14 @@
 package ifrn.etep.relatorios;
 
 import ifrn.etep.dao.DAOBimesteLetivo;
-import ifrn.etep.dao.DAORespostaItemAvaliacao;
+import ifrn.etep.dao.DAOConsultasRelatorios;
 import ifrn.etep.dominio.RespostaAvaliacaoDocente;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.ListOfArrayDataSource;
 import net.sf.jasperreports.engine.export.JRHtmlExporter;
 import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
@@ -47,7 +49,7 @@ public class Relatorios {
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     
     @Autowired
-    private DAORespostaItemAvaliacao daoResposta;
+    private DAOConsultasRelatorios daoResposta;
     
     @Autowired
     private DAOBimesteLetivo daoBimestreLetivo;
@@ -57,12 +59,12 @@ public class Relatorios {
     		throws JRException{
     	
     	JasperReport jReport = getRelatorio("avaliacao_docente.jasper");
-    	List<RespostaAvaliacaoDocente> respostas = 
-    			daoResposta.getDaAvaliacaoDocente(daoBimestreLetivo.getBimestreCorrente());
-    	
+    	List<Object[]> registros = daoResposta.getRegistros(daoBimestreLetivo.getBimestreCorrente());
     	Map<String, Object> params = new HashMap<String, Object>();
         
-        JRDataSource dataSource = new JRBeanCollectionDataSource(respostas);
+    	String[] titulos = {"MATRICULA", "NOME", "GRUPO_ID", "GRUPO_DESCRICAO", 
+			"ITEM_AVALIACAO_ID", "ITEM_AVALIACAO_TEXTO", "FREQUENCIA", "CONTAGEM"};
+        JRDataSource dataSource = new ListOfArrayDataSource(registros, titulos);
         JasperPrint jPrint = JasperFillManager.fillReport(jReport, params, dataSource);
         
         return jPrint;
