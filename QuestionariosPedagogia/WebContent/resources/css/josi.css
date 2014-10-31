@@ -1,4 +1,26 @@
-.rodape {
-          border: none !important;
-          background-color: #FFFAFA; 
+@charset "utf-8";
+/* CSS Document */
+
+#global
+{
+	width: 100%;
+	height: 100%
+	position: absolute;
+}
+#topo
+{
+	position: absolute;
+	top: 10px;
+	left: 10%;
+	width: 800px;
+	height: 200px;
+	
+}
+#rodape
+{
+	position: absolute;
+	bottom: 10px;
+	left: 10%;
+	width: 800px;
+	color: orange;
 }
