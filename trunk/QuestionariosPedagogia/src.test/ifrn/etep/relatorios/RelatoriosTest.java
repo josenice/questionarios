@@ -18,12 +18,17 @@ public class RelatoriosTest extends AbstractTransactionalJUnit4SpringContextTest
 	@Autowired
 	private Relatorios relatorios;
 	
+	
 	@Test
 	public void testAvaliacaoDocente() throws JRException{
 		JasperPrint jasperPrint = relatorios.avaliacaoDocente();
 		JasperViewer.viewReport(jasperPrint, true);
 	}
-	
+	@Test
+	public void testAvaliacaoTurma() throws JRException{
+		JasperPrint jasperPrint = relatorios.avaliacaoTurma();
+		JasperViewer.viewReport(jasperPrint, true);
+	}
 	@AfterClass
 	public static void afterClass(){
 		Scanner s = new Scanner(System.in);
