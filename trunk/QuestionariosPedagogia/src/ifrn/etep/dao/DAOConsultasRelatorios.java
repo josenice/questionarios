@@ -1,6 +1,7 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
+import ifrn.etep.dominio.RespostaAvaliacaoTurma;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class DAOConsultasRelatorios {
 	private SessionFactory sessionFactory;
 
 	@Transactional(readOnly = true)
-	public List<Object[]> getRegistros(BimestreLetivo bimestre) {
+	public List<Object[]> getRegistrosAvaliacaoDocente(BimestreLetivo bimestre) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session
 				.createQuery("select r.docenteAvaliado.usuario.matricula, "
@@ -36,24 +37,23 @@ public class DAOConsultasRelatorios {
 		query.setParameter("bimestre", bimestre);
 
 		return query.list();
-
 	}
-		@Transactional(readOnly = true)
-		public List<Object[]> getRegistros1(BimestreLetivo bimestre){
-			Session session = sessionFactory.getCurrentSession();
-			Query query = session.createQuery("select r.turmaAvaliada.codigoSistemaAcademico, "
-					+ "r.item.grupo.id, r.item.grupo.descricao, "
-					+ "r.item.id, r.item.texto, r.frequencia, "
-					+ "count (r.frequencia) "
-					+ "from RespostaAvaliacaoTurma r "
-					+ "where r.bimestre = :bimestre and r.item.usarFrequencia=true "
-					+ "group by r.turmaAvaliada.codigoSistemaAcademico, "
-					+ "r.item.grupo.id, r.item.grupo.descricao, "
-					+ "r.item.id, r.item.texto, r.frequencia "
-					+ "order by r.turmaAvaliada.codigoSistemaAcademico, r.item.grupo.id, "
-					+ "r.item.id ");
-			query.setParameter("bimestre", bimestre);
-			return query.list();
-			
+	
+	@Transactional(readOnly = true)
+	public List<Object[]> getRegistrosAvaliacaoTurma(BimestreLetivo bimestre){
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select "
+					+ "r.id, r.turmaAvaliada.codigoSistemaAcademico, "
+					+ "g.id, g.descricao, r.item.id, r.item.texto, "
+					+ "r.frequencia, count (r.frequencia) "
+				+ "from RespostaAvaliacaoTurma r left join r.item.grupo g "
+				+ "where "
+					+ "r.bimestre = :bimestre and r.item.usarFrequencia=true "
+				+ "group by "
+					+ "r.id, r.turmaAvaliada.codigoSistemaAcademico, "
+					+ "g.id, g.descricao, r.item.id, r.item.texto, "
+					+ "r.frequencia ");
+		query.setParameter("bimestre", bimestre);
+		return query.list();
 	}
 }
