@@ -1,5 +1,8 @@
 package ifrn.etep.dao;
 
+import ifrn.etep.dominio.BimestreLetivo;
+import ifrn.etep.dominio.RespostaAvaliacaoTurma;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -17,8 +20,21 @@ public class DAOConsultasRelatoriosTest extends AbstractTransactionalJUnit4Sprin
 	protected DAOBimesteLetivo daoBimestre;
 	
 	@Test
-	public void testGetRegistros(){
-		List<Object[]> registros = daoResposta.getRegistros(daoBimestre.getBimestreCorrente());
+	public void testGetRegistrosAvaliacaoDocente(){
+		List<Object[]> registros = daoResposta.getRegistrosAvaliacaoDocente(daoBimestre.getBimestreCorrente());
+		for(Object[] r : registros){
+			for(int i = 0; i < r.length; i++){
+				System.out.print(r[i] + " | ");
+			}
+			System.out.println("");
+		}
+	}
+	
+	@Test
+	public void testGetRegistrosAvaliacaoTurma(){
+		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorrente();
+		List<Object[]> registros = daoResposta.getRegistrosAvaliacaoTurma(bimestreCorrente);
+		System.out.println("REGISTROS\n---------");
 		for(Object[] r : registros){
 			for(int i = 0; i < r.length; i++){
 				System.out.print(r[i] + " | ");

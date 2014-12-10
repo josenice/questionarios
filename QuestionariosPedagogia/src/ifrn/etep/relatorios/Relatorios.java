@@ -59,8 +59,9 @@ public class Relatorios {
 	public JasperPrint avaliacaoDocente() throws JRException {
 
 		JasperReport jReport = getRelatorio("avaliacao_docente.jasper");
-		List<Object[]> registros = daoResposta.getRegistros(daoBimestreLetivo
-				.getBimestreCorrente());
+		List<Object[]> registros = daoResposta
+				.getRegistrosAvaliacaoDocente(daoBimestreLetivo
+						.getBimestreCorrente());
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		String[] titulos = { "MATRICULA", "NOME", "GRUPO_ID",
@@ -72,23 +73,27 @@ public class Relatorios {
 
 		return jPrint;
 	}
-		@Transactional(propagation = Propagation.REQUIRED)
-		public JasperPrint avaliacaoTurma() throws JRException{
-			JasperReport jReport = getRelatorio("avaliacao_turma.jasper");
-			List<Object[]> registros1 = daoResposta.getRegistros1(daoBimestreLetivo.getBimestreCorrente());
-			Map<String, Object> params = new HashMap<String, Object>();
-	
-			String[] titulos = { "CODIGOSISTEMAACADEMICO", "GRUPO_ID",
-			"GRUPO_DESCRICAO", "ITEM_AVALIACAO_ID", "ITEM_AVALIACAO_TEXTO",
-			"FREQUENCIA", "CONTAGEM" };
-			JRDataSource dataSource = new ListOfArrayDataSource(registros1, titulos);
-			JasperPrint jPrint = JasperFillManager.fillReport(jReport, params, dataSource);
-	
-			return jPrint;
+
+	@Transactional(propagation = Propagation.REQUIRED)
+	public JasperPrint avaliacaoTurma() throws JRException {
+		JasperReport jReport = getRelatorio("avaliacao_turma.jasper");
+		List<Object[]> registros = daoResposta
+				.getRegistrosAvaliacaoTurma(daoBimestreLetivo
+						.getBimestreCorrente());
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		String[] titulos = { "ID", "CODIGOSISTEMAACADEMICO", "GRUPO_ID",
+				"GRUPO_DESCRICAO", "ITEM_AVALIACAO_ID", "ITEM_AVALIACAO_TEXTO",
+				"FREQUENCIA", "CONTAGEM" };
+		JRDataSource dataSource = new ListOfArrayDataSource(registros, titulos);
+		JasperPrint jPrint = JasperFillManager.fillReport(jReport, params,
+				dataSource);
+
+		return jPrint;
 	}
 
-		// retorna um relatório a partir do seu nome de arquivo
-		private JasperReport getRelatorio(String nomeRelatorio) throws JRException {
+	// retorna um relatório a partir do seu nome de arquivo
+	private JasperReport getRelatorio(String nomeRelatorio) throws JRException {
 		JasperReport relatorio = (JasperReport) JRLoader
 				.loadObject(Relatorios.class.getResourceAsStream(nomeRelatorio));
 		return relatorio;
@@ -147,7 +152,6 @@ public class Relatorios {
 		xlsExporter.exportReport();
 
 		return new ByteArrayInputStream(outputStream.toByteArray());
-			}
-		
-		
 	}
+
+}
