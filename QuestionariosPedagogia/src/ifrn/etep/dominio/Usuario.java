@@ -22,7 +22,16 @@ public class Usuario implements Serializable{
 	@Column(nullable=false, unique=true, length=15)
 	private String matricula;
 	
+    private String password;
+	//perguntar se pode excluir nome já que tem matrícula.
 	private String nome;
+		
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 	public String getNome() {
 		return nome;

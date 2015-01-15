@@ -38,7 +38,7 @@ public class DAOConsultasRelatorios {
 
 		return query.list();
 	}
-	
+	//Faz a consulta da avaliação turma gerados por turma
 	@Transactional(readOnly = true)
 	public List<Object[]> getRegistrosAvaliacaoTurma(BimestreLetivo bimestre){
 		Session session = sessionFactory.getCurrentSession();
@@ -46,14 +46,42 @@ public class DAOConsultasRelatorios {
 					+ "r.id, r.turmaAvaliada.codigoSistemaAcademico, "
 					+ "g.id, g.descricao, r.item.id, r.item.texto, "
 					+ "r.frequencia, count (r.frequencia) "
-				+ "from RespostaAvaliacaoTurma r left join r.item.grupo g "
-				+ "where "
+					+ "from RespostaAvaliacaoTurma r left join r.item.grupo g "
+					+ "where "
 					+ "r.bimestre = :bimestre and r.item.usarFrequencia=true "
-				+ "group by "
+					+ "group by "
 					+ "r.id, r.turmaAvaliada.codigoSistemaAcademico, "
 					+ "g.id, g.descricao, r.item.id, r.item.texto, "
 					+ "r.frequencia ");
 		query.setParameter("bimestre", bimestre);
 		return query.list();
 	}
+	@Transactional(readOnly = true)
+	public List<Object[]> getRegistrosAutoAvaliacaoDocente(BimestreLetivo bimestre){
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session
+				.createQuery("select r.interrogado.usuario.matricula, "
+						+ "r.interrogado.usuario.nome, r.item.grupo.id, r.item.grupo.descricao, "
+						+ "r.item.id, r.item.texto, r.frequencia, "
+						+ "count(r.frequencia) "
+						+ "from RespostaAutoAvaliacaoDocente r "
+						+ "where r.bimestre = :bimestre and r.item.usarFrequencia=true "
+						+ "group by r.interrogado.usuario.matricula, "
+						+ "r.interrogado.usuario.nome, r.item.grupo.id, r.item.grupo.descricao, "
+						+ "r.item.id, r.item.texto, r.frequencia "
+						+ "order by r.interrogado.usuario.matricula, r.item.grupo.id, "
+						+ "r.item.id ");
+						
+		query.setParameter("bimestre", bimestre);
+		return query.list();
+	}
+	//Faz a consulta da avaliação turma gerados por diretoria
+	@Transactional(readOnly = true)
+	public List<Object[]> getRegistrosAvaliacaoTurmaDiretoria(BimestreLetivo bimestre){
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select "	+ "r.id, r.diretoria.nome, ");
+							query.setParameter("bimestre", bimestre);
+		return query.list();
+	}
+	
 }
