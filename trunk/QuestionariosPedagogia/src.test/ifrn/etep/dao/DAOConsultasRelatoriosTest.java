@@ -42,4 +42,29 @@ public class DAOConsultasRelatoriosTest extends AbstractTransactionalJUnit4Sprin
 			System.out.println("");
 		}
 	}
+	@Test
+	public void testGetAutoAvaliacaoDocente(){
+		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorrente();
+		List<Object[]> registros = daoResposta.getRegistrosAutoAvaliacaoDocente(bimestreCorrente);
+		System.out.println("REGISTROS\n---------");
+		for(Object[] r : registros){
+			for(int i = 0; i < r.length; i++){
+				System.out.print(r[i] + " | ");
+			}
+			System.out.println("");
+		}
+	}
+	@Test
+	public void testGetAvaliacaoTurmaDiretoria(){
+		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorrente();
+		List<Object[]> registros = daoResposta.getRegistrosAvaliacaoTurmaDiretoria(bimestreCorrente);
+		System.out.println("REGISTROS\n---------");
+		for(Object[] r : registros){
+			for(int i = 0; i < r.length; i++){
+				System.out.print(r[i] + " | ");
+			}
+			System.out.println("");
+		}
+	}
 }
+	

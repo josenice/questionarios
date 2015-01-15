@@ -6,90 +6,132 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="ID" class="java.lang.String"/>
+	<field name="ID" class="java.lang.Integer"/>
 	<field name="CODIGOSISTEMAACADEMICO" class="java.lang.String"/>
-	<field name="GRUPO_ID" class="java.lang.String"/>
+	<field name="GRUPO_ID" class="java.lang.Integer"/>
 	<field name="GRUPO_DESCRICAO" class="java.lang.String"/>
-	<field name="ITEM_AVALIACAO_ID" class="java.lang.String"/>
+	<field name="ITEM_AVALIACAO_ID" class="java.lang.Integer"/>
 	<field name="ITEM_AVALIACAO_TEXTO" class="java.lang.String"/>
 	<field name="FREQUENCIA" class="java.lang.String"/>
-	<field name="CONTAGEM" class="java.lang.String"/>
+	<field name="CONTAGEM" class="java.lang.Long"/>
 	<group name="TURMA">
 		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
 		<groupHeader>
-			<band height="50">
+			<band height="58">
 				<staticText>
-					<reportElement uuid="292d160b-e614-4f84-83aa-40ad5ef2ba24" x="10" y="8" width="18" height="14"/>
-					<textElement/>
+					<reportElement uuid="292d160b-e614-4f84-83aa-40ad5ef2ba24" x="10" y="0" width="22" height="22"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
 					<text><![CDATA[ID:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="1257efcf-4424-4c86-b96a-31dc4e3cd398" x="10" y="23" width="45" height="20"/>
-					<textElement verticalAlignment="Middle"/>
+					<reportElement uuid="1257efcf-4424-4c86-b96a-31dc4e3cd398" x="10" y="23" width="60" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
 					<text><![CDATA[CODIGO:]]></text>
 				</staticText>
 				<textField>
-					<reportElement uuid="860c40c6-539f-4124-9563-69577a1abdce" x="32" y="8" width="100" height="15"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+					<reportElement uuid="8c219b78-d2cd-4dfd-a31d-64c303946a41" x="70" y="23" width="102" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="8c219b78-d2cd-4dfd-a31d-64c303946a41" x="58" y="25" width="100" height="18"/>
-					<textElement/>
-					<textFieldExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></textFieldExpression>
+					<reportElement uuid="fb3e2037-b442-4954-8be7-875c062c8f1a" x="32" y="0" width="100" height="22"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true" isItalic="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band height="42"/>
 		</groupFooter>
 	</group>
 	<group name="GRUPO_ITEM_AVALIACAO">
 		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
 		<groupHeader>
-			<band height="50"/>
+			<band height="49">
+				<textField>
+					<reportElement uuid="3246074f-8cf1-452f-8fc2-5c778c315724" x="159" y="11" width="281" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{GRUPO_DESCRICAO}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band height="167">
+				<pieChart>
+					<chart>
+						<reportElement uuid="5d5b4a2e-a466-41c8-896b-5ad70bb0b028" x="44" y="9" width="207" height="153"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset resetType="Group" resetGroup="TURMA"/>
+						<keyExpression><![CDATA[$F{FREQUENCIA}]]></keyExpression>
+						<valueExpression><![CDATA[$F{CONTAGEM}]]></valueExpression>
+					</pieDataset>
+					<piePlot>
+						<plot/>
+						<itemLabel/>
+					</piePlot>
+				</pieChart>
+			</band>
 		</groupFooter>
 	</group>
 	<group name="ITEM_AVALIACAO">
 		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
 		<groupHeader>
-			<band height="50"/>
+			<band height="30">
+				<textField>
+					<reportElement uuid="2cd0c2d8-3bb8-48ee-9bcc-3e570c4b0c00" x="33" y="0" width="488" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ITEM_AVALIACAO_TEXTO}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="50"/>
+			<band/>
 		</groupFooter>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="52" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0ec7de03-55da-444e-9c42-6ea00072b598" x="173" y="26" width="195" height="20"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+				<reportElement uuid="0ec7de03-55da-444e-9c42-6ea00072b598" x="118" y="10" width="322" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[AVALIAÇÃO TURMA]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="35" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="38" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

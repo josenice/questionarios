@@ -26,7 +26,7 @@
 		<property name="acquireRetryAttempts" value="10" />
 		<property name="initialPoolSize" value="10" />
 	</bean>
-
+<!-- Gerenciador de seções do hibernate, recebe o Datasource, os parâmentros do hibernate e identifica os mapeamentos na aplicação -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -39,7 +39,7 @@
 			</props>
 		</property>
 	</bean>
-
+<!-- Gerenciador de transações, é responsável por criar ou terminar transações do banco de dados com begin, commit ou rollbac. -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
