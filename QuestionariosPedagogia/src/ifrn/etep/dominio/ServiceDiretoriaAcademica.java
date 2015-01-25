@@ -1,15 +1,5 @@
 package ifrn.etep.dominio;
 
-import java.io.Serializable;
-import java.util.List;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 
 //public class ServiceDiretoriaAcademica implements Serializable{

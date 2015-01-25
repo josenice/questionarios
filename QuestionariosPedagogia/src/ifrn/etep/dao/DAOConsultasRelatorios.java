@@ -1,7 +1,6 @@
 package ifrn.etep.dao;
 
 import ifrn.etep.dominio.BimestreLetivo;
-import ifrn.etep.dominio.RespostaAvaliacaoTurma;
 
 import java.util.List;
 
@@ -42,17 +41,19 @@ public class DAOConsultasRelatorios {
 	@Transactional(readOnly = true)
 	public List<Object[]> getRegistrosAvaliacaoTurma(BimestreLetivo bimestre){
 		Session session = sessionFactory.getCurrentSession();
+		
 		Query query = session.createQuery("select "
-					+ "r.id, r.turmaAvaliada.codigoSistemaAcademico, "
-					+ "g.id, g.descricao, r.item.id, r.item.texto, "
-					+ "r.frequencia, count (r.frequencia) "
-					+ "from RespostaAvaliacaoTurma r left join r.item.grupo g "
-					+ "where "
-					+ "r.bimestre = :bimestre and r.item.usarFrequencia=true "
-					+ "group by "
-					+ "r.id, r.turmaAvaliada.codigoSistemaAcademico, "
-					+ "g.id, g.descricao, r.item.id, r.item.texto, "
-					+ "r.frequencia ");
+				+ "r.turmaAvaliada.codigoSistemaAcademico, "
+				+ "g.id, g.descricao, r.item.id, r.item.texto, "
+				+ "r.frequencia, count (r.frequencia) "
+				+ "from RespostaAvaliacaoTurma r left join r.item.grupo g "
+				+ "where "
+				+ "r.bimestre = :bimestre and r.item.usarFrequencia=true "
+				+ "group by "
+				+ "r.turmaAvaliada.codigoSistemaAcademico, "
+				+ "g.id, g.descricao, r.item.id, r.item.texto, "
+				+ "r.frequencia "
+				+ "order by r.turmaAvaliada.codigoSistemaAcademico, r.item.id ");
 		query.setParameter("bimestre", bimestre);
 		return query.list();
 	}
@@ -60,19 +61,23 @@ public class DAOConsultasRelatorios {
 	public List<Object[]> getRegistrosAutoAvaliacaoDocente(BimestreLetivo bimestre){
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session
-				.createQuery("select r.interrogado.usuario.matricula, "
-						+ "r.interrogado.usuario.nome, r.item.grupo.id, r.item.grupo.descricao, "
+				.createQuery("select "
+						+ "r.interrogado.usuario.matricula, "
+						+ "r.interrogado.usuario.nome, "
+						+ "r.item.grupo.id, r.item.grupo.descricao, "
 						+ "r.item.id, r.item.texto, r.frequencia, "
 						+ "count(r.frequencia) "
 						+ "from RespostaAutoAvaliacaoDocente r "
-						+ "where r.bimestre = :bimestre and r.item.usarFrequencia=true "
+						//+ "where r.bimestre = :bimestre and r.item.usarFrequencia=true "
+						+ "where r.item.usarFrequencia=true "
 						+ "group by r.interrogado.usuario.matricula, "
-						+ "r.interrogado.usuario.nome, r.item.grupo.id, r.item.grupo.descricao, "
+						+ "r.interrogado.usuario.nome, "
+						+ "r.item.grupo.id, r.item.grupo.descricao, "
 						+ "r.item.id, r.item.texto, r.frequencia "
-						+ "order by r.interrogado.usuario.matricula, r.item.grupo.id, "
+						+ "order by r.interrogado.usuario.matricula, "
+						+ "r.item.grupo.id, "
 						+ "r.item.id ");
-						
-		query.setParameter("bimestre", bimestre);
+		//query.setParameter("bimestre", bimestre);
 		return query.list();
 	}
 	//Faz a consulta da avaliação turma gerados por diretoria

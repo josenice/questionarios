@@ -9,7 +9,6 @@ import net.sf.jasperreports.view.JasperViewer;
 import org.junit.AfterClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
@@ -33,6 +32,11 @@ public class RelatoriosTest extends AbstractTransactionalJUnit4SpringContextTest
 	@Test
 	public void testAutoAvaliacaoDocente() throws JRException{
 		JasperPrint jasperPrint = relatorios.autoAvaliacaoDocente();
+		JasperViewer.viewReport(jasperPrint, true);
+	}
+	@Test
+	public void testAvaliacaoTurmaDiretoria() throws JRException{
+		JasperPrint jasperPrint = relatorios.AvaliacaoTurmaDiretoria();
 		JasperViewer.viewReport(jasperPrint, true);
 	}
 	@AfterClass

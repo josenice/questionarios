@@ -7,13 +7,11 @@ package ifrn.etep.relatorios;
 
 import ifrn.etep.dao.DAOBimesteLetivo;
 import ifrn.etep.dao.DAOConsultasRelatorios;
-import ifrn.etep.dominio.RespostaAvaliacaoDocente;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +23,6 @@ import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.data.ListOfArrayDataSource;
 import net.sf.jasperreports.engine.export.JRHtmlExporter;
 import net.sf.jasperreports.engine.export.JRHtmlExporterParameter;
@@ -34,7 +31,6 @@ import net.sf.jasperreports.engine.export.JRXlsExporterParameter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
 
-import org.hibernate.loader.custom.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -82,7 +78,7 @@ public class Relatorios {
 						.getBimestreCorrente());
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		String[] titulos = { "ID", "CODIGOSISTEMAACADEMICO", "GRUPO_ID",
+		String[] titulos = {"CODIGOSISTEMAACADEMICO", "GRUPO_ID",
 				"GRUPO_DESCRICAO", "ITEM_AVALIACAO_ID", "ITEM_AVALIACAO_TEXTO",
 				"FREQUENCIA", "CONTAGEM" };
 		JRDataSource dataSource = new ListOfArrayDataSource(registros, titulos);

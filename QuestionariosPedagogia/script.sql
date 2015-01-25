@@ -1,4 +1,4 @@
-insert into anoletivo (id, ano) values (1, 2014);
+insert into anoletivo (id, ano) values (1, '2015');
 insert into questionario (id, descricao, tipoquestionario) values (1, 'Avaliacao da Turma', 'AVALIACAO_TURMA');
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (1, 'A Turma comparece às aulas no horário estabelecido?', true, 1);
 insert into campotextual (id, descricao, itemavaliacao_id) values (1, 'Alunos com destaques positivos para o item', 1);
@@ -8,7 +8,7 @@ insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (2
 insert into campotextual (id, descricao, itemavaliacao_id) values (3, 'Alunos com destaque positivo para o item', 2);
 insert into campotextual (id, descricao, itemavaliacao_id) values (4, 'Alunos com problema no item', 2);
 
-insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (3, 'A Turma possui um bom rendimento?', true, 1);
+insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (3, 'A Turma possui um bom rendimento escolar?', true, 1);
 insert into campotextual (id, descricao, itemavaliacao_id) values (5, 'Alunos com destaque possitivo para o item', 3);
 insert into campotextual (id, descricao, itemavaliacao_id) values (6, 'Alunos com problema no item', 3);
 

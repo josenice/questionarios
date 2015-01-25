@@ -29,19 +29,30 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  
+  <!--  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>
+    	/WEB-INF/spring-security.xml
+  	</param-value>
+  </context-param> -->
+  
   <context-param>
   	<param-name>javax.faces.PROJECT_STAGE</param-name>
   	<param-value>Development</param-value>
   </context-param>
+  
   <context-param>
     <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
     <param-value>resources.application</param-value>
   </context-param>
+  
   <context-param>
     <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
     <param-value>client</param-value>
   </context-param>
+  
   <context-param>
     <description>
 	This parameter tells MyFaces if javascript code should be allowed in
@@ -51,9 +62,11 @@
 	If javascript is not allowed, the state saving info and nested parameters
 	will be added as url parameters.
 	Default is 'true'</description>
+	
     <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
     <param-value>true</param-value>
   </context-param>
+  
   <context-param>
     <description>
 	If true, rendered HTML code will be formatted, so that it is 'human-readable'
@@ -63,10 +76,12 @@
     <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
     <param-value>true</param-value>
   </context-param>
+  
   <context-param>
     <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
     <param-value>false</param-value>
   </context-param>
+  
   <context-param>
     <description>
 	If true, a javascript function will be rendered that is able to restore the
@@ -75,9 +90,11 @@
 	if you trigger a link or button action that stays on the same page.
 	Default is 'false'
 </description>
+
     <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
     <param-value>true</param-value>
   </context-param>
+  
   <listener>
     <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
   </listener>

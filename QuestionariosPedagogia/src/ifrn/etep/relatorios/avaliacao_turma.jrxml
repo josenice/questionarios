@@ -1,81 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="avaliacao_turma" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="503d23d2-dace-48cf-ad4d-bac7a0abc95e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="avaliacao_turma" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e78aa6c-23c2-42cb-bcba-35a24e461fce">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<queryString>
-		<![CDATA[]]>
-	</queryString>
-	<field name="ID" class="java.lang.Integer"/>
+	<property name="ireport.y" value="112"/>
 	<field name="CODIGOSISTEMAACADEMICO" class="java.lang.String"/>
-	<field name="GRUPO_ID" class="java.lang.Integer"/>
+	<field name="GRUPO_ID" class="java.lang.String"/>
 	<field name="GRUPO_DESCRICAO" class="java.lang.String"/>
-	<field name="ITEM_AVALIACAO_ID" class="java.lang.Integer"/>
+	<field name="ITEM_AVALIACAO_ID" class="java.lang.String"/>
 	<field name="ITEM_AVALIACAO_TEXTO" class="java.lang.String"/>
 	<field name="FREQUENCIA" class="java.lang.String"/>
 	<field name="CONTAGEM" class="java.lang.Long"/>
-	<group name="TURMA">
-		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+	<group name="Turma">
+		<groupExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></groupExpression>
 		<groupHeader>
-			<band height="58">
-				<staticText>
-					<reportElement uuid="292d160b-e614-4f84-83aa-40ad5ef2ba24" x="10" y="0" width="22" height="22"/>
-					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[ID:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement uuid="1257efcf-4424-4c86-b96a-31dc4e3cd398" x="10" y="23" width="60" height="20"/>
-					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[CODIGO:]]></text>
-				</staticText>
+			<band height="32">
 				<textField>
-					<reportElement uuid="8c219b78-d2cd-4dfd-a31d-64c303946a41" x="70" y="23" width="102" height="20"/>
-					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true" isItalic="false"/>
-					</textElement>
+					<reportElement uuid="0b311a02-9e60-40b8-b33e-a58ec66c02ae" x="171" y="9" width="148" height="20"/>
+					<textElement verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></textFieldExpression>
 				</textField>
-				<textField>
-					<reportElement uuid="fb3e2037-b442-4954-8be7-875c062c8f1a" x="32" y="0" width="100" height="22"/>
+				<staticText>
+					<reportElement uuid="132d4934-d379-487c-910e-d246a76b3eac" x="5" y="9" width="166" height="20"/>
 					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true" isItalic="false"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
-				</textField>
+					<text><![CDATA[Código Sistema Academico:]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="42"/>
+			<band height="50"/>
 		</groupFooter>
 	</group>
 	<group name="GRUPO_ITEM_AVALIACAO">
-		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
+		<groupExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></groupExpression>
 		<groupHeader>
-			<band height="49">
+			<band height="29">
 				<textField>
-					<reportElement uuid="3246074f-8cf1-452f-8fc2-5c778c315724" x="159" y="11" width="281" height="20"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14" isBold="true"/>
+					<reportElement uuid="b6295995-b41a-4d19-be52-aa0476c18117" x="91" y="7" width="410" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{GRUPO_DESCRICAO}]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="167">
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<group name="ITEM_AVALIACAO">
+		<groupExpression><![CDATA[$F{ITEM_AVALIACAO_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<textField>
+					<reportElement uuid="74e62438-25bd-4af5-ab40-186b867d9116" x="91" y="7" width="410" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ITEM_AVALIACAO_TEXTO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="223">
 				<pieChart>
 					<chart>
-						<reportElement uuid="5d5b4a2e-a466-41c8-896b-5ad70bb0b028" x="44" y="9" width="207" height="153"/>
+						<reportElement uuid="fb67fc05-1001-4d48-b897-9a1e8ee474bb" x="74" y="17" width="369" height="196"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
 					</chart>
 					<pieDataset>
-						<dataset resetType="Group" resetGroup="TURMA"/>
+						<dataset resetType="Group" resetGroup="ITEM_AVALIACAO"/>
 						<keyExpression><![CDATA[$F{FREQUENCIA}]]></keyExpression>
 						<valueExpression><![CDATA[$F{CONTAGEM}]]></valueExpression>
 					</pieDataset>
@@ -87,34 +84,17 @@
 			</band>
 		</groupFooter>
 	</group>
-	<group name="ITEM_AVALIACAO">
-		<groupExpression><![CDATA[$F{ID}]]></groupExpression>
-		<groupHeader>
-			<band height="30">
-				<textField>
-					<reportElement uuid="2cd0c2d8-3bb8-48ee-9bcc-3e570c4b0c00" x="33" y="0" width="488" height="20"/>
-					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{ITEM_AVALIACAO_TEXTO}]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="52" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0ec7de03-55da-444e-9c42-6ea00072b598" x="118" y="10" width="322" height="26"/>
+				<reportElement uuid="18097d85-253b-4a49-be02-2c8a7147aca3" x="101" y="34" width="375" height="25"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[AVALIAÇÃO TURMA]]></text>
+				<text><![CDATA[ AVALIAÇÃO TURMA GERADO POR TURMA]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -128,10 +108,10 @@
 		<band splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="35" splitType="Stretch"/>
+		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="38" splitType="Stretch"/>
+		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

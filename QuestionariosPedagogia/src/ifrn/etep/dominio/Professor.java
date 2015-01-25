@@ -12,9 +12,7 @@ import javax.persistence.Table;
 @Table(name="PROFESSOR")
 public class Professor implements Serializable {
 
-	/**
-	 * Josenice
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
