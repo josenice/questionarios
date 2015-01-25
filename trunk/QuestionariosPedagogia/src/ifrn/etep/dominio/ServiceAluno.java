@@ -1,6 +1,7 @@
 package ifrn.etep.dominio;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,28 +13,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Scope(proxyMode=ScopedProxyMode.TARGET_CLASS)
 @Transactional(propagation=Propagation.REQUIRED)
-public class ServiceUsuario implements Serializable{
-	
-	/**
-	 * Josenice
-	 */
+public class ServiceAluno implements Serializable{
+
 	private static final long serialVersionUID = 1L;
 	@Autowired
-	private RepositorioUsuario repositorio;
+	private RepositorioAluno repositorio;
 	
-	public Professor getPorId(Integer idUsuario) {
-		return repositorio.getPorId(idUsuario);
+	public Aluno getPorId(Integer idAluno) {
+		return repositorio.getPorId(idAluno);
 	}
 	
 	/**
-	 * Retornas as turmas associadas a um professor no semestre corrente e que ainda não foram 
-	 * avaliadas.
+	 * Retornas os alunos associados a um professor no semestre corrente e que ainda não foram 
+	 * avaliados.
 	 * @param idProfessor
 	 * @return
 	 */
-	/*public List<TurmaSeriada> getTurmasNaoAvaliadasPorProfessor(
+	public List<Aluno> getAlunosNaoAvaliadoPorProfessor(
 			Integer idProfessor) {
-		return repositorio.getTurmasNaoAvaliadasPorProfessor(idProfessor);
-	}*/
+		return repositorio.getAlunosNaoAvaliadosPorProfessor(idProfessor);
+	}
 
 }

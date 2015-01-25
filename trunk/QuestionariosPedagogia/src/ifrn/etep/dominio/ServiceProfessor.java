@@ -15,9 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation=Propagation.REQUIRED)
 public class ServiceProfessor implements Serializable{
 	
-	/**
-	 * Josenice
-	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private RepositorioProfessor repositorio;

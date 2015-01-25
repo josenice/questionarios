@@ -17,9 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRED)
 public class ServiceQuestionarioAvaliacaoTurma implements Serializable {
 
-	/**
-	 * Maria Josenice Severino de Pinho
-	 */
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private RepositorioQuestionarioAvaliacaoTurma repositorio;

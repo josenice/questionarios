@@ -32,7 +32,7 @@ public abstract class RespostaItemAvaliacao implements Serializable {
 	@OneToMany(orphanRemoval=true, mappedBy="respostaItemAvaliacao", cascade=CascadeType.ALL)
 	private List<RespostaCampoTextual> respostasCampoTextual = new ArrayList<RespostaCampoTextual>();
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private BimestreLetivo bimestre;
 
 	public BimestreLetivo getBimestre() {

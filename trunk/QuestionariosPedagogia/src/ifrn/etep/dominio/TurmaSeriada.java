@@ -18,7 +18,7 @@ public class TurmaSeriada implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)//indica que que a persistência deve atribuir chaves primárias para a entidade que utiliza coluna de identidae de banco de dados
 	private Integer id;
 	private String codigoSistemaAcademico;
 	

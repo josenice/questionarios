@@ -23,9 +23,9 @@ public class Usuario implements Serializable{
 	private String matricula;
 	
     private String password;
-	//perguntar se pode excluir nome já que tem matrícula.
+	
 	private String nome;
-		
+	
 	public String getPassword() {
 		return password;
 	}
