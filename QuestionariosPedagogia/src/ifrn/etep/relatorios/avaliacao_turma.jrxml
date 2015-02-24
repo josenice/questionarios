@@ -10,6 +10,7 @@
 	<field name="ITEM_AVALIACAO_TEXTO" class="java.lang.String"/>
 	<field name="FREQUENCIA" class="java.lang.String"/>
 	<field name="CONTAGEM" class="java.lang.Long"/>
+	<field name="FREQUENCIA_TEXTO" class="java.lang.String"/>
 	<group name="Turma">
 		<groupExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></groupExpression>
 		<groupHeader>
@@ -36,7 +37,7 @@
 		<groupExpression><![CDATA[$F{CODIGOSISTEMAACADEMICO}]]></groupExpression>
 		<groupHeader>
 			<band height="29">
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement uuid="b6295995-b41a-4d19-be52-aa0476c18117" x="91" y="7" width="410" height="20"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
@@ -73,8 +74,9 @@
 					</chart>
 					<pieDataset>
 						<dataset resetType="Group" resetGroup="ITEM_AVALIACAO"/>
-						<keyExpression><![CDATA[$F{FREQUENCIA}]]></keyExpression>
+						<keyExpression><![CDATA[$F{FREQUENCIA_TEXTO}]]></keyExpression>
 						<valueExpression><![CDATA[$F{CONTAGEM}]]></valueExpression>
+						<labelExpression><![CDATA[$F{FREQUENCIA_TEXTO} + '=' + $F{CONTAGEM}]]></labelExpression>
 					</pieDataset>
 					<piePlot>
 						<plot/>

@@ -1,4 +1,4 @@
-insert into anoletivo (id, ano) values (1, '2015');
+insert into anoletivo (id, ano) values (1, 2015);
 insert into questionario (id, descricao, tipoquestionario) values (1, 'Avaliacao da Turma', 'AVALIACAO_TURMA');
 insert into itemavaliacao (id, texto, usarfrequencia, questionario_id) values (1, 'A Turma comparece às aulas no horário estabelecido?', true, 1);
 insert into campotextual (id, descricao, itemavaliacao_id) values (1, 'Alunos com destaques positivos para o item', 1);

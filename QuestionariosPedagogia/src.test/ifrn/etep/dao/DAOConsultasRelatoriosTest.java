@@ -54,7 +54,7 @@ public class DAOConsultasRelatoriosTest extends AbstractTransactionalJUnit4Sprin
 			System.out.println("");
 		}
 	}
-	@Test
+	/*@Test
 	public void testGetAvaliacaoTurmaDiretoria(){
 		BimestreLetivo bimestreCorrente = daoBimestre.getBimestreCorrente();
 		List<Object[]> registros = daoResposta.getRegistrosAvaliacaoTurmaDiretoria(bimestreCorrente);
@@ -65,6 +65,6 @@ public class DAOConsultasRelatoriosTest extends AbstractTransactionalJUnit4Sprin
 			}
 			System.out.println("");
 		}
-	}
+	}*/
 }
 	

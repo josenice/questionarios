@@ -14,7 +14,7 @@ public class QuestionarioAutoAvaliacaoDocente extends Questionario {
 	private static final long serialVersionUID = 1L;
 
 	public List<RespostaAutoAvaliacaoDocente> gerarItensResposta(Professor interrogado){
-		ArrayList<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
+				ArrayList<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
 		for(ItemAvaliacao item : getItens()){
 			RespostaAutoAvaliacaoDocente r = new RespostaAutoAvaliacaoDocente();
 			r.setItem(item);
