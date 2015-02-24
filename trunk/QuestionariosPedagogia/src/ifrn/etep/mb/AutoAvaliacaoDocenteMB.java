@@ -26,10 +26,9 @@ public class AutoAvaliacaoDocenteMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private QuestionarioAutoAvaliacaoDocente questionario;
-	
 	private Professor usuario;
-	//private Usuario usuarioInterrogado; inserir o getProfessor
 	
+	//private Usuario usuarioInterrogado; inserir o getProfessor
 	private List<RespostaAutoAvaliacaoDocente> respostas = new ArrayList<>();
 	
 	private List<GrupoResposta> gruposRespostas = new ArrayList<>();
@@ -65,12 +64,14 @@ public class AutoAvaliacaoDocenteMB implements Serializable{
 	public void init(){
 		try{
 			HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+			//Integer idProfessor = new Integer(request.getParameter("idProfessor"));
 			Integer idUsuario = new Integer(request.getParameter("idUsuario"));
 			questionario = serviceQuestionario.getDoBimestreCorrente();
 			//TODO obter o usuário logado
 			Professor usuario = new Professor();
 			usuario.setId(idUsuario);
-			respostas = questionario.gerarItensResposta(usuario);
+			//respostas = questionario.gerarItensResposta(usuario,Professor usuario);
+			//respostas = questionario.gerarItensResposta(interrogado, usuario);
 			
 			HashMap<GrupoItemAvaliacao, GrupoResposta> mapaGrupos = new HashMap<>();
 			for(RespostaAutoAvaliacaoDocente resposta : respostas){
@@ -88,6 +89,7 @@ public class AutoAvaliacaoDocenteMB implements Serializable{
 			throw ex;
 		}
 	}
+	
 	public String salvarRespostas(){
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		try{

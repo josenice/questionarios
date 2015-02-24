@@ -9,10 +9,16 @@
        http://www.springframework.org/schema/context/spring-context-3.2.xsd  
        http://www.springframework.org/schema/tx 
        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+       
+<!-- Indica em que pacotes estão as classes configuradas com anotações do Spring -->
 
 	<context:annotation-config />
 	<context:component-scan
 		base-package="ifrn.etep.dominio,ifrn.etep.dao,ifrn.etep.relatorios" />
+		
+<!-- Configuração do banco de dados utilizando um pool de conexões
+para a otimização da abertura e fechamento de uma conexão.
+Opção do Java é: C3P0, a qual é suportada pelo Spring -->
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -35,7 +41,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<!--  <prop key="hibernate.hbm2ddl.auto">create</prop>  -->
+				 <!--   <prop key="hibernate.hbm2ddl.auto">create</prop> -->
 			</props>
 		</property>
 	</bean>
@@ -44,7 +50,7 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+<!-- ver o que a tag tx:annotation quer dizer -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
 

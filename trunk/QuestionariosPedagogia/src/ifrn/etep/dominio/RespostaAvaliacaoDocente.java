@@ -19,6 +19,17 @@ public class RespostaAvaliacaoDocente extends RespostaItemAvaliacao{
 	
 	@ManyToOne(optional=false)
 	private Diario diario;
+	
+	/*@ManyToOne(optional=false)
+	private Usuario usuario;
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}*/
 
 	public Aluno getInterrogado() {
 		return interrogado;

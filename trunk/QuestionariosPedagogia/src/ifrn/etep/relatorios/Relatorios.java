@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,10 +37,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 
- * @author Alexandre
- */
 @Component
 public class Relatorios {
 
@@ -73,15 +70,27 @@ public class Relatorios {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public JasperPrint avaliacaoTurma() throws JRException {
 		JasperReport jReport = getRelatorio("avaliacao_turma.jasper");
-		List<Object[]> registros = daoResposta
+		List<Object[]> registrosDoDAO = daoResposta
 				.getRegistrosAvaliacaoTurma(daoBimestreLetivo
 						.getBimestreCorrente());
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		String[] titulos = {"CODIGOSISTEMAACADEMICO", "GRUPO_ID",
 				"GRUPO_DESCRICAO", "ITEM_AVALIACAO_ID", "ITEM_AVALIACAO_TEXTO",
-				"FREQUENCIA", "CONTAGEM" };
-		JRDataSource dataSource = new ListOfArrayDataSource(registros, titulos);
+				"FREQUENCIA", "CONTAGEM" , "FREQUENCIA_TEXTO"};
+		
+		List<Object[]> registrosDoRelatorio = new ArrayList<Object[]>();
+		for(Object[] rDAO : registrosDoDAO){
+			int n = rDAO.length;
+			Object[] rRelatorio = new Object[n + 1];
+			for(int i = 0; i < n; i++){
+				rRelatorio[i] = rDAO[i];
+			}
+			rRelatorio[7] = getFrequenciaAsString(Integer.parseInt((String)rDAO[5]));
+			registrosDoRelatorio.add(rRelatorio);
+		}
+		
+		JRDataSource dataSource = new ListOfArrayDataSource(registrosDoRelatorio, titulos);
 		JasperPrint jPrint = JasperFillManager.fillReport(jReport, params,
 				dataSource);
 
@@ -180,5 +189,17 @@ public class Relatorios {
 
 		return new ByteArrayInputStream(outputStream.toByteArray());
 	}
-
+	
+	private String getFrequenciaAsString(int frequencia){
+		if(frequencia == 1)
+			return "Sempre";
+		else if(frequencia == 2)
+			return "Quase sempre";
+		else if(frequencia == 3)
+			return "Às vezes";
+		else if(frequencia == 4)
+			return "Nunca";
+		
+		throw new IllegalArgumentException("Frequencia deve estar entre 1 e 4: " + frequencia);
+	}
 }
